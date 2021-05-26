@@ -23,6 +23,13 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
             return false
         }
     }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        historyTableView.delegate = self
+        historyTableView.dataSource = self
+        historyTableView.rowHeight = 90        // Do any additional setup after loading the view.
+        yearStepper.value = Double(year)
+    }
     /* method to update month on stepper value change */
     @IBAction func monthStepperChanged(_ sender: Any) {
         switch monthStepper.value {
@@ -82,21 +89,16 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
     func numberOfSections(in tableView: UITableView) -> Int {
         1
     }
+    /* using tableview delegate method to create a cell object and returning it.*/
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        // this will link the custom cell (HistoryTableViewCell) on each indexPath of our tableview and creates a cell object.
         let cell = tableView.dequeueReusableCell(withIdentifier: "history", for: indexPath) as! HistoryTableViewCell
         cell.dayLabel.text = String(indexPath.row+1)
         cell.amountLabel.text = "$100.0"
         return cell
     }
     
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        historyTableView.delegate = self
-        historyTableView.dataSource = self
-        historyTableView.rowHeight = 90        // Do any additional setup after loading the view.
-        yearStepper.value = Double(year)
-    }
+    
     
 
     /*
