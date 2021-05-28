@@ -6,9 +6,10 @@
 //
 
 import UIKit
-
+import CoreData
 class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     let year = Calendar.current.component(.year, from: Date())
+    var entries: [Expense]?
     @IBOutlet weak var monthLabel: UILabel!
     @IBOutlet weak var yearLabel: UILabel!
     @IBOutlet weak var monthStepper: UIStepper!
@@ -29,6 +30,7 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
         historyTableView.dataSource = self
         historyTableView.rowHeight = 90        // Do any additional setup after loading the view.
         yearStepper.value = Double(year)
+       
     }
     /* method to update month on stepper value change */
     @IBAction func monthStepperChanged(_ sender: Any) {
@@ -93,9 +95,48 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // this will link the custom cell (HistoryTableViewCell) on each indexPath of our tableview and creates a cell object.
         let cell = tableView.dequeueReusableCell(withIdentifier: "history", for: indexPath) as! HistoryTableViewCell
-        cell.dayLabel.text = String(indexPath.row+1)
-        cell.amountLabel.text = "$100.0"
+        cell.dayLabel.text = "\(indexPath.row + 1)"
+        cell.amountLabel.text = "$0.0"
+        if let items = entries {
+            for item in items {
+                if Calendar.current.component(.day, from: item.date!) == (indexPath.row + 1) && Calendar.current.component(.month, from: item.date!) == Int(monthStepper.value) && Calendar.current.component(.year, from: item.date!) == Int(yearStepper.value){
+                    cell.dayLabel.text = "\(indexPath.row + 1)"
+                    cell.amountLabel.text = "$\(item.totalAmount)"
+                }
+            }
+            
+            
+         
+            /*if indexPath.row < items.count {
+                print("total items:",items.count)
+            let dd = Calendar.current.component(.day, from: items[indexPath.row].date!)
+            let mm = Calendar.current.component(.month, from: items[indexPath.row].date!)
+            let yy = Calendar.current.component(.year, from: items[indexPath.row].date!)
+                if mm == Int(monthStepper.value) && yy == Int(yearStepper.value) && (indexPath.row + 1) == dd {
+                cell.dayLabel.text = String(dd)
+                cell.amountLabel.text = "$\(items[indexPath.row].totalAmount)"
+            print("success...")
+                    return cell
+                }
+            else{
+                cell.dayLabel.text = "\(indexPath.row + 1)"
+                cell.amountLabel.text = "$0.00"
+                print("success but date \(indexPath.row+1) not found...")
+                return cell
+            }
+                
+                
+        }
+            else{
+                cell.dayLabel.text = "\(indexPath.row + 1)"
+                cell.amountLabel.text = "$0.00"
+                return cell
+            }*/
+           
+        }
+        
         return cell
+        
     }
     
     

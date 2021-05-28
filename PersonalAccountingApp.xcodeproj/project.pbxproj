@@ -11,9 +11,11 @@
 		7203E889265B06DF0079FF47 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7203E888265B06DF0079FF47 /* SceneDelegate.swift */; };
 		7203E88B265B06DF0079FF47 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7203E88A265B06DF0079FF47 /* ViewController.swift */; };
 		7203E88E265B06DF0079FF47 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7203E88C265B06DF0079FF47 /* Main.storyboard */; };
-		7203E891265B06DF0079FF47 /* PersonalAccountingApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7203E88F265B06DF0079FF47 /* PersonalAccountingApp.xcdatamodeld */; };
 		7203E893265B06E10079FF47 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7203E892265B06E10079FF47 /* Assets.xcassets */; };
 		7203E896265B06E10079FF47 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7203E894265B06E10079FF47 /* LaunchScreen.storyboard */; };
+		7248BC6226614FC7006D40E2 /* Expense+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7248BC6026614FC6006D40E2 /* Expense+CoreDataClass.swift */; };
+		7248BC6326614FC7006D40E2 /* Expense+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7248BC6126614FC7006D40E2 /* Expense+CoreDataProperties.swift */; };
+		7248BC662661500C006D40E2 /* PersonalAccountingApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7203E88F265B06DF0079FF47 /* PersonalAccountingApp.xcdatamodeld */; };
 		72B13F82265EA72D00277014 /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72B13F81265EA72D00277014 /* HistoryTableViewCell.swift */; };
 		72B13F85265EAA4400277014 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72B13F84265EAA4400277014 /* HistoryViewController.swift */; };
 		72D61870265B2BE300F1C53D /* AddExpensesVIewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72D6186F265B2BE300F1C53D /* AddExpensesVIewController.swift */; };
@@ -29,6 +31,8 @@
 		7203E892265B06E10079FF47 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7203E895265B06E10079FF47 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7203E897265B06E10079FF47 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7248BC6026614FC6006D40E2 /* Expense+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Expense+CoreDataClass.swift"; sourceTree = "<group>"; };
+		7248BC6126614FC7006D40E2 /* Expense+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Expense+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		72B13F81265EA72D00277014 /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
 		72B13F84265EAA4400277014 /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		72D6186F265B2BE300F1C53D /* AddExpensesVIewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpensesVIewController.swift; sourceTree = "<group>"; };
@@ -64,6 +68,7 @@
 		7203E885265B06DF0079FF47 /* PersonalAccountingApp */ = {
 			isa = PBXGroup;
 			children = (
+				72BFE4FE265FF8E000C2D7C0 /* Model */,
 				7203E886265B06DF0079FF47 /* AppDelegate.swift */,
 				7203E888265B06DF0079FF47 /* SceneDelegate.swift */,
 				7203E88A265B06DF0079FF47 /* ViewController.swift */,
@@ -77,6 +82,15 @@
 				7203E88F265B06DF0079FF47 /* PersonalAccountingApp.xcdatamodeld */,
 			);
 			path = PersonalAccountingApp;
+			sourceTree = "<group>";
+		};
+		72BFE4FE265FF8E000C2D7C0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				7248BC6026614FC6006D40E2 /* Expense+CoreDataClass.swift */,
+				7248BC6126614FC7006D40E2 /* Expense+CoreDataProperties.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -149,11 +163,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7248BC662661500C006D40E2 /* PersonalAccountingApp.xcdatamodeld in Sources */,
+				7248BC6226614FC7006D40E2 /* Expense+CoreDataClass.swift in Sources */,
 				72B13F82265EA72D00277014 /* HistoryTableViewCell.swift in Sources */,
 				7203E88B265B06DF0079FF47 /* ViewController.swift in Sources */,
 				7203E887265B06DF0079FF47 /* AppDelegate.swift in Sources */,
+				7248BC6326614FC7006D40E2 /* Expense+CoreDataProperties.swift in Sources */,
 				72D61870265B2BE300F1C53D /* AddExpensesVIewController.swift in Sources */,
-				7203E891265B06DF0079FF47 /* PersonalAccountingApp.xcdatamodeld in Sources */,
 				72B13F85265EAA4400277014 /* HistoryViewController.swift in Sources */,
 				7203E889265B06DF0079FF47 /* SceneDelegate.swift in Sources */,
 			);
