@@ -18,14 +18,15 @@ class AddExpensesVIewController: UIViewController {
     //persistant container have a property called managedObjectContext.
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var items: [Expense]?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         dateLabel.text = dateString
-       fetchData()
+        fetchData()
        //   deleteAll()
         // Do any additional setup after loading the view.
     }
+    
     func fetchData() {
         //this method will call fetchRequest() of our Person Entity and will return all Person objects back.
         do {
@@ -95,9 +96,12 @@ class AddExpensesVIewController: UIViewController {
             }
             if(flag) {
                 item.totalAmount = 0.0
-            for amount in item.amounts! {
-                item.totalAmount += amount
-            }
+                if item.amounts != nil {
+                    for amount in item.amounts! {
+                        item.totalAmount += amount
+                    }
+                }
+           
             }
         }
         if (flag == false) {
@@ -138,6 +142,7 @@ class AddExpensesVIewController: UIViewController {
         }
         self.fetchData()
     }
+    
     /*
     // MARK: - Navigation
 

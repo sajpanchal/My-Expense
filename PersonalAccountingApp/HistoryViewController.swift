@@ -32,6 +32,30 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
         yearStepper.value = Double(year)
        
     }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let dailyExpenses = segue.destination as! DailyExpensesViewController
+        
+        let dd = String(format:"%02d",historyTableView.indexPathForSelectedRow!.row+1)
+        let mm = String(format:"%02d", Int(monthStepper.value))
+        let dateStr = "\(dd)/\(mm)/\(Int(yearStepper.value))"
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd/MM/yy"
+        let dateFormatter2 = DateFormatter()
+        dateFormatter2.dateFormat = "MMM d, yyyy"
+        let date = dateFormatter.date(from: dateStr)
+        dailyExpenses.dateString = dateFormatter2.string(from: date!)
+        print(dailyExpenses.dateString!)
+        for entry in entries! {
+            let entryDate = dateFormatter2.string(from: entry.date!)
+            if entryDate == dailyExpenses.dateString {
+            
+                dailyExpenses.item = entry
+                print(dailyExpenses.item!, date!)
+                break
+            }
+        }
+        
+    }
     /* method to update month on stepper value change */
     @IBAction func monthStepperChanged(_ sender: Any) {
         switch monthStepper.value {
@@ -104,39 +128,8 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
                     cell.amountLabel.text = "$\(item.totalAmount)"
                 }
             }
-            
-            
-         
-            /*if indexPath.row < items.count {
-                print("total items:",items.count)
-            let dd = Calendar.current.component(.day, from: items[indexPath.row].date!)
-            let mm = Calendar.current.component(.month, from: items[indexPath.row].date!)
-            let yy = Calendar.current.component(.year, from: items[indexPath.row].date!)
-                if mm == Int(monthStepper.value) && yy == Int(yearStepper.value) && (indexPath.row + 1) == dd {
-                cell.dayLabel.text = String(dd)
-                cell.amountLabel.text = "$\(items[indexPath.row].totalAmount)"
-            print("success...")
-                    return cell
-                }
-            else{
-                cell.dayLabel.text = "\(indexPath.row + 1)"
-                cell.amountLabel.text = "$0.00"
-                print("success but date \(indexPath.row+1) not found...")
-                return cell
-            }
-                
-                
         }
-            else{
-                cell.dayLabel.text = "\(indexPath.row + 1)"
-                cell.amountLabel.text = "$0.00"
-                return cell
-            }*/
-           
-        }
-        
         return cell
-        
     }
     
     
