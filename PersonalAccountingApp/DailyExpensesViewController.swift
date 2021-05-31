@@ -8,11 +8,38 @@
 import UIKit
 
 class DailyExpensesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    var dateString: String?
+    var item: Expense?
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var dailyExpenseTableView: UITableView!
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        DispatchQueue.main.async {
+            self.dateLabel.text = self.dateString ?? ""
+            self.dailyExpenseTableView.delegate = self
+            self.dailyExpenseTableView.dataSource = self
+            self.dailyExpenseTableView.rowHeight = 70
+            self.dailyExpenseTableView.reloadData()
+        }
+        // Do any additional setup after loading the view.
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        DispatchQueue.main.async {
+            self.dateLabel.text = self.dateString ?? ""
+            self.dailyExpenseTableView.delegate = self
+            self.dailyExpenseTableView.dataSource = self
+            self.dailyExpenseTableView.rowHeight = 70
+            self.dailyExpenseTableView.reloadData()
+        }
+        dailyExpenseTableView.reloadData()
+    }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         item?.descriptions?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "dailyExpense", for: indexPath) as! DailyExpenseTableViewCell
         cell.descriptionLabel.text = item!.descriptions![indexPath.row]
         cell.amountLabel.text = "$"+String(item!.amounts![indexPath.row])
@@ -21,19 +48,6 @@ class DailyExpensesViewController: UIViewController, UITableViewDelegate, UITabl
     func numberOfSections(in tableView: UITableView) -> Int {
         1
     }
-    var dateString: String?
-    var item: Expense?
-    @IBOutlet weak var dateLabel: UILabel!
-    @IBOutlet weak var dailyExpenseTableView: UITableView!
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        dateLabel.text = dateString ?? ""
-        dailyExpenseTableView.delegate = self
-        dailyExpenseTableView.dataSource = self
-        dailyExpenseTableView.rowHeight = 70
-        // Do any additional setup after loading the view.
-    }
-    
 
     /*
     // MARK: - Navigation

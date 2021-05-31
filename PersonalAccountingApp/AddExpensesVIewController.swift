@@ -58,7 +58,13 @@ class AddExpensesVIewController: UIViewController {
         amount.text = ""
         location.text = ""
     }
+    override func viewWillAppear(_ animated: Bool) {
+        DispatchQueue.main.async {
+            self.dateLabel.text = self.dateString
+        }
     
+        fetchData()
+    }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // this will set the segue's destination prop as a AddExpensesVIewController
         DispatchQueue.main.async {
