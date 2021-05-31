@@ -21,12 +21,18 @@ class AddExpensesVIewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        dateLabel.text = dateString
-        fetchData()
+      
        //   deleteAll()
         // Do any additional setup after loading the view.
     }
-    
+    //this method will be called before viewDidload. it is called right before the view is about to be loaded.
+    override func viewWillAppear(_ animated: Bool) {
+        DispatchQueue.main.async {
+            self.dateLabel.text = self.dateString
+        }
+        
+        fetchData()
+    }
     func fetchData() {
         //this method will call fetchRequest() of our Person Entity and will return all Person objects back.
         do {
@@ -58,13 +64,7 @@ class AddExpensesVIewController: UIViewController {
         amount.text = ""
         location.text = ""
     }
-    override func viewWillAppear(_ animated: Bool) {
-        DispatchQueue.main.async {
-            self.dateLabel.text = self.dateString
-        }
     
-        fetchData()
-    }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // this will set the segue's destination prop as a AddExpensesVIewController
         DispatchQueue.main.async {

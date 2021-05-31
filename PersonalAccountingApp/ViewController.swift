@@ -15,7 +15,7 @@ class ViewController: UIViewController {
     var items: [Expense]?
     
     @IBAction func dateUpdated(_ sender: Any) {
-       
+        fetchData()
         dateFormatter.dateFormat = "MMM d, yyyy" //date formatter string
       //  print("Date is: " + dateFormatter.string(from: selectedDate.date))
         setupViewControllers()
@@ -33,8 +33,9 @@ class ViewController: UIViewController {
         
     }
     func setupViewControllers() {
+        //this tabbarControllers object holds the all view controllers in an array.
         let viewControllers = self.tabBarController?.viewControllers
-        
+        //we can access and downcast the specific vc class to a given viewcontroller array element. they are having an index in order of the tab bar button order.
         let addExpenses = viewControllers![1] as! AddExpensesVIewController
         addExpenses.dateString = dateFormatter.string(from: selectedDate.date)
       
@@ -52,12 +53,10 @@ class ViewController: UIViewController {
             let entryDate = dailyView.dateString
             if entryDate == dateFormatter.string(from: entry.date!) {
                //print("item date:", entry.date!)
-                
                     dailyView.item = entry
-                
                 break
             }
-            else{
+            else {
                 
             }
         }

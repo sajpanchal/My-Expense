@@ -15,15 +15,9 @@ class DailyExpensesViewController: UIViewController, UITableViewDelegate, UITabl
     @IBOutlet weak var dailyExpenseTableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        DispatchQueue.main.async {
-            self.dateLabel.text = self.dateString ?? ""
-            self.dailyExpenseTableView.delegate = self
-            self.dailyExpenseTableView.dataSource = self
-            self.dailyExpenseTableView.rowHeight = 70
-            self.dailyExpenseTableView.reloadData()
-        }
         // Do any additional setup after loading the view.
     }
+    //this method loads whenever our view is about to be appear.
     override func viewWillAppear(_ animated: Bool) {
         DispatchQueue.main.async {
             self.dateLabel.text = self.dateString ?? ""
@@ -32,7 +26,7 @@ class DailyExpensesViewController: UIViewController, UITableViewDelegate, UITabl
             self.dailyExpenseTableView.rowHeight = 70
             self.dailyExpenseTableView.reloadData()
         }
-        dailyExpenseTableView.reloadData()
+        
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         item?.descriptions?.count ?? 0
