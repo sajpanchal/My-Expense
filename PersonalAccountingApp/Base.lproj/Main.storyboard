@@ -61,7 +61,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1719" y="101"/>
+            <point key="canvasLocation" x="1583" y="75"/>
         </scene>
         <!--Add Expense-->
         <scene sceneID="sRG-1E-SKq">
@@ -114,7 +114,7 @@
                                 </state>
                                 <connections>
                                     <action selector="doneButton:" destination="mFA-mj-sOI" eventType="touchUpInside" id="GEl-C2-QsY"/>
-                                    <segue destination="zLn-Zq-LjL" kind="show" id="0EA-yc-2hX"/>
+                                    <segue destination="zLn-Zq-LjL" kind="show" identifier="showHistory" id="0EA-yc-2hX"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JS5-cK-eHM">
@@ -218,7 +218,7 @@
                                         <connections>
                                             <outlet property="amountLabel" destination="kMz-7h-KMq" id="SkZ-hY-PJl"/>
                                             <outlet property="dayLabel" destination="ceK-sO-abR" id="xgI-ua-fld"/>
-                                            <segue destination="wL0-aD-yOD" kind="show" id="BYT-wg-SJF"/>
+                                            <segue destination="wL0-aD-yOD" kind="show" identifier="showDailyView" id="BYT-wg-SJF"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -403,9 +403,9 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="3t9-52-jzh"/>
-        <segue reference="pIU-81-3ll"/>
-        <segue reference="Q67-0y-ygH"/>
+        <segue reference="BYT-wg-SJF"/>
+        <segue reference="0EA-yc-2hX"/>
+        <segue reference="mjd-9m-kr4"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="calendar" catalog="system" width="128" height="106"/>
