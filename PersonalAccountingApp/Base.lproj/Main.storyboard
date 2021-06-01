@@ -61,7 +61,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1583" y="75"/>
+            <point key="canvasLocation" x="1887" y="75"/>
         </scene>
         <!--Add Expense-->
         <scene sceneID="sRG-1E-SKq">
@@ -379,7 +379,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i6S-lM-jzp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="588" y="150"/>
+            <point key="canvasLocation" x="1177" y="75"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="nat-JF-5sj">
@@ -387,6 +387,7 @@
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="MfP-hl-Or9" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="WKJ-hG-YQT">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
@@ -399,13 +400,13 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="btx-c4-wcW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-513" y="463"/>
+            <point key="canvasLocation" x="458" y="75"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="BYT-wg-SJF"/>
-        <segue reference="0EA-yc-2hX"/>
-        <segue reference="mjd-9m-kr4"/>
+        <segue reference="3t9-52-jzh"/>
+        <segue reference="pIU-81-3ll"/>
+        <segue reference="Q67-0y-ygH"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="calendar" catalog="system" width="128" height="106"/>
