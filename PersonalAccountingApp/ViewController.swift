@@ -8,7 +8,7 @@
 import UIKit
 import CoreData
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITabBarControllerDelegate {
     let dateFormatter: DateFormatter = DateFormatter() // date formater object
     @IBOutlet weak var selectedDate: UIDatePicker!
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
@@ -18,49 +18,58 @@ class ViewController: UIViewController {
         fetchData()
         dateFormatter.dateFormat = "MMM d, yyyy" //date formatter string
       //  print("Date is: " + dateFormatter.string(from: selectedDate.date))
-        setupViewControllers()
+       
+       // setupViewControllers()
       
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        tabBarController?.delegate = self
         fetchData()
     
         dateFormatter.dateFormat = "MMM d, yyyy" //date formatter string
-
-        setupViewControllers()
         
         // Do any additional setup after loading the view.
         
     }
-    func setupViewControllers() {
-        //this tabbarControllers object holds the all view controllers in an array.
-        let viewControllers = self.tabBarController?.viewControllers
-        //we can access and downcast the specific vc class to a given viewcontroller array element. they are having an index in order of the tab bar button order.
-        let addExpenses = viewControllers![1] as! AddExpensesVIewController
-        addExpenses.dateString = dateFormatter.string(from: selectedDate.date)
-      
-        addExpenses.date = selectedDate.date
-        
-        let history = viewControllers![2] as! HistoryViewController
-        history.entries = self.items
-        
-        let dailyView = viewControllers![3] as! DailyExpensesViewController
-        dailyView.item = nil
-        dailyView.dateString = dateFormatter.string(from: selectedDate.date)
-       // print("dailyview:",dailyView.dateString!)
-        for entry in items! {
-           // print("item date:", entry.date!)
-            let entryDate = dailyView.dateString
-            if entryDate == dateFormatter.string(from: entry.date!) {
-               //print("item date:", entry.date!)
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        fetchData()
+        if viewController is AddExpensesVIewController{
+            print("add expenses screen")
+            let addExpenses = viewController as! AddExpensesVIewController
+            addExpenses.dateString = dateFormatter.string(from: selectedDate.date)
+            
+            addExpenses.date = selectedDate.date
+        }
+        else if viewController is HistoryViewController {
+            print("history screen")
+            let history = viewController as! HistoryViewController
+            history.entries = self.items
+        }
+        else if viewController is DailyExpensesViewController{
+            print("daily Expesnes screen")
+            let dailyView = viewController as! DailyExpensesViewController
+            dailyView.item = nil
+            dailyView.dateString = dateFormatter.string(from: selectedDate.date)
+            // print("dailyview:",dailyView.dateString!)
+            for entry in items! {
+                // print("item date:", entry.date!)
+                let entryDate = dailyView.dateString
+                if entryDate == dateFormatter.string(from: entry.date!) {
+                    //print("item date:", entry.date!)
                     dailyView.item = entry
-                break
-            }
-            else {
-                
+                    break
+                }
+                else {
+                    
+                }
             }
         }
+        else {
+            
+        }
     }
+    
     func fetchData() {
         //this method will call fetchRequest() of our Person Entity and will return all Person objects back.
         do {

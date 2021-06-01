@@ -21,7 +21,7 @@ class AddExpensesVIewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-      
+    
        //   deleteAll()
         // Do any additional setup after loading the view.
     }
