@@ -8,7 +8,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Item-->
+        <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="PersonalAccountingApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -53,7 +53,6 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="UWF-tW-T69"/>
                     <navigationItem key="navigationItem" id="Asg-rc-Blq"/>
                     <connections>
                         <outlet property="selectedDate" destination="GFq-s9-zkW" id="uYT-A2-jlx"/>
@@ -61,14 +60,14 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1887" y="75"/>
+            <point key="canvasLocation" x="2797.1014492753625" y="75"/>
         </scene>
         <!--Add Expense-->
         <scene sceneID="sRG-1E-SKq">
             <objects>
                 <viewController id="mFA-mj-sOI" customClass="AddExpensesVIewController" customModule="PersonalAccountingApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vtf-YW-ohH">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ny7-Ez-scB">
@@ -114,7 +113,7 @@
                                 </state>
                                 <connections>
                                     <action selector="doneButton:" destination="mFA-mj-sOI" eventType="touchUpInside" id="GEl-C2-QsY"/>
-                                    <segue destination="zLn-Zq-LjL" kind="show" identifier="showHistory" id="0EA-yc-2hX"/>
+                                    <segue destination="wL0-aD-yOD" kind="show" identifier="daillyview2" id="z2Q-i8-t8G"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JS5-cK-eHM">
@@ -176,7 +175,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QBO-yb-fyw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2621.739130434783" y="75"/>
+            <point key="canvasLocation" x="3476.811594202899" y="75"/>
         </scene>
         <!--History View Controller-->
         <scene sceneID="Hnw-RK-EsU">
@@ -186,43 +185,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="SqI-Wh-pbZ">
-                                <rect key="frame" x="0.0" y="190" width="414" height="563"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="history" rowHeight="90" id="Mic-zo-7Wf" customClass="HistoryTableViewCell" customModule="PersonalAccountingApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="90"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Mic-zo-7Wf" id="73m-LO-zT9">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="90"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ceK-sO-abR">
-                                                    <rect key="frame" x="20" y="0.0" width="82" height="87"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <color key="backgroundColor" systemColor="systemBlueColor"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="50"/>
-                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="$" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kMz-7h-KMq">
-                                                    <rect key="frame" x="206" y="1" width="170" height="86"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="40"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="amountLabel" destination="kMz-7h-KMq" id="SkZ-hY-PJl"/>
-                                            <outlet property="dayLabel" destination="ceK-sO-abR" id="xgI-ua-fld"/>
-                                            <segue destination="wL0-aD-yOD" kind="show" identifier="showDailyView" id="BYT-wg-SJF"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="2021" minimumValue="1000" maximumValue="3000" translatesAutoresizingMaskIntoConstraints="NO" id="hvE-z0-VUU">
                                 <rect key="frame" x="300" y="150" width="94" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -245,7 +207,7 @@
                                 </connections>
                             </stepper>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Total: $" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZUi-jL-2vu">
-                                <rect key="frame" x="0.0" y="761" width="394" height="27"/>
+                                <rect key="frame" x="20" y="761" width="374" height="27"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
                                 <nil key="textColor"/>
@@ -265,6 +227,43 @@
                                 <color key="textColor" systemColor="linkColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="SqI-Wh-pbZ">
+                                <rect key="frame" x="0.0" y="190" width="414" height="563"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="history" rowHeight="90" id="Mic-zo-7Wf" customClass="HistoryTableViewCell" customModule="PersonalAccountingApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="90"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Mic-zo-7Wf" id="73m-LO-zT9">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="90"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="$" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kMz-7h-KMq">
+                                                    <rect key="frame" x="217" y="20" width="177" height="51"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ceK-sO-abR">
+                                                    <rect key="frame" x="20" y="3" width="90" height="84"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" systemColor="systemBlueColor"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="45"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="amountLabel" destination="kMz-7h-KMq" id="SkZ-hY-PJl"/>
+                                            <outlet property="dayLabel" destination="ceK-sO-abR" id="xgI-ua-fld"/>
+                                            <segue destination="wL0-aD-yOD" kind="show" identifier="showDailyView" id="BYT-wg-SJF"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="UlD-n5-MAO"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -275,24 +274,25 @@
                         <outlet property="historyTableView" destination="SqI-Wh-pbZ" id="Ad2-yX-4Uu"/>
                         <outlet property="monthLabel" destination="OIg-s6-Ke2" id="SrW-QX-kdO"/>
                         <outlet property="monthStepper" destination="Nx7-47-MUU" id="xSg-5G-J4W"/>
+                        <outlet property="monthTotalLabel" destination="ZUi-jL-2vu" id="7yL-zr-953"/>
                         <outlet property="yearLabel" destination="NJ7-05-sx7" id="sRK-GP-Snj"/>
                         <outlet property="yearStepper" destination="hvE-z0-VUU" id="3GQ-Ld-yve"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IdA-ZG-ptb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3381.1594202898555" y="75"/>
+            <point key="canvasLocation" x="4210.144927536232" y="75"/>
         </scene>
         <!--Daily View-->
         <scene sceneID="dax-ea-VyI">
             <objects>
                 <viewController id="wL0-aD-yOD" customClass="DailyExpensesViewController" customModule="PersonalAccountingApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sbc-7y-7AV">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Total: $" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sja-b9-ksH">
-                                <rect key="frame" x="259" y="773" width="146" height="27"/>
+                                <rect key="frame" x="146" y="773" width="259" height="27"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
                                 <nil key="textColor"/>
@@ -333,18 +333,25 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1L9-oG-C40">
-                                <rect key="frame" x="57" y="150" width="301" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Daily View" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ykd-xX-Gpg">
                                 <rect key="frame" x="48" y="88" width="318" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
                                 <color key="textColor" systemColor="linkColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vS5-Cr-xrX">
+                                <rect key="frame" x="369" y="170" width="25" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <segue destination="mFA-mj-sOI" kind="show" id="84U-VP-xjs"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1L9-oG-C40">
+                                <rect key="frame" x="57" y="148" width="301" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                                <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -356,15 +363,17 @@
                     <connections>
                         <outlet property="dailyExpenseTableView" destination="svj-WK-9i2" id="Zzw-F2-j2D"/>
                         <outlet property="dateLabel" destination="1L9-oG-C40" id="ge3-LG-kPa"/>
+                        <outlet property="totalAmountLabel" destination="Sja-b9-ksH" id="e6Q-Bp-B3z"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kyC-2c-lZP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4126.086956521739" y="75"/>
+            <point key="canvasLocation" x="5005.7971014492759" y="75"/>
         </scene>
         <!--Home-->
         <scene sceneID="6NH-hp-YKJ">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="i6S-lM-jzp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="n1E-mj-nqd" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Home" image="house" catalog="system" id="fFe-JL-Lru"/>
                     <toolbarItems/>
@@ -374,12 +383,11 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="IEK-cE-bX9"/>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="RST-sV-Ajv"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="i6S-lM-jzp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1177" y="75"/>
+            <point key="canvasLocation" x="1801" y="461"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="nat-JF-5sj">
@@ -404,9 +412,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="3t9-52-jzh"/>
-        <segue reference="pIU-81-3ll"/>
-        <segue reference="Q67-0y-ygH"/>
+        <segue reference="BYT-wg-SJF"/>
+        <segue reference="84U-VP-xjs"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="calendar" catalog="system" width="128" height="106"/>
