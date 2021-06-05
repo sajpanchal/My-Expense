@@ -13,20 +13,32 @@ class DailyExpensesViewController: UIViewController, UITableViewDelegate, UITabl
     var item: Expense?
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var dailyExpenseTableView: UITableView!
+    @IBOutlet weak var totalAmountLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
+        DispatchQueue.main.async {
+           
+        }
         // Do any additional setup after loading the view.
     }
     //this method loads whenever our view is about to be appear.
+
     override func viewWillAppear(_ animated: Bool) {
-        DispatchQueue.main.async {
+        DispatchQueue.main.async { [self] in
             self.dateLabel.text = self.dateString ?? ""
+           
+            self.totalAmountLabel.text = "Day's Total: $" + String(format: "%.2f",(self.item?.totalAmount ?? 0.0))
             self.dailyExpenseTableView.delegate = self
             self.dailyExpenseTableView.dataSource = self
             self.dailyExpenseTableView.rowHeight = 70
             self.dailyExpenseTableView.reloadData()
         }
         
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let addExpenses = segue.destination as! AddExpensesVIewController
+        addExpenses.dateString = dateString
+    
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         item?.descriptions?.count ?? 0

@@ -67,13 +67,18 @@ class AddExpensesVIewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // this will set the segue's destination prop as a AddExpensesVIewController
-        DispatchQueue.main.async {
-            let history = segue.destination as! HistoryViewController
-            //copy the updated expense history to historyVC's array.
-            history.entries = self.items
-        }
-    
         
+            let dailyView = segue.destination as! DailyExpensesViewController
+            //copy the updated expense history to historyVC's array.
+            dailyView.dateString = self.dateString
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "MMM d, yyyy"
+            for item in self.items! {
+                if self.dateString == dateFormatter.string(from: item.date!) {
+                    dailyView.item = item
+                    print(dailyView.item?.descriptions! ?? "")
+                }
+            }        
     }
     func deleteAll() {
         for item in items!
