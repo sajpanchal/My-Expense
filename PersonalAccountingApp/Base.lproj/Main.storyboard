@@ -60,7 +60,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2797.1014492753625" y="75"/>
+            <point key="canvasLocation" x="1209" y="75"/>
         </scene>
         <!--Add Expense-->
         <scene sceneID="sRG-1E-SKq">
@@ -175,7 +175,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QBO-yb-fyw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3476.811594202899" y="75"/>
+            <point key="canvasLocation" x="1903" y="66"/>
         </scene>
         <!--History View Controller-->
         <scene sceneID="Hnw-RK-EsU">
@@ -281,7 +281,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IdA-ZG-ptb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4210.144927536232" y="75"/>
+            <point key="canvasLocation" x="2538" y="66"/>
         </scene>
         <!--Daily View-->
         <scene sceneID="dax-ea-VyI">
@@ -368,12 +368,11 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kyC-2c-lZP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5005.7971014492759" y="75"/>
+            <point key="canvasLocation" x="3194" y="66"/>
         </scene>
         <!--Home-->
         <scene sceneID="6NH-hp-YKJ">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="i6S-lM-jzp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="n1E-mj-nqd" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Home" image="house" catalog="system" id="fFe-JL-Lru"/>
                     <toolbarItems/>
@@ -386,8 +385,9 @@
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="RST-sV-Ajv"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="i6S-lM-jzp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1801" y="461"/>
+            <point key="canvasLocation" x="458" y="726"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="nat-JF-5sj">
@@ -412,7 +412,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="BYT-wg-SJF"/>
+        <segue reference="z2Q-i8-t8G"/>
         <segue reference="84U-VP-xjs"/>
     </inferredMetricsTieBreakers>
     <resources>

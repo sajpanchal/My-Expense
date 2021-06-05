@@ -51,12 +51,29 @@ class AddExpensesVIewController: UIViewController {
     @IBAction func addAnotherButton(_ sender: Any) {
     }
     @IBAction func doneButton(_ sender: Any) {
-       
-        addNewEntry()
-        for item in self.items! {
-            print(item)
+        if let descString = desc.text {
+            if descString.count < 2 {
+                let descAlert = UIAlertController(title: "Invalid entry(s)", message: "Description field entry must have at least 2 or more characters long.", preferredStyle: .alert)
+                descAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(descAlert, animated: true, completion: nil)
+            }
+            else{
+                if Double(amount.text!) != nil {
+                    addNewEntry()
+                }
+                else{
+                    let amountAlert = UIAlertController(title: "Invalid entry(s)",
+                                                        message: "amount field entry must be filled with numeric currency amount.", preferredStyle: .alert)
+                    amountAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    self.present(amountAlert, animated: true, completion: nil)
+                }
+            }
         }
-        
+        else{
+            let alert = UIAlertController(title: "Invalid entry(s)", message: "All fields must have to be filled to add the entry.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
     }
         
     @IBAction func discardChanges(_ sender: Any) {
