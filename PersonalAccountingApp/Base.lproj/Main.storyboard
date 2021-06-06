@@ -67,7 +67,7 @@
             <objects>
                 <viewController id="mFA-mj-sOI" customClass="AddExpensesVIewController" customModule="PersonalAccountingApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vtf-YW-ohH">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ny7-Ez-scB">
@@ -288,7 +288,7 @@
             <objects>
                 <viewController id="wL0-aD-yOD" customClass="DailyExpensesViewController" customModule="PersonalAccountingApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sbc-7y-7AV">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Total: $" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sja-b9-ksH">
@@ -408,12 +408,12 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="btx-c4-wcW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="458" y="75"/>
+            <point key="canvasLocation" x="139" y="-26"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="z2Q-i8-t8G"/>
-        <segue reference="84U-VP-xjs"/>
+        <segue reference="3t9-52-jzh"/>
+        <segue reference="Q67-0y-ygH"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="calendar" catalog="system" width="128" height="106"/>
