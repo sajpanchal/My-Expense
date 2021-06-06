@@ -41,6 +41,11 @@ class ViewController: UIViewController, UITabBarControllerDelegate {
             
             addExpenses.date = selectedDate.date
         }
+        else if viewController is NCHistory {
+            print("history screen")
+            let history = viewController as! NCHistory
+            history.entries = self.items
+        }
         else if viewController is HistoryViewController {
             print("history screen")
             let history = viewController as! HistoryViewController
