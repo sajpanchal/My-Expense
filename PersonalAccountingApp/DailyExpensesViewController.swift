@@ -71,6 +71,70 @@ class DailyExpensesViewController: UIViewController, UITableViewDelegate, UITabl
         cell.amountLabel.text = "$"+String(item!.amounts![indexPath.row])
         return cell
     }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let alert = UIAlertController(title: "Edit Entry", message: nil, preferredStyle: .alert)
+        alert.addTextField()
+        alert.addTextField()
+        let desc = alert.textFields![0]
+        let amount = alert.textFields![1]
+        desc.text = self.item!.descriptions![indexPath.row]
+        amount.text = String(self.item!.amounts![indexPath.row])
+        let submitAction = UIAlertAction(title: "Submit", style: .default) {_ in
+            if let desc = desc.text {
+                if desc.count > 2 {
+                    let formatter = DateFormatter()
+                    formatter.dateFormat = "MMM d, yyyy"
+                    for i in 0..<(self.items?.count)! {
+                        if formatter.string(from: (self.items?[i].date)!) == self.dateString {
+                            if self.items?[i].descriptions != nil {
+                                if self.items?[i].descriptions![indexPath.row] == self.item?.descriptions![indexPath.row] && self.items?[i].amounts![indexPath.row] == self.item?.amounts![indexPath.row] {
+                                    self.items![i].descriptions![indexPath.row] = desc
+                                    if let amount = Double(amount.text!) {
+                                        self.items![i].amounts![indexPath.row] = amount
+                                        self.items![i].totalAmount = {
+                                            var total = 0.0
+                                            for j in 0..<self.items![i].amounts!.count {
+                                                total += self.items![i].amounts![j]
+                                            }
+                                            return total
+                                        }()
+                                        self.totalAmountLabel.text = "Day's Total: $" + String(format: "%.2f",(self.item?.totalAmount ?? 0.0))
+                                        do {
+                                            try self.context.save()
+                                        }
+                                        catch{
+                                            
+                                        }
+                                        self.fetchData()
+                                        
+                                        self.dailyExpenseTableView.reloadData()
+                                    }
+                                    else{
+                                        let amountAlert = UIAlertController(title: "Invalid amount Entry", message: "Must be in a numeric currency format", preferredStyle: .alert)
+                                        amountAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                                        self.present(amountAlert, animated: true, completion: nil)
+                                        
+                                    }
+                                }
+                            }
+                        }
+                    }
+            }
+                else {
+                    let descAlert = UIAlertController(title: "Invalid descirption Entry", message: "Must be at least 2 characters long.", preferredStyle: .alert)
+                    descAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    self.present(descAlert, animated: true, completion: nil)
+                }
+        }
+            else {
+                let emptyAlert = UIAlertController(title: "Empty fields not accepted", message: "Please fill out all required fields to proceed.", preferredStyle: .alert)
+                emptyAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(emptyAlert, animated: true, completion: nil)
+            }
+    }
+        alert.addAction(submitAction)
+        present(alert, animated: true, completion: nil)
+    }
     //delete a given row from table view.
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         //create swipe action
@@ -95,10 +159,6 @@ class DailyExpensesViewController: UIViewController, UITableViewDelegate, UITabl
                 else {
                     continue
                 }
-                
-                
-                
-                
             }
             do {
             try self.context.save()
