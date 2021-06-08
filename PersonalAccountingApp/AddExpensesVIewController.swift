@@ -49,8 +49,46 @@ class AddExpensesVIewController: UIViewController {
         
     }
     @IBAction func addAnotherButton(_ sender: Any) {
+        addData()
+        let alert = UIAlertController(title: "Success!", message: "Data has been added successfully!", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: {
+            self.desc.text = ""
+            self.amount.text = ""
+            self.location.text = ""
+        })
     }
     @IBAction func doneButton(_ sender: Any) {
+       
+        addData()
+        desc.text = ""
+        amount.text = ""
+        location.text = ""
+    }
+        
+    @IBAction func discardChanges(_ sender: Any) {
+        desc.text = ""
+        amount.text = ""
+        location.text = ""
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // this will set the segue's destination prop as a AddExpensesVIewController
+        
+            let dailyView = segue.destination as! DailyExpensesViewController
+            //copy the updated expense history to historyVC's array.
+            dailyView.dateString = self.dateString
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "MMM d, yyyy"
+            for item in self.items! {
+                if self.dateString == dateFormatter.string(from: item.date!) {
+                    dailyView.item = item
+                    print(dailyView.item?.descriptions! ?? "")
+                }
+            }        
+    }
+    func addData()
+    {
         if let descString = desc.text {
             if descString.count < 2 {
                 let descAlert = UIAlertController(title: "Invalid entry(s)", message: "Description field entry must have at least 2 or more characters long.", preferredStyle: .alert)
@@ -74,28 +112,6 @@ class AddExpensesVIewController: UIViewController {
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             self.present(alert, animated: true, completion: nil)
         }
-    }
-        
-    @IBAction func discardChanges(_ sender: Any) {
-        desc.text = ""
-        amount.text = ""
-        location.text = ""
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // this will set the segue's destination prop as a AddExpensesVIewController
-        
-            let dailyView = segue.destination as! DailyExpensesViewController
-            //copy the updated expense history to historyVC's array.
-            dailyView.dateString = self.dateString
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "MMM d, yyyy"
-            for item in self.items! {
-                if self.dateString == dateFormatter.string(from: item.date!) {
-                    dailyView.item = item
-                    print(dailyView.item?.descriptions! ?? "")
-                }
-            }        
     }
     func deleteAll() {
         for item in items!
