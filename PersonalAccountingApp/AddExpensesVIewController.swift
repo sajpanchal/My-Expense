@@ -13,7 +13,7 @@ class AddExpensesVIewController: UIViewController {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var desc: UITextField!
     @IBOutlet weak var amount: UITextField!
-    @IBOutlet weak var location: UITextField!
+    
 
     //persistant container have a property called managedObjectContext.
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
@@ -55,7 +55,7 @@ class AddExpensesVIewController: UIViewController {
         self.present(alert, animated: true, completion: {
             self.desc.text = ""
             self.amount.text = ""
-            self.location.text = ""
+            
         })
     }
     @IBAction func doneButton(_ sender: Any) {
@@ -63,13 +63,13 @@ class AddExpensesVIewController: UIViewController {
         addData()
         desc.text = ""
         amount.text = ""
-        location.text = ""
+       
     }
         
     @IBAction func discardChanges(_ sender: Any) {
         desc.text = ""
         amount.text = ""
-        location.text = ""
+      
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

@@ -11,6 +11,7 @@ class DailyExpenseTableViewCell: UITableViewCell {
 
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var amountLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
