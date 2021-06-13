@@ -10,7 +10,7 @@ import CoreData
 class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     let year = Calendar.current.component(.year, from: Date())
     var entries: [Expense]?
-
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     @IBOutlet weak var monthLabel: UILabel!
     @IBOutlet weak var yearLabel: UILabel!
     @IBOutlet weak var monthStepper: UIStepper!
@@ -33,7 +33,7 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     override func viewWillAppear(_ animated: Bool) {
        
-        
+        fetchData()
         DispatchQueue.main.async {
             print(self.entries!)
             self.historyTableView.delegate = self
@@ -47,6 +47,23 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
             self.monthTotalLabel.text = "Month Total: $" + String(format: "%.2f", self.monthTotal)
         }
     }
+    
+    func fetchData() {
+        //this method will call fetchRequest() of our Person Entity and will return all Person objects back.
+        do {
+           
+            var request = NSFetchRequest<NSFetchRequestResult>()
+            request = Expense.fetchRequest()
+            request.returnsObjectsAsFaults = false
+            self.entries = try context.fetch(request) as! [Expense]
+            
+        }
+        catch {
+            print("error")
+        }
+        
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let dailyExpenses = segue.destination as! DailyExpensesViewController
         

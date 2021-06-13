@@ -17,34 +17,29 @@ class ViewController: UIViewController, UITabBarControllerDelegate {
     @IBAction func dateUpdated(_ sender: Any) {
         fetchData()
         dateFormatter.dateFormat = "MMM d, yyyy" //date formatter string
-      //  print("Date is: " + dateFormatter.string(from: selectedDate.date))
-       
-       // setupViewControllers()
-      
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        tabBarController?.delegate = self
-        fetchData()
     
+        tabBarController?.delegate = self
+        
+        fetchData()
+        
         dateFormatter.dateFormat = "MMM d, yyyy" //date formatter string
         
         // Do any additional setup after loading the view.
         
     }
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        
         fetchData()
+       
         if viewController is AddExpensesVIewController{
             print("add expenses screen")
             let addExpenses = viewController as! AddExpensesVIewController
             addExpenses.dateString = dateFormatter.string(from: selectedDate.date)
-            
             addExpenses.date = selectedDate.date
-        }
-        else if viewController is NCHistory {
-            print("history screen")
-            let history = viewController as! NCHistory
-            history.entries = self.items
         }
         else if viewController is HistoryViewController {
             print("history screen")
@@ -56,12 +51,9 @@ class ViewController: UIViewController, UITabBarControllerDelegate {
             let dailyView = viewController as! DailyExpensesViewController
             dailyView.item = nil
             dailyView.dateString = dateFormatter.string(from: selectedDate.date)
-            // print("dailyview:",dailyView.dateString!)
             for entry in items! {
-                // print("item date:", entry.date!)
                 let entryDate = dailyView.dateString
                 if entryDate == dateFormatter.string(from: entry.date!) {
-                    //print("item date:", entry.date!)
                     dailyView.item = entry
                     break
                 }
@@ -78,7 +70,6 @@ class ViewController: UIViewController, UITabBarControllerDelegate {
     func fetchData() {
         //this method will call fetchRequest() of our Person Entity and will return all Person objects back.
         do {
-            print("hello")
             var request = NSFetchRequest<NSFetchRequestResult>()
             request = Expense.fetchRequest()
             request.returnsObjectsAsFaults = false

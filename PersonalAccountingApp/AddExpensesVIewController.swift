@@ -22,7 +22,7 @@ class AddExpensesVIewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     
-       //   deleteAll()
+     
         // Do any additional setup after loading the view.
     }
     //this method will be called before viewDidload. it is called right before the view is about to be loaded.
@@ -36,7 +36,7 @@ class AddExpensesVIewController: UIViewController {
     func fetchData() {
         //this method will call fetchRequest() of our Person Entity and will return all Person objects back.
         do {
-            print("hello")
+          
             var request = NSFetchRequest<NSFetchRequestResult>()
             request = Expense.fetchRequest()
             request.returnsObjectsAsFaults = false
@@ -83,12 +83,13 @@ class AddExpensesVIewController: UIViewController {
             for item in self.items! {
                 if self.dateString == dateFormatter.string(from: item.date!) {
                     dailyView.item = item
-                    print(dailyView.item?.descriptions! ?? "")
+                    
                 }
             }        
     }
     func addData()
     {
+        
         if let descString = desc.text {
             if descString.count < 2 {
                 let descAlert = UIAlertController(title: "Invalid entry(s)", message: "Description field entry must have at least 2 or more characters long.", preferredStyle: .alert)
