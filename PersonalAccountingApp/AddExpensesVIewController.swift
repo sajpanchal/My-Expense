@@ -55,21 +55,17 @@ class AddExpensesVIewController: UIViewController {
         self.present(alert, animated: true, completion: {
             self.desc.text = ""
             self.amount.text = ""
-            
         })
     }
     @IBAction func doneButton(_ sender: Any) {
-       
         addData()
         desc.text = ""
         amount.text = ""
-       
     }
         
     @IBAction func discardChanges(_ sender: Any) {
         desc.text = ""
         amount.text = ""
-      
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -83,36 +79,55 @@ class AddExpensesVIewController: UIViewController {
             for item in self.items! {
                 if self.dateString == dateFormatter.string(from: item.date!) {
                     dailyView.item = item
-                    
                 }
             }        
     }
     func addData()
     {
-        
-        if let descString = desc.text {
-            if descString.count < 2 {
-                let descAlert = UIAlertController(title: "Invalid entry(s)", message: "Description field entry must have at least 2 or more characters long.", preferredStyle: .alert)
-                descAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                self.present(descAlert, animated: true, completion: nil)
-            }
-            else{
-                if Double(amount.text!) != nil {
-                    addNewEntry()
-                }
-                else{
-                    let amountAlert = UIAlertController(title: "Invalid entry(s)",
-                                                        message: "amount field entry must be filled with numeric currency amount.", preferredStyle: .alert)
-                    amountAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                    self.present(amountAlert, animated: true, completion: nil)
-                }
-            }
+        let result = self.validateForm(desc: desc.text, amount: amount.text)
+        switch result {
+            case "Empty Description" :
+                createAlert(title: "Error: Enter Description field is empty!", message: "Please fill out the description field to add a new entry.")
+                break
+            case "Empty Amount" :
+                createAlert(title: "Error: Enter Amount field is empty!", message: "Please fill out the amount field to add a new entry.")
+                break
+            case "Short Description" :
+                createAlert(title: "Error: Description is too short!", message: "Please give a valid description with 2 or more characters.")
+                break
+            case "Invalid amount format" :
+                createAlert(title: "Error: Invalid Amount field entry!", message: "Please give a valid amount with numeric currency format.")
+                break
+            case "Valid Form" :
+                addNewEntry()
+                break
+            default :
+                createAlert(title: "Unkwown Error Occured!", message: "Sorry! Something went wrong.")
+            
         }
-        else{
-            let alert = UIAlertController(title: "Invalid entry(s)", message: "All fields must have to be filled to add the entry.", preferredStyle: .alert)
+    
+        func createAlert(title:String, message:String) {
+            let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             self.present(alert, animated: true, completion: nil)
         }
+        
+        
+    }
+    func validateForm(desc: String?, amount: String?) -> String {
+        guard let newDesc = desc else {
+            return "Empty Description"
+        }
+        guard let newAmount = amount else {
+            return "Empty Amount"
+        }
+        if newDesc.count < 2 {
+            return "Short Description"
+        }
+        if Double(newAmount) == nil {
+            return "Invalid amount format"
+        }
+        return "Valid Form"
     }
     func deleteAll() {
         for item in items!
@@ -128,15 +143,68 @@ class AddExpensesVIewController: UIViewController {
         }
     }
     func addNewEntry() {
-        var flag = false
+       
+        let dateFormatter: DateFormatter = DateFormatter() //set formatter
+        dateFormatter.dateFormat = "MMM d, yyyy"
+        // if item is found in a core data
+        if let item = (items?.first {
+                            dateFormatter.string(from:$0.date!) == dateString }) {
+            item.amounts?.append(Double(amount.text!)!) // append data in it.
+            item.descriptions?.append(desc.text!)
+            item.totalAmount = 0.0 // reset total of a given day
+                item.amounts?.forEach { // recalcute the total
+                    item.totalAmount += $0
+                }
+       }
+       // if item is not found
+       else {
+            let newEntry = Expense(context: self.context)
+            newEntry.date = date!
+            let validation = self.validateForm(desc: desc.text, amount: amount.text)
+        switch validation {
+            case "Empty Description" :
+                break
+            case "Empty Amount" :
+                break
+            case "Short Description" :
+                break
+            case "Invalid amount format" :
+                break
+            case "Valid Form" :
+                if newEntry.descriptions != nil {
+                    newEntry.descriptions?.append(desc.text!)
+                }
+                else
+                {
+                    newEntry.descriptions = [desc.text!]
+                }
+                if newEntry.amounts != nil {
+                    newEntry.amounts?.append(Double(amount.text!)!)
+                }
+                else {
+                    newEntry.amounts = [Double(amount.text!)!]
+                }
+                newEntry.totalAmount = 0.0 // reset total of a given day
+                newEntry.amounts?.forEach { // recalcute the total
+                    newEntry.totalAmount += $0
+                }
+                break
+            default :
+                print("Error")
+                
+        }
+       }
+        
+        
+        /*
+        //var flag = false
+        // scan each items from entity
         for item in items! {
-            let dateFormatter: DateFormatter = DateFormatter() 
-            dateFormatter.dateFormat = "MMM d, yyyy"
-            if dateFormatter.string(from: item.date!) == dateString {
+            let dateFormatter: DateFormatter = DateFormatter() //set formatter
+            dateFormatter.dateFormat = "MMM d, yyyy" //assign it a date format
+            if dateFormatter.string(from: item.date!) == dateString { //if the dateString date is matching with a given item's date
                 item.amounts?.append(Double(amount.text!)!)
-                
                 item.descriptions?.append(desc.text!)
-                
                 flag = true
             }
             if(flag) {
@@ -149,12 +217,13 @@ class AddExpensesVIewController: UIViewController {
            
             }
         }
+        // if entry with given date is not found
         if (flag == false) {
             let newEntry = Expense(context: self.context)
             newEntry.date = date!
-            
+            // if amount is valid
             if let amount = Double(amount.text!) {
-                
+                //if amounts array is nil
                 if newEntry.amounts == nil {
                     newEntry.amounts = [amount]
                 }
@@ -178,7 +247,7 @@ class AddExpensesVIewController: UIViewController {
                 
             }
         }
-        
+        */
         do {
            try self.context.save()
         }
