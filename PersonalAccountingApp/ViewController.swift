@@ -36,18 +36,18 @@ class ViewController: UIViewController, UITabBarControllerDelegate {
         fetchData()
        
         if viewController is AddExpensesVIewController{
-            print("add expenses screen")
+          
             let addExpenses = viewController as! AddExpensesVIewController
             addExpenses.dateString = dateFormatter.string(from: selectedDate.date)
             addExpenses.date = selectedDate.date
         }
         else if viewController is HistoryViewController {
-            print("history screen")
+            
             let history = viewController as! HistoryViewController
             history.entries = self.items
         }
         else if viewController is DailyExpensesViewController{
-            print("daily Expesnes screen")
+          
             let dailyView = viewController as! DailyExpensesViewController
             dailyView.item = nil
             dailyView.dateString = dateFormatter.string(from: selectedDate.date)
