@@ -35,7 +35,7 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
        
         fetchData()
         DispatchQueue.main.async {
-            print(self.entries!)
+          
             self.historyTableView.delegate = self
             self.historyTableView.dataSource = self
             self.historyTableView.rowHeight = 90
@@ -70,23 +70,35 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
         let dd = String(format:"%02d",historyTableView.indexPathForSelectedRow!.row+1)
         let mm = String(format:"%02d", Int(monthStepper.value))
         let dateStr = "\(dd)/\(mm)/\(Int(yearStepper.value))"
-        let dateFormatter = DateFormatter()
+        
+        /*let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd/MM/yy"
         let dateFormatter2 = DateFormatter()
-        dateFormatter2.dateFormat = "MMM d, yyyy"
+        dateFormatter2.dateFormat = "MMM d, yyyy"*/
+        //create date formatters with 2 different date formats.
+        let dateFormatter = createDateFormatter(format: "dd/MM/yy")
+        let dateFormatter2 = createDateFormatter(format: "MMM d, yyyy")
+        // get raw date.
         let date = dateFormatter.date(from: dateStr)
-        dailyExpenses.dateString = dateFormatter2.string(from: date!)
-        print(dailyExpenses.dateString!)
+        dailyExpenses.dateString = dateFormatter2.string(from: date!) //pass the date string to daily expenses VC.
+        // loop the core data entries
         for entry in entries! {
-            let entryDate = dateFormatter2.string(from: entry.date!)
+            let entryDate = dateFormatter2.string(from: entry.date!) // convert a core data entity date to string.
+            // if the given date is matching with a current date
             if entryDate == dailyExpenses.dateString {
             
-                dailyExpenses.item = entry
-                print(dailyExpenses.item!, date!)
+                dailyExpenses.item = entry // move that entry to daily expenses
+               
                 break
             }
         }
         
+        
+    }
+    func createDateFormatter(format: String) -> DateFormatter {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = format
+        return dateFormatter
     }
     /* method to update month on stepper value change */
     @IBAction func monthStepperChanged(_ sender: Any) {
@@ -166,7 +178,7 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
             for item in items {
                 if (Calendar.current.component(.month, from: item.date!) == Int(monthStepper.value)) && (Calendar.current.component(.year, from: item.date!) == Int(yearStepper.value)){
                     monthTotal += item.totalAmount
-                    print(monthTotal)
+                    
                 }
             }
         }

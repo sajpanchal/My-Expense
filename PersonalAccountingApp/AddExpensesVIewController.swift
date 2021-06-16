@@ -129,6 +129,7 @@ class AddExpensesVIewController: UIViewController {
         }
         return "Valid Form"
     }
+    
     func deleteAll() {
         for item in items!
         {
@@ -195,59 +196,8 @@ class AddExpensesVIewController: UIViewController {
         }
        }
         
+        /* ADD COMMENTED CODE IF ANY PROBLEM OCCURS */
         
-        /*
-        //var flag = false
-        // scan each items from entity
-        for item in items! {
-            let dateFormatter: DateFormatter = DateFormatter() //set formatter
-            dateFormatter.dateFormat = "MMM d, yyyy" //assign it a date format
-            if dateFormatter.string(from: item.date!) == dateString { //if the dateString date is matching with a given item's date
-                item.amounts?.append(Double(amount.text!)!)
-                item.descriptions?.append(desc.text!)
-                flag = true
-            }
-            if(flag) {
-                item.totalAmount = 0.0
-                if item.amounts != nil {
-                    for amount in item.amounts! {
-                        item.totalAmount += amount
-                    }
-                }
-           
-            }
-        }
-        // if entry with given date is not found
-        if (flag == false) {
-            let newEntry = Expense(context: self.context)
-            newEntry.date = date!
-            // if amount is valid
-            if let amount = Double(amount.text!) {
-                //if amounts array is nil
-                if newEntry.amounts == nil {
-                    newEntry.amounts = [amount]
-                }
-                else {
-                    newEntry.amounts?.append(amount)
-                }
-                if let amounts = newEntry.amounts {
-                    newEntry.totalAmount = 0.0
-                    for amount in amounts {
-                        newEntry.totalAmount += amount
-                    }
-                }
-            }
-            if let descrip = desc.text {
-                if newEntry.descriptions == nil {
-                    newEntry.descriptions = [descrip]
-                }
-                else{
-                    newEntry.descriptions?.append(descrip)
-                }
-                
-            }
-        }
-        */
         do {
            try self.context.save()
         }
@@ -268,3 +218,56 @@ class AddExpensesVIewController: UIViewController {
     */
 
 }
+
+/*
+ //var flag = false
+ // scan each items from entity
+ for item in items! {
+ let dateFormatter: DateFormatter = DateFormatter() //set formatter
+ dateFormatter.dateFormat = "MMM d, yyyy" //assign it a date format
+ if dateFormatter.string(from: item.date!) == dateString { //if the dateString date is matching with a given item's date
+ item.amounts?.append(Double(amount.text!)!)
+ item.descriptions?.append(desc.text!)
+ flag = true
+ }
+ if(flag) {
+ item.totalAmount = 0.0
+ if item.amounts != nil {
+ for amount in item.amounts! {
+ item.totalAmount += amount
+ }
+ }
+ 
+ }
+ }
+ // if entry with given date is not found
+ if (flag == false) {
+ let newEntry = Expense(context: self.context)
+ newEntry.date = date!
+ // if amount is valid
+ if let amount = Double(amount.text!) {
+ //if amounts array is nil
+ if newEntry.amounts == nil {
+ newEntry.amounts = [amount]
+ }
+ else {
+ newEntry.amounts?.append(amount)
+ }
+ if let amounts = newEntry.amounts {
+ newEntry.totalAmount = 0.0
+ for amount in amounts {
+ newEntry.totalAmount += amount
+ }
+ }
+ }
+ if let descrip = desc.text {
+ if newEntry.descriptions == nil {
+ newEntry.descriptions = [descrip]
+ }
+ else{
+ newEntry.descriptions?.append(descrip)
+ }
+ 
+ }
+ }
+ */
