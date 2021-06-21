@@ -603,7 +603,7 @@
                                 <rect key="frame" x="5" y="163.66666666666669" width="418" height="679.33333333333326"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="124" id="pRJ-0m-dAq" customClass="SavingsTableViewCell" customModule="PersonalAccountingApp" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="savings" rowHeight="124" id="pRJ-0m-dAq" customClass="SavingsTableViewCell" customModule="PersonalAccountingApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="24.333333969116211" width="418" height="124"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="pRJ-0m-dAq" id="UBF-zT-YQF">
@@ -685,13 +685,13 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="dFU-yw-jYs">
+                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="2021" minimumValue="1900" maximumValue="3000" translatesAutoresizingMaskIntoConstraints="NO" id="dFU-yw-jYs">
                                 <rect key="frame" x="329" y="121.66666666666669" width="94" height="32"/>
                                 <connections>
                                     <action selector="yearStepperChanged:" destination="6jf-Bi-ueo" eventType="valueChanged" id="oqs-WF-Gyf"/>
                                 </connections>
                             </stepper>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="YEAR" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gU2-wC-Gto">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2021" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gU2-wC-Gto">
                                 <rect key="frame" x="329" y="98" width="94" height="21.666666666666671"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <nil key="textColor"/>
