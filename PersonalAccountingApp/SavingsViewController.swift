@@ -82,11 +82,12 @@ class SavingsViewController: UIViewController, UITableViewDataSource, UITableVie
         }
         else {
             monthsTotal?.append(CalculateMonthTotal(month: (indexPath.row + 1), date: cell.monthLabel.text!))
-           cell.expenditureLabel.text = String(CalculateMonthTotal(month: (indexPath.row + 1), date: cell.monthLabel.text!))
+           cell.expenditureLabel.text = "$" + String(format: "%.2f",CalculateMonthTotal(month: (indexPath.row + 1), date: cell.monthLabel.text!))
         }
        let item = getSavingsItem(date: cell.monthLabel.text!)
-        cell.savingsLabel.text =  item != nil ? String(item!.saving) : "--"
-        cell.earningsLabel.text = item != nil ? String(item!.earning) : "--"
+        cell.savingsLabel.text =  item != nil ? "$" + String(format: "%.2f",item!.saving) : "--"
+        cell.earningsLabel.text = item != nil ? "$" + String(format: "%.2f",item!.earning) : "--"
+        cell.savingsLabel.textColor = item?.saving ?? 0.0 >= 0.0 ? .green : .red
        
       //print(monthsTotal!)
         return cell
