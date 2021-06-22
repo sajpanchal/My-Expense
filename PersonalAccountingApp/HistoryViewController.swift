@@ -10,6 +10,7 @@ import CoreData
 class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     let year = Calendar.current.component(.year, from: Date())
     var entries: [Expense]?
+    
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     @IBOutlet weak var monthLabel: UILabel!
     @IBOutlet weak var yearLabel: UILabel!
