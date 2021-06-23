@@ -605,9 +605,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="cKe-Vm-FFP">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="cKe-Vm-FFP">
                                 <rect key="frame" x="5" y="163.66666666666669" width="418" height="679.33333333333326"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="separatorColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="savings" rowHeight="124" id="pRJ-0m-dAq" customClass="SavingsTableViewCell" customModule="PersonalAccountingApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="24.333333969116211" width="418" height="124"/>
@@ -704,8 +705,15 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Jf-wq-l4n">
-                                <rect key="frame" x="5" y="128.66666666666666" width="134" height="30"/>
-                                <state key="normal" title="Insert/Edit Earnings"/>
+                                <rect key="frame" x="5" y="121.66666666666669" width="140" height="32"/>
+                                <color key="backgroundColor" red="0.15938157680000001" green="0.63012151139999995" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="140" id="Fle-9A-KcW"/>
+                                    <constraint firstAttribute="height" constant="32" id="uwg-RK-MOh"/>
+                                </constraints>
+                                <state key="normal" title="Update Earnings">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                                 <connections>
                                     <action selector="earningsButton:" destination="6jf-Bi-ueo" eventType="touchUpInside" id="dnN-eL-030"/>
                                 </connections>
@@ -720,7 +728,7 @@
                             <constraint firstItem="pvT-O1-gcd" firstAttribute="bottom" secondItem="cKe-Vm-FFP" secondAttribute="bottom" id="EKq-pB-g1w"/>
                             <constraint firstItem="pvT-O1-gcd" firstAttribute="trailing" secondItem="cKe-Vm-FFP" secondAttribute="trailing" constant="5" id="K6E-jA-bbX"/>
                             <constraint firstItem="pvT-O1-gcd" firstAttribute="trailing" secondItem="gU2-wC-Gto" secondAttribute="trailing" constant="5" id="Xlz-Qu-NV0"/>
-                            <constraint firstItem="cKe-Vm-FFP" firstAttribute="top" secondItem="8Jf-wq-l4n" secondAttribute="bottom" constant="5" id="caf-YC-Ztd"/>
+                            <constraint firstItem="cKe-Vm-FFP" firstAttribute="top" secondItem="8Jf-wq-l4n" secondAttribute="bottom" constant="10" id="caf-YC-Ztd"/>
                             <constraint firstItem="dFU-yw-jYs" firstAttribute="top" secondItem="gU2-wC-Gto" secondAttribute="bottom" constant="2" id="oKU-pl-Ojw"/>
                             <constraint firstItem="cKe-Vm-FFP" firstAttribute="centerX" secondItem="Hlt-Au-yTo" secondAttribute="centerX" id="p6a-dD-6vW"/>
                             <constraint firstItem="gU2-wC-Gto" firstAttribute="top" secondItem="pvT-O1-gcd" secondAttribute="top" constant="10" id="qQK-Og-VJs"/>

@@ -12,12 +12,14 @@ class SavingsViewController: UIViewController, UITableViewDataSource, UITableVie
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var expenses: [Expense]?
     var savings: [Savings]?
-  
+    var editMode: Bool = false
     var monthsTotal: [Double]?
     @IBOutlet weak var savingsTableView: UITableView!
     @IBOutlet weak var yearStepper: UIStepper!
     @IBOutlet weak var yearLabel: UILabel!
     @IBAction func earningsButton(_ sender: Any) {
+        editMode.toggle()
+        savingsTableView.setEditing(editMode, animated: true)
     }
     @IBAction func yearStepperChanged(_ sender: Any) {
         monthsTotal = []
@@ -92,6 +94,12 @@ class SavingsViewController: UIViewController, UITableViewDataSource, UITableVie
       //print(monthsTotal!)
         return cell
     }
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return .insert
+    }
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        createAlert(title: "Add Earnings", message: "Add This month's Earnings", textField: true , row:indexPath.row)
+    }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
        
         createAlert(title: "Add Earnings", message: "Add This month's Earnings", textField: true , row:indexPath.row)
@@ -132,6 +140,8 @@ class SavingsViewController: UIViewController, UITableViewDataSource, UITableVie
                     
                 }
             }
+            self.editMode = false
+            self.savingsTableView.setEditing(self.editMode, animated: true)
             })
        
         alert.addAction(UIAlertAction(title:"Cancel", style: .cancel, handler: nil))
@@ -150,7 +160,7 @@ class SavingsViewController: UIViewController, UITableViewDataSource, UITableVie
                 }
                
             }
-            if monthTotal > 0.0 {
+            if monthTotal >= 0.0 {
                 createNewSavings(monthTotal: monthTotal, date: date)
             }
         }
