@@ -5,15 +5,17 @@
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="descriptions" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[String]"/>
         <attribute name="totalAmount" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <relationship name="savings" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Savings" inverseName="dailyExpenses" inverseEntity="Savings"/>
     </entity>
-    <entity name="Savings" representedClassName="Savings" syncable="YES" codeGenerationType="class">
+    <entity name="Savings" representedClassName="Savings" syncable="YES">
         <attribute name="date" optional="YES" attributeType="String"/>
         <attribute name="earning" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="expenditure" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="saving" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <relationship name="dailyExpenses" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Expense" inverseName="savings" inverseEntity="Expense"/>
     </entity>
     <elements>
-        <element name="Expense" positionX="-45" positionY="0" width="128" height="89"/>
-        <element name="Savings" positionX="-45" positionY="27" width="128" height="89"/>
+        <element name="Expense" positionX="-45" positionY="0" width="128" height="104"/>
+        <element name="Savings" positionX="-45" positionY="27" width="128" height="104"/>
     </elements>
 </model>
