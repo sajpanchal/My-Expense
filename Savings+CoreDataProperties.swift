@@ -2,7 +2,7 @@
 //  Savings+CoreDataProperties.swift
 //  PersonalAccountingApp
 //
-//  Created by saj panchal on 2021-06-26.
+//  Created by saj panchal on 2021-06-27.
 //
 //
 
@@ -19,10 +19,9 @@ extension Savings {
     @NSManaged public var date: String?
     @NSManaged public var earning: Double
     @NSManaged public var expenditure: Double
-    public var saving: Double {
-        earning - expenditure
-    }
+    @NSManaged public var saving: Double
     @NSManaged public var dailyExpenses: NSSet?
+    @NSManaged public var yearlySavings: YearlySavings?
 
 }
 

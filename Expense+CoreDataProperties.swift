@@ -2,7 +2,7 @@
 //  Expense+CoreDataProperties.swift
 //  PersonalAccountingApp
 //
-//  Created by saj panchal on 2021-06-26.
+//  Created by saj panchal on 2021-06-27.
 //
 //
 
