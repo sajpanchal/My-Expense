@@ -201,9 +201,7 @@ class SavingsViewController: UIViewController, UITableViewDataSource, UITableVie
                     self.fetchData()
                     DispatchQueue.main.async {
                         self.savingsTableView.reloadData()
-                        self.yearlySavingsLbl.text = "Savings: $ \(self.calculateYearlySavings(savings: self.savings, year: self.yearLabel.text!))"
-                        self.yearlyExpenseLbl.text = "$ \(self.calculateYearlyExpense(savings: self.savings, year: self.yearLabel.text!))"
-                        self.yearlyEarningsLbl.text = "$\(Double(self.yearlySavingsLbl.text!) ?? 0.0 - (Double(self.yearlyExpenseLbl.text!) ?? 0.0) )"
+                       
                         
                     }
                     
