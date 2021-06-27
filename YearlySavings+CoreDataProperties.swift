@@ -17,8 +17,12 @@ extension YearlySavings {
     }
 
     @NSManaged public var expenditure: Double
-    @NSManaged public var saving: Double
+   
     @NSManaged public var earnings: Double
+    public var saving: Double {
+        earnings - expenditure
+    }
+    @NSManaged public var year: Int64
     @NSManaged public var monthlySavings: NSSet?
 
 }

@@ -19,10 +19,10 @@
 		72086D832663255500870AA9 /* DailyExpenseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72086D822663255500870AA9 /* DailyExpenseTableViewCell.swift */; };
 		7226B9912688C7AC00A6F90B /* Expense+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7226B98B2688C7AC00A6F90B /* Expense+CoreDataClass.swift */; };
 		7226B9922688C7AC00A6F90B /* Expense+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7226B98C2688C7AC00A6F90B /* Expense+CoreDataProperties.swift */; };
-		7226B9932688C7AC00A6F90B /* YearlySavings+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7226B98D2688C7AC00A6F90B /* YearlySavings+CoreDataClass.swift */; };
-		7226B9942688C7AC00A6F90B /* YearlySavings+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7226B98E2688C7AC00A6F90B /* YearlySavings+CoreDataProperties.swift */; };
 		7226B9952688C7AC00A6F90B /* Savings+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7226B98F2688C7AC00A6F90B /* Savings+CoreDataClass.swift */; };
 		7226B9962688C7AC00A6F90B /* Savings+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7226B9902688C7AC00A6F90B /* Savings+CoreDataProperties.swift */; };
+		7226B9992688D8B200A6F90B /* YearlySavings+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7226B9972688D8B200A6F90B /* YearlySavings+CoreDataClass.swift */; };
+		7226B99A2688D8B200A6F90B /* YearlySavings+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7226B9982688D8B200A6F90B /* YearlySavings+CoreDataProperties.swift */; };
 		7248BC662661500C006D40E2 /* PersonalAccountingApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7203E88F265B06DF0079FF47 /* PersonalAccountingApp.xcdatamodeld */; };
 		72B13F82265EA72D00277014 /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72B13F81265EA72D00277014 /* HistoryTableViewCell.swift */; };
 		72B13F85265EAA4400277014 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72B13F84265EAA4400277014 /* HistoryViewController.swift */; };
@@ -45,10 +45,10 @@
 		72086D822663255500870AA9 /* DailyExpenseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyExpenseTableViewCell.swift; sourceTree = "<group>"; };
 		7226B98B2688C7AC00A6F90B /* Expense+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Expense+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 		7226B98C2688C7AC00A6F90B /* Expense+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Expense+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
-		7226B98D2688C7AC00A6F90B /* YearlySavings+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "YearlySavings+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
-		7226B98E2688C7AC00A6F90B /* YearlySavings+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "YearlySavings+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		7226B98F2688C7AC00A6F90B /* Savings+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Savings+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 		7226B9902688C7AC00A6F90B /* Savings+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Savings+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
+		7226B9972688D8B200A6F90B /* YearlySavings+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "YearlySavings+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		7226B9982688D8B200A6F90B /* YearlySavings+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "YearlySavings+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		72B13F81265EA72D00277014 /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
 		72B13F84265EAA4400277014 /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		72D6186F265B2BE300F1C53D /* AddExpensesVIewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpensesVIewController.swift; sourceTree = "<group>"; };
@@ -107,10 +107,10 @@
 		72BFE4FE265FF8E000C2D7C0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				7226B9972688D8B200A6F90B /* YearlySavings+CoreDataClass.swift */,
+				7226B9982688D8B200A6F90B /* YearlySavings+CoreDataProperties.swift */,
 				7226B98B2688C7AC00A6F90B /* Expense+CoreDataClass.swift */,
 				7226B98C2688C7AC00A6F90B /* Expense+CoreDataProperties.swift */,
-				7226B98D2688C7AC00A6F90B /* YearlySavings+CoreDataClass.swift */,
-				7226B98E2688C7AC00A6F90B /* YearlySavings+CoreDataProperties.swift */,
 				7226B98F2688C7AC00A6F90B /* Savings+CoreDataClass.swift */,
 				7226B9902688C7AC00A6F90B /* Savings+CoreDataProperties.swift */,
 			);
@@ -190,18 +190,18 @@
 				7201CD642680061900D5E9D7 /* SavingsViewController.swift in Sources */,
 				72086D832663255500870AA9 /* DailyExpenseTableViewCell.swift in Sources */,
 				7248BC662661500C006D40E2 /* PersonalAccountingApp.xcdatamodeld in Sources */,
+				7226B9992688D8B200A6F90B /* YearlySavings+CoreDataClass.swift in Sources */,
 				72B13F82265EA72D00277014 /* HistoryTableViewCell.swift in Sources */,
 				7203E88B265B06DF0079FF47 /* ViewController.swift in Sources */,
 				7226B9962688C7AC00A6F90B /* Savings+CoreDataProperties.swift in Sources */,
 				7226B9952688C7AC00A6F90B /* Savings+CoreDataClass.swift in Sources */,
-				7226B9932688C7AC00A6F90B /* YearlySavings+CoreDataClass.swift in Sources */,
 				7203E887265B06DF0079FF47 /* AppDelegate.swift in Sources */,
 				7201CD66268006D500D5E9D7 /* SavingsTableViewCell.swift in Sources */,
 				72D61870265B2BE300F1C53D /* AddExpensesVIewController.swift in Sources */,
+				7226B99A2688D8B200A6F90B /* YearlySavings+CoreDataProperties.swift in Sources */,
 				72086D802663190700870AA9 /* DailyExpensesViewController.swift in Sources */,
 				72B13F85265EAA4400277014 /* HistoryViewController.swift in Sources */,
 				7226B9912688C7AC00A6F90B /* Expense+CoreDataClass.swift in Sources */,
-				7226B9942688C7AC00A6F90B /* YearlySavings+CoreDataProperties.swift in Sources */,
 				7226B9922688C7AC00A6F90B /* Expense+CoreDataProperties.swift in Sources */,
 				7203E889265B06DF0079FF47 /* SceneDelegate.swift in Sources */,
 			);
