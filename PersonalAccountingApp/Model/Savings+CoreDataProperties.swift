@@ -19,7 +19,9 @@ extension Savings {
     @NSManaged public var date: String?
     @NSManaged public var earning: Double
     @NSManaged public var expenditure: Double
-    @NSManaged public var saving: Double
+    public var saving: Double {
+        earning - expenditure
+    }
     @NSManaged public var dailyExpenses: NSSet?
 
 }
