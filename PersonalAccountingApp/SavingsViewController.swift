@@ -14,14 +14,22 @@ class SavingsViewController: UIViewController, UITableViewDataSource, UITableVie
     var savings: [Savings]?
     var editMode: Bool = false
     var monthsTotal: [Double]?
+    var yearSavings: Double?
+    var yearEarnings: Double?
+    var yearExpense: Double?
     @IBOutlet weak var savingsTableView: UITableView!
     @IBOutlet weak var yearStepper: UIStepper!
     @IBOutlet weak var yearLabel: UILabel!
+    @IBOutlet weak var yearlySavingsLbl: UILabel!
+    @IBOutlet weak var yearlyExpenseLbl: UILabel!
+    @IBOutlet weak var yearlyEarningsLbl: UILabel!
+    
     @IBAction func earningsButton(_ sender: Any) {
         editMode.toggle()
         savingsTableView.setEditing(editMode, animated: true)
     }
     @IBAction func yearStepperChanged(_ sender: Any) {
+        yearSavings = 0.0
         monthsTotal = []
         yearLabel.text = String(Int(yearStepper.value))
         fetchData()
@@ -30,6 +38,7 @@ class SavingsViewController: UIViewController, UITableViewDataSource, UITableVie
             self.savingsTableView.reloadData()
         }
     }
+
     
     override func viewWillAppear(_ animated: Bool) {
         //   monthsTotal = []
@@ -42,6 +51,7 @@ class SavingsViewController: UIViewController, UITableViewDataSource, UITableVie
         // deleteAll()
         //  print(savings)
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // deleteAll()
@@ -49,9 +59,11 @@ class SavingsViewController: UIViewController, UITableViewDataSource, UITableVie
         savingsTableView.delegate = self
         savingsTableView.dataSource = self
         yearLabel.text = String(Calendar.current.component(.year, from: Date()))
+      
         
         // Do any additional setup after loading the view.
     }
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         12
     }
@@ -79,6 +91,7 @@ class SavingsViewController: UIViewController, UITableViewDataSource, UITableVie
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         createAlert(title: "Add Earnings", message: "Add This month's Earnings", textField: true , row:indexPath.row)
+
     }
     func fetchData() {
         do {
@@ -147,6 +160,7 @@ class SavingsViewController: UIViewController, UITableViewDataSource, UITableVie
                 }
             }
         }
+
     }
     func filterSavings(date: String) -> Savings? {
         let saving = self.savings?.first { saving in
@@ -187,6 +201,10 @@ class SavingsViewController: UIViewController, UITableViewDataSource, UITableVie
                     self.fetchData()
                     DispatchQueue.main.async {
                         self.savingsTableView.reloadData()
+                        self.yearlySavingsLbl.text = "Savings: $ \(self.calculateYearlySavings(savings: self.savings, year: self.yearLabel.text!))"
+                        self.yearlyExpenseLbl.text = "$ \(self.calculateYearlyExpense(savings: self.savings, year: self.yearLabel.text!))"
+                        self.yearlyEarningsLbl.text = "$\(Double(self.yearlySavingsLbl.text!) ?? 0.0 - (Double(self.yearlyExpenseLbl.text!) ?? 0.0) )"
+                        
                     }
                     
                 }
