@@ -2,7 +2,7 @@
 //  Expense+CoreDataProperties.swift
 //  PersonalAccountingApp
 //
-//  Created by saj panchal on 2021-05-28.
+//  Created by saj panchal on 2021-06-26.
 //
 //
 
@@ -20,6 +20,7 @@ extension Expense {
     @NSManaged public var date: Date?
     @NSManaged public var descriptions: [String]?
     @NSManaged public var totalAmount: Double
+    @NSManaged public var savings: Savings?
 
 }
 

@@ -25,15 +25,14 @@ class SavingsViewController: UIViewController, UITableViewDataSource, UITableVie
         monthsTotal = []
         yearLabel.text = String(Int(yearStepper.value))
         fetchData()
+        createSavings(year: Int(yearStepper.value))
         DispatchQueue.main.async {
             self.savingsTableView.reloadData()
         }
-        
-    
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        //deleteAll()
+       // deleteAll()
         yearStepper.value = Double(Calendar.current.component(.year, from: Date()))
         savingsTableView.delegate = self
         savingsTableView.dataSource = self
@@ -42,14 +41,15 @@ class SavingsViewController: UIViewController, UITableViewDataSource, UITableVie
         // Do any additional setup after loading the view.
     }
     override func viewWillAppear(_ animated: Bool) {
-        monthsTotal = []
+     //   monthsTotal = []
         fetchData()
+        createSavings(year: Int(yearStepper.value))
         DispatchQueue.main.async {
             self.savingsTableView.reloadData()
         }
         print("View will appear")
       // deleteAll()
-        print(savings)
+      //  print(savings)
     }
     func fetchData() {
         do {
@@ -69,6 +69,61 @@ class SavingsViewController: UIViewController, UITableViewDataSource, UITableVie
         }
        
     }
+    func createSavings(year: Int) {
+        for month in 1...12 {
+            // create expenses array of a given month from expenses array as whole.
+            let monthExpenses = self.expenses?.filter { expense in
+                let mm = Calendar.current.component(.month, from: expense.date!)
+                let yy = Calendar.current.component(.year, from: expense.date!)
+                if mm == month && yy == year {
+                    return true
+                }
+                else {
+                    return false
+                }
+            }
+            print("month\(month): ",monthExpenses)
+            if let savings = self.savings {
+                // if we have that month's data
+                if let monthExpenses = monthExpenses {
+                    if (savings.contains { saving in
+                        saving.date?.hasSuffix(yearLabel.text!) ?? false
+                    }){
+                        let saving = self.savings?.first {
+                            $0.date == getMonth(number: month) + " " + yearLabel.text!
+                        }
+                        saving?.expenditure = 0.0
+                        for expense in monthExpenses {
+                            saving?.addToDailyExpenses(expense)
+                            saving?.expenditure += expense.totalAmount
+                        }
+                        do {
+                            try self.context.save()
+                        }
+                        catch {
+                            
+                        }
+                    }
+                    else {
+                        //create a saving context.
+                        let saving = Savings(context: context)
+                        saving.date = getMonth(number: month) + " " + yearLabel.text! // set date property as a string of month and year.
+                        // for each month's entry, add its copy to a given saving object.
+                        for expense in monthExpenses {
+                            saving.addToDailyExpenses(expense) // create a Set with a given expenses entries.
+                            saving.expenditure += expense.totalAmount // set the expenditure.
+                        }
+                   
+                        
+                    }
+                }
+             
+                
+            }
+ 
+        }
+    }
+   
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         12
     }
@@ -78,21 +133,29 @@ class SavingsViewController: UIViewController, UITableViewDataSource, UITableVie
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
       
         let cell = savingsTableView.dequeueReusableCell(withIdentifier: "savings", for: indexPath) as! SavingsTableViewCell
-        cell.monthLabel.text = getMonth(number: indexPath.row) + " " + yearLabel.text!
-        if monthsTotal == nil {
+        cell.monthLabel.text = getMonth(number: indexPath.row + 1) + " " + yearLabel.text!
+    
+       /* if monthsTotal == nil {
             monthsTotal = [CalculateMonthTotal(month: (indexPath.row + 1),date: cell.monthLabel.text!)]
         }
         else {
             monthsTotal?.append(CalculateMonthTotal(month: (indexPath.row + 1), date: cell.monthLabel.text!))
            cell.expenditureLabel.text = "$" + String(format: "%.2f",CalculateMonthTotal(month: (indexPath.row + 1), date: cell.monthLabel.text!))
-        }
-       let item = getSavingsItem(date: cell.monthLabel.text!)
+        }*/
+      /* let item = getSavingsItem(date: cell.monthLabel.text!)
         cell.savingsLabel.text =  item != nil ? "$" + String(format: "%.2f",item!.saving) : "--"
         cell.earningsLabel.text = item != nil ? "$" + String(format: "%.2f",item!.earning) : "--"
-        cell.savingsLabel.textColor = item?.saving ?? 0.0 >= 0.0 ? .green : .red
+        cell.savingsLabel.textColor = item?.saving ?? 0.0 >= 0.0 ? .green : .red*/
+        cell.expenditureLabel.text = "$" + String(format: "%.2f", filterSavings(date: cell.monthLabel.text!) ?? "--")
        
       //print(monthsTotal!)
         return cell
+    }
+    func filterSavings(date: String) -> Double? {
+        let saving = self.savings?.first { saving in
+            saving.date == date
+        }
+        return saving?.expenditure
     }
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
         return .insert
@@ -219,29 +282,29 @@ class SavingsViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     func getMonth(number: Int) -> String {
         switch number {
-            case 0:
-                return "Jan"
             case 1:
-                return "Feb"
+                return "Jan"
             case 2:
-                return "Mar"
+                return "Feb"
             case 3:
-                return "Apr"
+                return "Mar"
             case 4:
-                return "May"
+                return "Apr"
             case 5:
-                return "Jun"
+                return "May"
             case 6:
-                return "Jul"
+                return "Jun"
             case 7:
-                return "Aug"
+                return "Jul"
             case 8:
-                return "Sep"
+                return "Aug"
             case 9:
-                return "Oct"
+                return "Sep"
             case 10:
-                return "Nov"
+                return "Oct"
             case 11:
+                return "Nov"
+            case 12:
                 return "Dec"
             default:
                 return ""
