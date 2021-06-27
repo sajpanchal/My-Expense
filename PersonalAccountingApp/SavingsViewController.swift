@@ -18,6 +18,7 @@ class SavingsViewController: UIViewController, UITableViewDataSource, UITableVie
     var yearSavings: Double?
     var yearEarnings: Double?
     var yearExpense: Double?
+    @IBOutlet weak var summaryYearLabel: UILabel!
     @IBOutlet weak var savingsTableView: UITableView!
     @IBOutlet weak var yearStepper: UIStepper!
     @IBOutlet weak var yearLabel: UILabel!
@@ -33,6 +34,7 @@ class SavingsViewController: UIViewController, UITableViewDataSource, UITableVie
         yearSavings = 0.0
         monthsTotal = []
         yearLabel.text = String(Int(yearStepper.value))
+        summaryYearLabel.text = "Year " + String(Int(yearStepper.value)) + " " + "Summary"
         fetchData()
         createSavings(year: Int(yearStepper.value))
         DispatchQueue.main.async {
@@ -58,6 +60,7 @@ class SavingsViewController: UIViewController, UITableViewDataSource, UITableVie
         super.viewDidLoad()
         // deleteAll()
         yearStepper.value = Double(Calendar.current.component(.year, from: Date()))
+        summaryYearLabel.text = "Year " + String(Int(yearStepper.value)) + " " + "Summary"
         savingsTableView.delegate = self
         savingsTableView.dataSource = self
         yearLabel.text = String(Calendar.current.component(.year, from: Date()))
@@ -202,6 +205,7 @@ class SavingsViewController: UIViewController, UITableViewDataSource, UITableVie
                 yearlySavingsLbl.text = "$" + String(format: "%.2f",storedYearlySavings?.saving ?? "--")
                 yearlyExpenseLbl.text = "$" + String(format: "%.2f",storedYearlySavings?.expenditure ?? "--")
                 yearlyEarningsLbl.text = "$" + String(format: "%.2f",storedYearlySavings?.earnings ?? "--")
+                yearlySavingsLbl.textColor = (storedYearlySavings?.saving ?? 0.0) > 0.0 ? .green : .red
             }
               
         }
@@ -222,6 +226,7 @@ class SavingsViewController: UIViewController, UITableViewDataSource, UITableVie
             yearlySavingsLbl.text = "$" + String(format: "%.2f",yearlySaving.saving)
             yearlyExpenseLbl.text = "$" + String(format: "%.2f",yearlySaving.expenditure)
             yearlyEarningsLbl.text = "$" + String(format: "%.2f",yearlySaving.earnings)
+            yearlySavingsLbl.textColor = (yearlySaving.saving) > 0.0 ? .green : .red
         }
         
        
