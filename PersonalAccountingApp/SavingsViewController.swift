@@ -211,6 +211,10 @@ class SavingsViewController: UIViewController, UITableViewDataSource, UITableVie
             })
         if filteredSavings?.isEmpty ?? false {
             print("monthy savings not found for year \(year)")
+            yearlySavingsLbl.text = "$--"
+            yearlyExpenseLbl.text = "$--"
+            yearlyEarningsLbl.text = "$--"
+            yearlySavingsLbl.textColor = .red
             return
         }
        // print("filtered Data", filteredSavings)
@@ -231,10 +235,10 @@ class SavingsViewController: UIViewController, UITableViewDataSource, UITableVie
           
                 // accumulate the total expenditure and earnings
                 for saving in filteredSavings! {
-                    storedYearlySavings?.expenditure += Double((saving as! Savings).expenditure)
-                    storedYearlySavings?.earnings += Double((saving as! Savings).earning)
-                    print(storedYearlySavings?.saving)
-                    print("earnings updated to", storedYearlySavings?.earnings)
+                    storedYearlySavings?.expenditure += Double(saving.expenditure)
+                    storedYearlySavings?.earnings += Double(saving.earning)
+                    print(storedYearlySavings?.saving ?? 0.0)
+                    print("earnings updated to", storedYearlySavings?.earnings ?? 0.0)
                     storedYearlySavings?.year = Int64(year)
                    
                 }
