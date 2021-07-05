@@ -39,15 +39,18 @@ class SavingsViewController: UIViewController, UITableViewDataSource, UITableVie
         createSavings(year: Int(yearStepper.value))
         DispatchQueue.main.async {
             self.savingsTableView.reloadData()
+            print("table reloaded from year stepper.")
         }
+        fetchData()
     }
 
     
     override func viewWillAppear(_ animated: Bool) {
         //   monthsTotal = []
         yearStepper.value = Double(Calendar.current.component(.year, from: Date()))
+        print(savings)
+        createSavings(year: Int(yearStepper.value))
         fetchData()
-       createSavings(year: Int(yearStepper.value))
         DispatchQueue.main.async {
             self.savingsTableView.reloadData()
             self.yearStepper.value = Double(Calendar.current.component(.year, from: Date()))
@@ -59,16 +62,17 @@ class SavingsViewController: UIViewController, UITableViewDataSource, UITableVie
         
      
         print("View will appear")
-        //deleteSavingAll()
-        //deleteYearlySavingAll()
-        fetchData()
+       // deleteSavingAll()
+       // deleteYearlySavingAll()
+      
+        print(savings)
         for ys in yearlySavings! {
             print("\(ys.saving)  of year   \(ys.year) ")
             print(ys)
         }
        //
-        //print(savings)
-        fetchData()
+       
+        //fetchData()
     }
     
     override func viewDidLoad() {
@@ -202,6 +206,7 @@ class SavingsViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     func createYearlySavings (year: Int) {
+        fetchData()
         print("create yearly savings method called.")
         //make sure we have that year's data or exit the function.
         let filteredSavings = (self.savings?.filter { saving in
@@ -242,12 +247,14 @@ class SavingsViewController: UIViewController, UITableViewDataSource, UITableVie
                     storedYearlySavings?.year = Int64(year)
                    
                 }
+            DispatchQueue.main.async {
+                self.yearlySavingsLbl.text = "$" + String(format: "%.2f",storedYearlySavings?.saving ?? "--")
+                self.yearlyExpenseLbl.text = "$" + String(format: "%.2f",storedYearlySavings?.expenditure ?? "--")
+                self.yearlyEarningsLbl.text = "$" + String(format: "%.2f",storedYearlySavings?.earnings ?? "--")
+                self.yearlySavingsLbl.textColor = (storedYearlySavings?.saving ?? 0.0) > 0.0 ? .green : .red
                 
-                yearlySavingsLbl.text = "$" + String(format: "%.2f",storedYearlySavings?.saving ?? "--")
-                yearlyExpenseLbl.text = "$" + String(format: "%.2f",storedYearlySavings?.expenditure ?? "--")
-                yearlyEarningsLbl.text = "$" + String(format: "%.2f",storedYearlySavings?.earnings ?? "--")
-                yearlySavingsLbl.textColor = (storedYearlySavings?.saving ?? 0.0) > 0.0 ? .green : .red
-            
+            }
+              
               
         }
         // create a new yearlySaving entry.
@@ -266,10 +273,13 @@ class SavingsViewController: UIViewController, UITableViewDataSource, UITableVie
             catch {
                 
             }
-            yearlySavingsLbl.text = "$" + String(format: "%.2f",yearlySaving.saving)
-            yearlyExpenseLbl.text = "$" + String(format: "%.2f",yearlySaving.expenditure)
-            yearlyEarningsLbl.text = "$" + String(format: "%.2f",yearlySaving.earnings)
-            yearlySavingsLbl.textColor = (yearlySaving.saving) > 0.0 ? .green : .red
+            DispatchQueue.main.async {
+                self.yearlySavingsLbl.text = "$" + String(format: "%.2f",yearlySaving.saving)
+                self.yearlyExpenseLbl.text = "$" + String(format: "%.2f",yearlySaving.expenditure)
+                self.yearlyEarningsLbl.text = "$" + String(format: "%.2f",yearlySaving.earnings)
+                self.yearlySavingsLbl.textColor = (yearlySaving.saving) > 0.0 ? .green : .red
+            }
+            
         }
         fetchData()
         //print("updated yearly savings: ", self.yearlySavings)
