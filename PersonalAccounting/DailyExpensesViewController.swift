@@ -18,7 +18,6 @@ class DailyExpensesViewController: UIViewController, UITableViewDelegate, UITabl
     @IBOutlet weak var totalAmountLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
-        context.automaticallyMergesChangesFromParent = true
         DispatchQueue.main.async {
            
         }

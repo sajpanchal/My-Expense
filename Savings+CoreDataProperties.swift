@@ -1,8 +1,8 @@
 //
 //  Savings+CoreDataProperties.swift
-//  PersonalAccountingApp
+//  PersonalAccountingAppApp
 //
-//  Created by saj panchal on 2021-06-27.
+//  Created by saj panchal on 2021-07-07.
 //
 //
 

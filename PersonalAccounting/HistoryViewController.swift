@@ -30,7 +30,7 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        context.automaticallyMergesChangesFromParent = true
+       
     }
     override func viewWillAppear(_ animated: Bool) {
        

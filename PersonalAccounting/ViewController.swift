@@ -8,11 +8,11 @@
 import UIKit
 import CoreData
 
+
 class ViewController: UIViewController, UITabBarControllerDelegate {
     let dateFormatter: DateFormatter = DateFormatter() // date formater object
     @IBOutlet weak var selectedDate: UIDatePicker!
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    
     var items: [Expense]?
     
     @IBAction func dateUpdated(_ sender: Any) {
@@ -22,7 +22,16 @@ class ViewController: UIViewController, UITabBarControllerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        /*CKContainer.default().fetchUserRecordID { (recordID, error) in
+            if let error = error {
+                print(error)
+            }
+            else if let recordID = recordID {
+                print(recordID)
+                
+            }
+            
+        }*/
         tabBarController?.delegate = self
         
         fetchData()
@@ -33,16 +42,7 @@ class ViewController: UIViewController, UITabBarControllerDelegate {
         
     }
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
-        context.automaticallyMergesChangesFromParent = true
-        CKContainer.default().fetchUserRecordID(completionHandler: {
-            (recordID, error) in
-            if let name = recordID?.recordName {
-                print("iCloud ID: ", name)
-            }
-            else if let error = error {
-                print(error.localizedDescription)
-            }
-        })
+        
         fetchData()
        
         if viewController is AddExpensesVIewController{
@@ -81,7 +81,7 @@ class ViewController: UIViewController, UITabBarControllerDelegate {
         //this method will call fetchRequest() of our Person Entity and will return all Person objects back.
         do {
             var request = NSFetchRequest<NSFetchRequestResult>()
-            request = Expense.fetchRequest()
+            request = NSFetchRequest(entityName: "Expense")
             request.returnsObjectsAsFaults = false
             self.items = try context.fetch(request) as! [Expense]
             

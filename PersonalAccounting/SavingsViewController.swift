@@ -37,8 +37,6 @@ class SavingsViewController: UIViewController, UITableViewDataSource, UITableVie
         summaryYearLabel.text = "Year " + String(Int(yearStepper.value)) + " " + "Summary"
         fetchData()
         createSavings(year: Int(yearStepper.value))
-        self.savings = removeDuplicationsFromSavings(savings: self.savings)
-        createSavings(year: Int(yearStepper.value))
         DispatchQueue.main.async {
             self.savingsTableView.reloadData()
             print("table reloaded from year stepper.")
@@ -50,9 +48,7 @@ class SavingsViewController: UIViewController, UITableViewDataSource, UITableVie
     override func viewWillAppear(_ animated: Bool) {
         //   monthsTotal = []
         yearStepper.value = Double(Calendar.current.component(.year, from: Date()))
-       // print(savings)
-       createSavings(year: Int(yearStepper.value))
-        self.savings = removeDuplicationsFromSavings(savings: self.savings)
+        print(savings)
         createSavings(year: Int(yearStepper.value))
         fetchData()
         DispatchQueue.main.async {
@@ -66,15 +62,14 @@ class SavingsViewController: UIViewController, UITableViewDataSource, UITableVie
         
      
         print("View will appear")
-      //  deleteSavingAll()
-       //deleteYearlySavingAll()
+       // deleteSavingAll()
+       // deleteYearlySavingAll()
       
-     //   print(savings)
-     //   print(yearlySavings)
-       /* for ys in yearlySavings! {
+        print(savings)
+        for ys in yearlySavings! {
             print("\(ys.saving)  of year   \(ys.year) ")
             print(ys)
-        }*/
+        }
        //
        
         //fetchData()
@@ -83,7 +78,7 @@ class SavingsViewController: UIViewController, UITableViewDataSource, UITableVie
     override func viewDidLoad() {
         super.viewDidLoad()
         // deleteAll()
-        context.automaticallyMergesChangesFromParent = true
+     
         DispatchQueue.main.async {
             self.savingsTableView.reloadData()
             self.yearStepper.value = Double(Calendar.current.component(.year, from: Date()))
@@ -138,7 +133,7 @@ class SavingsViewController: UIViewController, UITableViewDataSource, UITableVie
             request = Savings.fetchRequest()
             request.returnsObjectsAsFaults = false
             self.savings = try context.fetch(request) as? [Savings]
-           
+            
             request = YearlySavings.fetchRequest()
             request.returnsObjectsAsFaults = false
             self.yearlySavings = try context.fetch(request) as? [YearlySavings]
@@ -147,38 +142,15 @@ class SavingsViewController: UIViewController, UITableViewDataSource, UITableVie
             print("error")
         }
     }
-    func removeDuplicationsFromSavings(savings: [Savings]?) -> [Savings]? {
-       
-        for saving in self.savings! {
-            if saving.yearlySavings == nil {
-                self.context.delete(saving)
-            }
-           
-            do {
-                try self.context.save()
-                print("success")
-            }
-            catch {
-                print("NO LUCK")
-            }
-        }
-       // print("updated savings:",self.savings)
-        return savings
-    }
-    func removeDuplicationsFromYearlySavings(yearlySavings:[YearlySavings]?) -> [YearlySavings]? {
-        
-        return yearlySavings
-    }
+    
     func createSavings(year: Int) {
         fetchData()
-       
         for month in 1...12 {
             // create expenses array of a given month from expenses array as whole.
             let monthExpenses = self.expenses?.filter { expense in
                 let mm = Calendar.current.component(.month, from: expense.date!)
                 let yy = Calendar.current.component(.year, from: expense.date!)
                 if mm == month && yy == year {
-                //    print("Expense list of month \(month), \(yy): ", expense)
                     return true
                 }
                 else {
@@ -190,8 +162,7 @@ class SavingsViewController: UIViewController, UITableViewDataSource, UITableVie
                 // if we have that month's data
                 if let monthExpenses = monthExpenses {
                     if (savings.contains { saving in
-                       // (saving.date?.hasSuffix(yearLabel.text!) ?? false)
-                        saving.date == getMonth(number: month) + " " + yearLabel.text!
+                        saving.date?.hasSuffix(yearLabel.text!) ?? false
                     }){
                         let saving = self.savings?.first {
                             $0.date == getMonth(number: month) + " " + yearLabel.text!
@@ -211,9 +182,6 @@ class SavingsViewController: UIViewController, UITableViewDataSource, UITableVie
                     else {
                         //create a saving context.
                         let saving = Savings(context: context)
-                        if month == 10 {
-                            print("expenses of sept 2021: ", self.expenses)
-                        }
                         saving.date = getMonth(number: month) + " " + yearLabel.text! // set date property as a string of month and year.
                         // for each month's entry, add its copy to a given saving object.
                         for expense in monthExpenses {
@@ -227,7 +195,6 @@ class SavingsViewController: UIViewController, UITableViewDataSource, UITableVie
             }
             
         }
-       
         createYearlySavings(year: year)
     }
     
@@ -240,7 +207,6 @@ class SavingsViewController: UIViewController, UITableViewDataSource, UITableVie
     
     func createYearlySavings (year: Int) {
         fetchData()
-        
         print("create yearly savings method called.")
         //make sure we have that year's data or exit the function.
         let filteredSavings = (self.savings?.filter { saving in
@@ -258,9 +224,10 @@ class SavingsViewController: UIViewController, UITableViewDataSource, UITableVie
         }
        // print("filtered Data", filteredSavings)
         //if our yearlySavings entity contatins a given year's data
-    
         if (self.yearlySavings?.contains {
-            return  $0.year == year && $0.monthlySavings != nil
+           
+          
+           return  $0.year == year
         }) ?? false  {
             // get that array item.
             let storedYearlySavings = self.yearlySavings?.first {
@@ -269,24 +236,26 @@ class SavingsViewController: UIViewController, UITableViewDataSource, UITableVie
             // empty out the expenditure and earnings.
             storedYearlySavings?.expenditure = 0.0
             storedYearlySavings?.earnings = 0.0
-            
             // now get the monthlySavings array from that yearSavings element
           
                 // accumulate the total expenditure and earnings
                 for saving in filteredSavings! {
                     storedYearlySavings?.expenditure += Double(saving.expenditure)
-                    print("YEARLY EXPENSE: \(storedYearlySavings?.expenditure) FOR YEAR \(storedYearlySavings?.year). Saving data: \(saving.date), Expense: \(saving.expenditure)")
                     storedYearlySavings?.earnings += Double(saving.earning)
-                  //  print(storedYearlySavings?.saving ?? 0.0)
-                  //  print("earnings updated to", storedYearlySavings?.earnings ?? 0.0)
+                    print(storedYearlySavings?.saving ?? 0.0)
+                    print("earnings updated to", storedYearlySavings?.earnings ?? 0.0)
                     storedYearlySavings?.year = Int64(year)
+                   
                 }
             DispatchQueue.main.async {
                 self.yearlySavingsLbl.text = "$" + String(format: "%.2f",storedYearlySavings?.saving ?? "--")
                 self.yearlyExpenseLbl.text = "$" + String(format: "%.2f",storedYearlySavings?.expenditure ?? "--")
                 self.yearlyEarningsLbl.text = "$" + String(format: "%.2f",storedYearlySavings?.earnings ?? "--")
                 self.yearlySavingsLbl.textColor = (storedYearlySavings?.saving ?? 0.0) > 0.0 ? .green : .red
+                
             }
+              
+              
         }
         // create a new yearlySaving entry.
         else {
@@ -371,7 +340,6 @@ class SavingsViewController: UIViewController, UITableViewDataSource, UITableVie
     
     func deleteSavingAll() {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Savings")
-       
         let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
         do {
             try context.execute(batchDeleteRequest)

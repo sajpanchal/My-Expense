@@ -21,7 +21,7 @@ class AddExpensesVIewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        context.automaticallyMergesChangesFromParent = true
+    
      
         // Do any additional setup after loading the view.
     }
@@ -38,7 +38,7 @@ class AddExpensesVIewController: UIViewController {
         do {
           
             var request = NSFetchRequest<NSFetchRequestResult>()
-            request = Expense.fetchRequest()
+            request = NSFetchRequest(entityName: "Expense")
             request.returnsObjectsAsFaults = false
             self.items = try context.fetch(request) as! [Expense]
            
@@ -76,10 +76,13 @@ class AddExpensesVIewController: UIViewController {
             dailyView.dateString = self.dateString
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "MMM d, yyyy"
+        if let items = self.items {
             for item in self.items! {
                 if self.dateString == dateFormatter.string(from: item.date!) {
                     dailyView.item = item
                 }
+        }
+            
             }        
     }
     func addData()
