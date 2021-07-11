@@ -1,8 +1,8 @@
 //
 //  YearlySavings+CoreDataProperties.swift
-//  PersonalAccountingApp
+//  PersonalAccountingAppApp
 //
-//  Created by saj panchal on 2021-06-27.
+//  Created by saj panchal on 2021-07-07.
 //
 //
 
@@ -16,9 +16,8 @@ extension YearlySavings {
         return NSFetchRequest<YearlySavings>(entityName: "YearlySavings")
     }
 
-    @NSManaged public var expenditure: Double
-   
     @NSManaged public var earnings: Double
+    @NSManaged public var expenditure: Double
     public var saving: Double {
         earnings - expenditure
     }

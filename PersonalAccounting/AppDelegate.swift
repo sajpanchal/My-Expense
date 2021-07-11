@@ -7,12 +7,11 @@
 
 import UIKit
 import CoreData
-import CloudKit
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-   
+
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -35,14 +34,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     // MARK: - Core Data stack
 
-    lazy var persistentContainer: NSPersistentCloudKitContainer = {
+    lazy var persistentContainer: NSPersistentContainer = {
         /*
          The persistent container for the application. This implementation
          creates and returns a container, having loaded the store for the
          application to it. This property is optional since there are legitimate
          error conditions that could cause the creation of the store to fail.
         */
-        let container = NSPersistentCloudKitContainer(name: "PersonalAccountingApp")
+        let container = NSPersistentContainer(name: "AccountingModel")
         let description = container.persistentStoreDescriptions.first
         description?.setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
@@ -65,15 +64,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }()
 
     // MARK: - Core Data Saving support
-    static var persistanceContainer: NSPersistentCloudKitContainer {
-        return (UIApplication.shared.delegate as! AppDelegate).persistentContainer
-    }
-    
-    static var viewContext: NSManagedObjectContext {
-        let context = persistanceContainer.viewContext
-        context.automaticallyMergesChangesFromParent = true
-        return context
-    }
+
     func saveContext () {
         let context = persistentContainer.viewContext
         if context.hasChanges {
