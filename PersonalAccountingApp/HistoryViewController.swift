@@ -11,7 +11,7 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
     let year = Calendar.current.component(.year, from: Date())
     var entries: [Expense]?
     
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+ //   let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     @IBOutlet weak var monthLabel: UILabel!
     @IBOutlet weak var yearLabel: UILabel!
     @IBOutlet weak var monthStepper: UIStepper!
@@ -30,7 +30,7 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        context.automaticallyMergesChangesFromParent = true
+     //   context.automaticallyMergesChangesFromParent = true
     }
     override func viewWillAppear(_ animated: Bool) {
        
@@ -56,7 +56,7 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
             var request = NSFetchRequest<NSFetchRequestResult>()
             request = Expense.fetchRequest()
             request.returnsObjectsAsFaults = false
-            self.entries = try context.fetch(request) as! [Expense]
+            self.entries = try AppDelegate.viewContext.fetch(request) as? [Expense]
             
         }
         catch {

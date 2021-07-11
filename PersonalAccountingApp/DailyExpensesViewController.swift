@@ -11,14 +11,14 @@ class DailyExpensesViewController: UIViewController, UITableViewDelegate, UITabl
     
     var dateString: String?
     var item: Expense?
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+ //   let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var items: [Expense]?
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var dailyExpenseTableView: UITableView!
     @IBOutlet weak var totalAmountLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
-        context.automaticallyMergesChangesFromParent = true
+       // context.automaticallyMergesChangesFromParent = true
         DispatchQueue.main.async {
            
         }
@@ -47,7 +47,7 @@ class DailyExpensesViewController: UIViewController, UITableViewDelegate, UITabl
             var request = NSFetchRequest<NSFetchRequestResult>()
             request = Expense.fetchRequest()
             request.returnsObjectsAsFaults = false
-            self.items = try context.fetch(request) as! [Expense]
+            self.items = try AppDelegate.viewContext.fetch(request) as! [Expense]
             
         }
         catch {
@@ -113,7 +113,7 @@ class DailyExpensesViewController: UIViewController, UITableViewDelegate, UITabl
                             
                             // save changes.
                             do {
-                                try self.context.save()
+                                try AppDelegate.viewContext.save()
                             }
                             catch{
                             }
@@ -200,7 +200,7 @@ class DailyExpensesViewController: UIViewController, UITableViewDelegate, UITabl
                 }
             }
             do {
-            try self.context.save()
+                try AppDelegate.viewContext.save()
             }
             catch{
                 

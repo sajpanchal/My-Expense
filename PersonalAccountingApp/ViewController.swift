@@ -11,7 +11,7 @@ import CoreData
 class ViewController: UIViewController, UITabBarControllerDelegate {
     let dateFormatter: DateFormatter = DateFormatter() // date formater object
     @IBOutlet weak var selectedDate: UIDatePicker!
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+//    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     var items: [Expense]?
     
@@ -33,7 +33,7 @@ class ViewController: UIViewController, UITabBarControllerDelegate {
         
     }
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
-        context.automaticallyMergesChangesFromParent = true
+   //     context.automaticallyMergesChangesFromParent = true
         CKContainer.default().fetchUserRecordID(completionHandler: {
             (recordID, error) in
             if let name = recordID?.recordName {
@@ -80,10 +80,10 @@ class ViewController: UIViewController, UITabBarControllerDelegate {
     func fetchData() {
         //this method will call fetchRequest() of our Person Entity and will return all Person objects back.
         do {
-            var request = NSFetchRequest<NSFetchRequestResult>()
-            request = Expense.fetchRequest()
+            let request: NSFetchRequest<Expense> = Expense.fetchRequest()
             request.returnsObjectsAsFaults = false
-            self.items = try context.fetch(request) as! [Expense]
+          //  self.items = try context.fetch(request) as! [Expense]
+            self.items = try AppDelegate.viewContext.fetch(request)
             
         }
         catch {

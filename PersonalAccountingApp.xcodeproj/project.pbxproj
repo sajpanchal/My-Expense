@@ -33,7 +33,7 @@
 /* Begin PBXFileReference section */
 		7201CD632680061900D5E9D7 /* SavingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavingsViewController.swift; sourceTree = "<group>"; };
 		7201CD65268006D500D5E9D7 /* SavingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavingsTableViewCell.swift; sourceTree = "<group>"; };
-		7203E883265B06DF0079FF47 /* PersonalAccountingAppApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PersonalAccountingAppApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7203E883265B06DF0079FF47 /* PersonalAccountingApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PersonalAccountingApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7203E886265B06DF0079FF47 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7203E888265B06DF0079FF47 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		7203E88A265B06DF0079FF47 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -81,7 +81,7 @@
 		7203E884265B06DF0079FF47 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				7203E883265B06DF0079FF47 /* PersonalAccountingAppApp.app */,
+				7203E883265B06DF0079FF47 /* PersonalAccountingApp.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -134,9 +134,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		7203E882265B06DF0079FF47 /* PersonalAccountingAppApp */ = {
+		7203E882265B06DF0079FF47 /* PersonalAccountingApp */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 7203E89A265B06E10079FF47 /* Build configuration list for PBXNativeTarget "PersonalAccountingAppApp" */;
+			buildConfigurationList = 7203E89A265B06E10079FF47 /* Build configuration list for PBXNativeTarget "PersonalAccountingApp" */;
 			buildPhases = (
 				7203E87F265B06DF0079FF47 /* Sources */,
 				7203E880265B06DF0079FF47 /* Frameworks */,
@@ -146,9 +146,9 @@
 			);
 			dependencies = (
 			);
-			name = PersonalAccountingAppApp;
+			name = PersonalAccountingApp;
 			productName = PersonalAccountingApp;
-			productReference = 7203E883265B06DF0079FF47 /* PersonalAccountingAppApp.app */;
+			productReference = 7203E883265B06DF0079FF47 /* PersonalAccountingApp.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -165,7 +165,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 7203E87E265B06DF0079FF47 /* Build configuration list for PBXProject "PersonalAccountingApp" */;
+			buildConfigurationList = 7203E87E265B06DF0079FF47 /* Build configuration list for PBXProject "PersonalAccounting" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -178,7 +178,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				7203E882265B06DF0079FF47 /* PersonalAccountingAppApp */,
+				7203E882265B06DF0079FF47 /* PersonalAccountingApp */,
 			);
 		};
 /* End PBXProject section */
@@ -404,7 +404,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		7203E87E265B06DF0079FF47 /* Build configuration list for PBXProject "PersonalAccountingApp" */ = {
+		7203E87E265B06DF0079FF47 /* Build configuration list for PBXProject "PersonalAccounting" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7203E898265B06E10079FF47 /* Debug */,
@@ -413,7 +413,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		7203E89A265B06E10079FF47 /* Build configuration list for PBXNativeTarget "PersonalAccountingAppApp" */ = {
+		7203E89A265B06E10079FF47 /* Build configuration list for PBXNativeTarget "PersonalAccountingApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7203E89B265B06E10079FF47 /* Debug */,

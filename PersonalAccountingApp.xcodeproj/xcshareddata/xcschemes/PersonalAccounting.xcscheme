@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "7203E882265B06DF0079FF47"
-               BuildableName = "PersonalAccountingAppApp.app"
-               BlueprintName = "PersonalAccountingAppApp"
-               ReferencedContainer = "container:PersonalAccountingApp.xcodeproj">
+               BuildableName = "PersonalAccountingApp.app"
+               BlueprintName = "PersonalAccountingApp"
+               ReferencedContainer = "container:PersonalAccounting.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -45,9 +45,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "7203E882265B06DF0079FF47"
-            BuildableName = "PersonalAccountingAppApp.app"
-            BlueprintName = "PersonalAccountingAppApp"
-            ReferencedContainer = "container:PersonalAccountingApp.xcodeproj">
+            BuildableName = "PersonalAccountingApp.app"
+            BlueprintName = "PersonalAccountingApp"
+            ReferencedContainer = "container:PersonalAccounting.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -62,9 +62,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "7203E882265B06DF0079FF47"
-            BuildableName = "PersonalAccountingAppApp.app"
-            BlueprintName = "PersonalAccountingAppApp"
-            ReferencedContainer = "container:PersonalAccountingApp.xcodeproj">
+            BuildableName = "PersonalAccountingApp.app"
+            BlueprintName = "PersonalAccountingApp"
+            ReferencedContainer = "container:PersonalAccounting.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

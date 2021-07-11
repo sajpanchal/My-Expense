@@ -7,11 +7,12 @@
 
 import UIKit
 import CoreData
+import CloudKit
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
+   
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -64,7 +65,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }()
 
     // MARK: - Core Data Saving support
-
+    static var persistanceContainer: NSPersistentCloudKitContainer {
+        return (UIApplication.shared.delegate as! AppDelegate).persistentContainer
+    }
+    
+    static var viewContext: NSManagedObjectContext {
+        let context = persistanceContainer.viewContext
+        context.automaticallyMergesChangesFromParent = true
+        return context
+    }
     func saveContext () {
         let context = persistentContainer.viewContext
         if context.hasChanges {

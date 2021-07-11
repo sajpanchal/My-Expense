@@ -16,12 +16,12 @@ class AddExpensesVIewController: UIViewController {
     
 
     //persistant container have a property called managedObjectContext.
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+  //  let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var items: [Expense]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        context.automaticallyMergesChangesFromParent = true
+     //   context.automaticallyMergesChangesFromParent = true
      
         // Do any additional setup after loading the view.
     }
@@ -40,7 +40,7 @@ class AddExpensesVIewController: UIViewController {
             var request = NSFetchRequest<NSFetchRequestResult>()
             request = Expense.fetchRequest()
             request.returnsObjectsAsFaults = false
-            self.items = try context.fetch(request) as! [Expense]
+            self.items = try AppDelegate.viewContext.fetch(request) as! [Expense]
            
         }
         catch {
@@ -134,10 +134,10 @@ class AddExpensesVIewController: UIViewController {
         for item in items!
         {
             
-            self.context.delete(item)
+            AppDelegate.viewContext.delete(item)
         }
         do{
-        try self.context.save()
+            try AppDelegate.viewContext.save()
         }
         catch {
             
@@ -159,7 +159,7 @@ class AddExpensesVIewController: UIViewController {
        }
        // if item is not found
        else {
-            let newEntry = Expense(context: self.context)
+        let newEntry = Expense(context: AppDelegate.viewContext)
             newEntry.date = date!
             let validation = self.validateForm(desc: desc.text, amount: amount.text)
         switch validation {
@@ -199,7 +199,7 @@ class AddExpensesVIewController: UIViewController {
         /* ADD COMMENTED CODE IF ANY PROBLEM OCCURS */
         
         do {
-           try self.context.save()
+            try AppDelegate.viewContext.save()
         }
         catch {
             
