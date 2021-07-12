@@ -17,13 +17,11 @@ class AddExpensesVIewController: UIViewController {
 
     //persistant container have a property called managedObjectContext.
   //  let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    var items: [Expense]?
+    var items: [Expense] = Expense.fetchRecords()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-     //   context.automaticallyMergesChangesFromParent = true
-     
-        // Do any additional setup after loading the view.
+   
     }
     //this method will be called before viewDidload. it is called right before the view is about to be loaded.
     override func viewWillAppear(_ animated: Bool) {
@@ -31,9 +29,9 @@ class AddExpensesVIewController: UIViewController {
             self.dateLabel.text = self.dateString
         }
         
-        fetchData()
+        self.items = Expense.fetchRecords()
     }
-    func fetchData() {
+   /* func fetchData() {
         //this method will call fetchRequest() of our Person Entity and will return all Person objects back.
         do {
           
@@ -47,7 +45,7 @@ class AddExpensesVIewController: UIViewController {
             print("error")
         }
         
-    }
+    }*/
     @IBAction func addAnotherButton(_ sender: Any) {
         addData()
         let alert = UIAlertController(title: "Success!", message: "Data has been added successfully!", preferredStyle: .alert)
@@ -76,7 +74,7 @@ class AddExpensesVIewController: UIViewController {
             dailyView.dateString = self.dateString
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "MMM d, yyyy"
-            for item in self.items! {
+        for item in self.items {
                 if self.dateString == dateFormatter.string(from: item.date!) {
                     dailyView.item = item
                 }
@@ -130,25 +128,13 @@ class AddExpensesVIewController: UIViewController {
         return "Valid Form"
     }
     
-    func deleteAll() {
-        for item in items!
-        {
-            
-            AppDelegate.viewContext.delete(item)
-        }
-        do{
-            try AppDelegate.viewContext.save()
-        }
-        catch {
-            
-        }
-    }
+    
     func addNewEntry() {
        
         let dateFormatter: DateFormatter = DateFormatter() //set formatter
         dateFormatter.dateFormat = "MMM d, yyyy"
         // if item is found in a core data
-        if let item = (items?.first {
+        if let item = (items.first {
                             dateFormatter.string(from:$0.date!) == dateString }) {
             item.amounts?.append(Double(amount.text!)!) // append data in it.
             item.descriptions?.append(desc.text!)
@@ -204,7 +190,7 @@ class AddExpensesVIewController: UIViewController {
         catch {
             
         }
-        self.fetchData()
+        self.items = Expense.fetchRecords()
     }
     
     /*

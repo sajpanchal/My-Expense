@@ -10,7 +10,7 @@ import CoreData
 class SavingsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
 //    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    var expenses: [Expense]?
+    var expenses: [Expense] = Expense.fetchRecords()
     var savings: [Savings]?
     var yearlySavings: [YearlySavings]?
     var editMode: Bool = false
@@ -35,6 +35,7 @@ class SavingsViewController: UIViewController, UITableViewDataSource, UITableVie
         monthsTotal = []
         yearLabel.text = String(Int(yearStepper.value))
         summaryYearLabel.text = "Year " + String(Int(yearStepper.value)) + " " + "Summary"
+        self.expenses = Expense.fetchRecords()
         fetchData()
         createSavings(year: Int(yearStepper.value))
         //self.savings = removeDuplicationsFromSavings(savings: self.savings)
@@ -61,6 +62,7 @@ class SavingsViewController: UIViewController, UITableViewDataSource, UITableVie
         createSavings(year: Int(yearStepper.value))
        
       //  createSavings(year: Int(yearStepper.value))
+        self.expenses = Expense.fetchRecords()
         fetchData()
         DispatchQueue.main.async {
             self.savingsTableView.reloadData()
@@ -137,12 +139,7 @@ class SavingsViewController: UIViewController, UITableViewDataSource, UITableVie
     func fetchData() {
         print("fetch data")
         do {
-           
-            let expenseRequest: NSFetchRequest<Expense> = Expense.fetchRequest()
-            expenseRequest.returnsObjectsAsFaults = false
-           // self.expenses = try context.fetch(request) as? [Expense]
-            self.expenses = try AppDelegate.viewContext.fetch(expenseRequest)
-            
+                       
             let savingsRequest: NSFetchRequest<Savings> = Savings.fetchRequest()
             savingsRequest.returnsObjectsAsFaults = false
            // self.savings = try context.fetch(request) as? [Savings]
@@ -187,7 +184,7 @@ class SavingsViewController: UIViewController, UITableViewDataSource, UITableVie
        //scan from jan to dec
         for month in 1...12 {
             // create expenses array of a given month from expenses array as whole.
-            let monthExpenses = self.expenses?.filter { expense in
+            let monthExpenses = self.expenses.filter { expense in
                 let mm = Calendar.current.component(.month, from: expense.date!)
                 let yy = Calendar.current.component(.year, from: expense.date!)
                 if mm == month && yy == year {
@@ -201,7 +198,7 @@ class SavingsViewController: UIViewController, UITableViewDataSource, UITableVie
             //if savings entity is not nil
             if let savings = self.savings {
                 // if we have that month's data
-                if let monthExpenses = monthExpenses {
+                if !monthExpenses.isEmpty {
                     // if the entiry has a given month's data
                     if (savings.contains { saving in
                        // (saving.date?.hasSuffix(yearLabel.text!) ?? false)
@@ -229,7 +226,7 @@ class SavingsViewController: UIViewController, UITableViewDataSource, UITableVie
                        // let saving = Savings(context: context)
                         let saving = Savings(context: AppDelegate.viewContext)
                         if month == 10 {
-                            print("expenses of sept 2021: ", self.expenses ?? "")
+                            print("expenses of sept 2021: ", self.expenses )
                         }
                         saving.date = getMonth(number: month) + " " + yearLabel.text! // set date property as a string of month and year.
                         // for each month's entry, add its copy to a given saving object.
@@ -293,7 +290,7 @@ class SavingsViewController: UIViewController, UITableViewDataSource, UITableVie
                 // accumulate the total expenditure and earnings
                for saving in filteredSavings! {
                     storedYearlySavings?.expenditure += Double(saving.expenditure)
-                    print("YEARLY EXPENSE: \(storedYearlySavings?.expenditure) FOR YEAR \(storedYearlySavings?.year). Saving data: \(saving.date), Expense: \(saving.expenditure)")
+                print("YEARLY EXPENSE: \(String(describing: storedYearlySavings?.expenditure)) FOR YEAR \(String(describing: storedYearlySavings?.year)). Saving data: \(String(describing: saving.date)), Expense: \(saving.expenditure)")
                     
                     storedYearlySavings?.earnings += Double(saving.earning)
                   //  print(storedYearlySavings?.saving ?? 0.0)
