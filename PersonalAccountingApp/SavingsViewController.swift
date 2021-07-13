@@ -128,24 +128,12 @@ class SavingsViewController: UIViewController, UITableViewDataSource, UITableVie
         createAlert(title: "Add Earnings", message: "Add This month's Earnings", textField: true , row:indexPath.row)
 
     }
-    /*func fetchData() {
-        print("fetch data")
-        do {
-                       
-            let yearlySavingsRequest: NSFetchRequest<YearlySavings> = YearlySavings.fetchRequest()
-            yearlySavingsRequest.returnsObjectsAsFaults = false
-            //self.yearlySavings = try context.fetch(request) as? [YearlySavings]
-            self.yearlySavings = try AppDelegate.viewContext.fetch(yearlySavingsRequest)
-        }
-        catch {
-            print("error")
-        }
-    }*/
     
     func removeDuplicationsFromYearlySavings(yearlySavings:[YearlySavings]?) -> [YearlySavings]? {
         
         return yearlySavings
     }
+    
     func createSavings(year: Int) {
         self.expenses = Expense.fetchRecords()
         self.savings = Savings.fetchRecords()
@@ -283,6 +271,7 @@ class SavingsViewController: UIViewController, UITableViewDataSource, UITableVie
                    let date = self.getMonth(number: row+1) + " " + self.yearLabel.text!
                    let earning = Double(amount.text!)
                     Savings.createRecord(date: date, earning: earning!, expenses: [])
+                    self.createYearlySavings(year: Int(self.yearLabel.text!)!)
                 }
                 
                 self.savings = Savings.fetchRecords()
