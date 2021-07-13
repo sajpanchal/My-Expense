@@ -12,7 +12,7 @@ class DailyExpensesViewController: UIViewController, UITableViewDelegate, UITabl
     var dateString: String?
     var item: Expense?
  //   let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    var items: [Expense]?
+    var items: [Expense] = Expense.fetchRecords()
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var dailyExpenseTableView: UITableView!
     @IBOutlet weak var totalAmountLabel: UILabel!
@@ -28,7 +28,7 @@ class DailyExpensesViewController: UIViewController, UITableViewDelegate, UITabl
 
     override func viewWillAppear(_ animated: Bool) {
         DispatchQueue.main.async { [self] in
-            fetchData()
+            self.items = Expense.fetchRecords()
             self.dateLabel.text = self.dateString ?? ""
            
             self.totalAmountLabel.text = "Day's Total: $" + String(format: "%.2f",(self.item?.totalAmount ?? 0.0))
@@ -40,7 +40,7 @@ class DailyExpensesViewController: UIViewController, UITableViewDelegate, UITabl
         
     }
     
-    func fetchData() {
+   /* func fetchData() {
         //this method will call fetchRequest() of our Person Entity and will return all Person objects back.
         do {
           
@@ -54,7 +54,7 @@ class DailyExpensesViewController: UIViewController, UITableViewDelegate, UITabl
             print("error")
         }
         
-    }
+    }*/
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let addExpenses = segue.destination as! AddExpensesVIewController
@@ -82,7 +82,7 @@ class DailyExpensesViewController: UIViewController, UITableViewDelegate, UITabl
         desc.text = self.item!.descriptions![indexPath.row]
         amount.text = String(self.item!.amounts![indexPath.row])
         let submitAction = UIAlertAction(title: "Submit", style: .default) { [self]_ in
-            let result = items?.contains {  exp in
+            let result = items.contains {  exp in
                                 
                 let formatter = DateFormatter()
                 formatter.dateFormat = "MMM d, yyyy"
@@ -118,7 +118,7 @@ class DailyExpensesViewController: UIViewController, UITableViewDelegate, UITabl
                             catch{
                             }
                             
-                            self.fetchData()
+                            self.items = Expense.fetchRecords()
                             
                             self.dailyExpenseTableView.reloadData()
                             break
@@ -129,7 +129,7 @@ class DailyExpensesViewController: UIViewController, UITableViewDelegate, UITabl
                 
                 return correctDate && correctEntry
             }
-            if !(result!) {
+            if !(result) {
                 print("error")
             }
            
@@ -181,15 +181,15 @@ class DailyExpensesViewController: UIViewController, UITableViewDelegate, UITabl
         
             let formatter = DateFormatter()
             formatter.dateFormat = "MMM d, yyyy"
-            for i in 0..<(self.items?.count)! {
-                if formatter.string(from: (self.items?[i].date)!) == dateString {
-                    if self.items?[i].descriptions != nil {
-                        if self.items?[i].descriptions![indexPath.row] == self.item?.descriptions![indexPath.row] && self.items?[i].amounts![indexPath.row] == self.item?.amounts![indexPath.row] {
-                            self.items?[i].totalAmount -= (self.items?[i].amounts![indexPath.row])!
-                            self.items?[i].descriptions?.remove(at: indexPath.row)
-                            self.items?[i].amounts?.remove(at: indexPath.row)
+            for i in 0..<(self.items.count) {
+                if formatter.string(from: (self.items[i].date)!) == dateString {
+                    if self.items[i].descriptions != nil {
+                        if self.items[i].descriptions![indexPath.row] == self.item?.descriptions![indexPath.row] && self.items[i].amounts![indexPath.row] == self.item?.amounts![indexPath.row] {
+                            self.items[i].totalAmount -= (self.items[i].amounts![indexPath.row])
+                            self.items[i].descriptions?.remove(at: indexPath.row)
+                            self.items[i].amounts?.remove(at: indexPath.row)
                             DispatchQueue.main.async {
-                                self.totalAmountLabel.text = "Day's Total: $" + String(format: "%.2f",(self.items?[i].totalAmount ?? 0.0))
+                                self.totalAmountLabel.text = "Day's Total: $" + String(format: "%.2f",(self.items[i].totalAmount ))
                             }
                        
                         }
@@ -205,7 +205,7 @@ class DailyExpensesViewController: UIViewController, UITableViewDelegate, UITabl
             catch{
                 
             }
-            self.fetchData()
+            self.items = Expense.fetchRecords()
           
             self.dailyExpenseTableView.reloadData()
         }

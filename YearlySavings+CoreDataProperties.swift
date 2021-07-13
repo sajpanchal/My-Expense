@@ -23,7 +23,45 @@ extension YearlySavings {
     }
     @NSManaged public var year: Int64
     @NSManaged public var monthlySavings: NSSet?
-
+    
+    static func fetchRecords(context: NSManagedObjectContext = AppDelegate.viewContext) -> [YearlySavings] {
+        let request: NSFetchRequest<YearlySavings> = YearlySavings.fetchRequest()
+        request.returnsObjectsAsFaults = false
+        guard let yearlySavings = try? AppDelegate.viewContext.fetch(request) else {
+            return []
+        }
+        return yearlySavings
+    }
+    static func createRecord(year: Int, savings: [Savings]) -> YearlySavings {
+        let currentYearSaving = YearlySavings(context: AppDelegate.viewContext)
+        for saving in savings {
+            currentYearSaving.addToMonthlySavings(saving)
+            currentYearSaving.expenditure += saving.expenditure
+            currentYearSaving.earnings += saving.earning
+            currentYearSaving.year = Int64(year)
+        }
+        do {
+            //try self.context.save()
+            try AppDelegate.viewContext.save()
+        }
+        catch {
+            
+        }
+        return currentYearSaving
+    }
+    static func editRecord(year: Int, savings: [Savings]) -> YearlySavings? {
+        let yearlySavings = YearlySavings.fetchRecords()
+        let currentYearSavings = yearlySavings.first {
+            $0.year == year
+        }
+        currentYearSavings?.expenditure = 0.0
+        currentYearSavings?.earnings = 0.0
+        for saving in savings {
+            currentYearSavings?.expenditure += Double(saving.expenditure)
+            currentYearSavings?.earnings += Double(saving.earning)
+        }
+        return currentYearSavings
+    }
 }
 
 // MARK: Generated accessors for monthlySavings

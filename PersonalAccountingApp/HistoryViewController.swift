@@ -9,7 +9,7 @@ import UIKit
 import CoreData
 class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     let year = Calendar.current.component(.year, from: Date())
-    var entries: [Expense]?
+    var expenses: [Expense] = Expense.fetchRecords()
     
  //   let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     @IBOutlet weak var monthLabel: UILabel!
@@ -34,7 +34,7 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     override func viewWillAppear(_ animated: Bool) {
        
-        fetchData()
+        self.expenses = Expense.fetchRecords()
         DispatchQueue.main.async {
           
             self.historyTableView.delegate = self
@@ -49,7 +49,7 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
     }
     
-    func fetchData() {
+  /*  func fetchData() {
         //this method will call fetchRequest() of our Person Entity and will return all Person objects back.
         do {
            
@@ -63,7 +63,7 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
             print("error")
         }
         
-    }
+    }*/
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let dailyExpenses = segue.destination as! DailyExpensesViewController
@@ -71,19 +71,14 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
         let dd = String(format:"%02d",historyTableView.indexPathForSelectedRow!.row+1)
         let mm = String(format:"%02d", Int(monthStepper.value))
         let dateStr = "\(dd)/\(mm)/\(Int(yearStepper.value))"
-        
-        /*let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd/MM/yy"
-        let dateFormatter2 = DateFormatter()
-        dateFormatter2.dateFormat = "MMM d, yyyy"*/
-        //create date formatters with 2 different date formats.
+
         let dateFormatter = createDateFormatter(format: "dd/MM/yy")
         let dateFormatter2 = createDateFormatter(format: "MMM d, yyyy")
         // get raw date.
         let date = dateFormatter.date(from: dateStr)
         dailyExpenses.dateString = dateFormatter2.string(from: date!) //pass the date string to daily expenses VC.
         // loop the core data entries
-        for entry in entries! {
+        for entry in expenses {
             let entryDate = dateFormatter2.string(from: entry.date!) // convert a core data entity date to string.
             // if the given date is matching with a current date
             if entryDate == dailyExpenses.dateString {
@@ -174,12 +169,11 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func CalculateMonthTotal() {
-        if let items = entries {
+        if !expenses.isEmpty {
             monthTotal = 0.0
-            for item in items {
+            for item in expenses {
                 if (Calendar.current.component(.month, from: item.date!) == Int(monthStepper.value)) && (Calendar.current.component(.year, from: item.date!) == Int(yearStepper.value)){
                     monthTotal += item.totalAmount
-                    
                 }
             }
         }
@@ -192,15 +186,12 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
         let cell = tableView.dequeueReusableCell(withIdentifier: "history", for: indexPath) as! HistoryTableViewCell
         cell.dayLabel.text = String(format: "%02d",(indexPath.row + 1))
         cell.amountLabel.text = ""
-        if let items = entries {
+        if !expenses.isEmpty {
          
-            for item in items {
+            for item in expenses {
                 if Calendar.current.component(.day, from: item.date!) == (indexPath.row + 1) && Calendar.current.component(.month, from: item.date!) == Int(monthStepper.value) && Calendar.current.component(.year, from: item.date!) == Int(yearStepper.value){
                     cell.dayLabel.text = String(format: "%02d",(indexPath.row + 1))
                     cell.amountLabel.text = "$"+String(format:"%.2f",(item.totalAmount))
-                  
-                 
-                    
                 }
             }
         }

@@ -24,6 +24,74 @@ extension Savings {
     }
     @NSManaged public var dailyExpenses: NSSet?
     @NSManaged public var yearlySavings: YearlySavings?
+    
+    static func fetchRecords(viewContext: NSManagedObjectContext = AppDelegate.viewContext) -> [Savings] {
+        let request: NSFetchRequest<Savings> = Savings.fetchRequest()
+        request.returnsObjectsAsFaults = false
+        guard let savings = try? AppDelegate.viewContext.fetch(request) else {
+            return []
+        }
+        
+        return savings
+    }
+    static func createRecord(viewContext: NSManagedObjectContext = AppDelegate.viewContext,date: String, earning: Double, expenses: [Expense]) {
+        let saving = Savings(context: viewContext)
+        saving.date = date
+        saving.earning = earning
+       
+            saving.expenditure = 0.0
+            for expense in expenses {
+                saving.addToDailyExpenses(expense)
+                saving.expenditure += Double(expense.totalAmount)
+            }
+        
+        do {
+            //try self.context.save()
+            try AppDelegate.viewContext.save()
+        }
+        catch {
+            
+        }
+    }
+    static func editRecord(viewContext: NSManagedObjectContext = AppDelegate.viewContext,date: String, earning: Double, expenses: [Expense]) {
+        let savings = Self.fetchRecords()
+        let saving = savings.first {
+            $0.date == date
+        }
+        saving?.expenditure = 0.0
+        for expense in expenses {
+            saving?.addToDailyExpenses(expense)
+            saving?.expenditure += Double(expense.totalAmount)
+        }
+        
+        do {
+            try AppDelegate.viewContext.save()
+        }
+        catch {
+            
+        }
+    }
+    static func removeDuplicationsFromSavings(savings: [Savings]) -> [Savings] {
+        print("remove duplication method exectuted.")
+        for saving in savings {
+            if (saving.expenditure == 0.0 && saving.earning == 0.0) {
+                //self.context.delete(saving)
+                AppDelegate.viewContext.delete(saving)
+                print("Deleted:\(saving)")
+            }
+            
+            do {
+                //  try self.context.save()
+                try AppDelegate.viewContext.save()
+                print("success")
+            }
+            catch {
+                print("NO LUCK")
+            }
+        }
+        // print("updated savings:",self.savings)
+        return savings
+    }
 
 }
 
