@@ -48,7 +48,6 @@ extension Expense {
                 str2 = dateformatter.string(from: $1.date!)
             }
             
-            print(str1, str2)
             if (str1 == str2) {
                 print("Match Found: \(str1) and \(str2)")
                 if ($0.date! > $1.date!) {
