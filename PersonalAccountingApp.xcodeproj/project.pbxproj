@@ -28,6 +28,7 @@
 		72B13F85265EAA4400277014 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72B13F84265EAA4400277014 /* HistoryViewController.swift */; };
 		72BCBECC26949CC800D9CA19 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72BCBECB26949CC800D9CA19 /* CloudKit.framework */; };
 		72D61870265B2BE300F1C53D /* AddExpensesVIewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72D6186F265B2BE300F1C53D /* AddExpensesVIewController.swift */; };
+		72EB7B9126A09C27000FBE4E /* SignInWithAppleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72EB7B9026A09C27000FBE4E /* SignInWithAppleViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +56,7 @@
 		72BCBEC926949CA900D9CA19 /* PersonalAccountingApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PersonalAccountingApp.entitlements; sourceTree = "<group>"; };
 		72BCBECB26949CC800D9CA19 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		72D6186F265B2BE300F1C53D /* AddExpensesVIewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpensesVIewController.swift; sourceTree = "<group>"; };
+		72EB7B9026A09C27000FBE4E /* SignInWithAppleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithAppleViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +96,7 @@
 				72086D822663255500870AA9 /* DailyExpenseTableViewCell.swift */,
 				7203E886265B06DF0079FF47 /* AppDelegate.swift */,
 				7203E888265B06DF0079FF47 /* SceneDelegate.swift */,
+				72EB7B9026A09C27000FBE4E /* SignInWithAppleViewController.swift */,
 				7203E88A265B06DF0079FF47 /* ViewController.swift */,
 				7203E88C265B06DF0079FF47 /* Main.storyboard */,
 				7201CD65268006D500D5E9D7 /* SavingsTableViewCell.swift */,
@@ -165,7 +168,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 7203E87E265B06DF0079FF47 /* Build configuration list for PBXProject "PersonalAccounting" */;
+			buildConfigurationList = 7203E87E265B06DF0079FF47 /* Build configuration list for PBXProject "PersonalAccountingApp" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -214,6 +217,7 @@
 				72086D802663190700870AA9 /* DailyExpensesViewController.swift in Sources */,
 				720550D02695F6D5008AD602 /* YearlySavings+CoreDataProperties.swift in Sources */,
 				72B13F85265EAA4400277014 /* HistoryViewController.swift in Sources */,
+				72EB7B9126A09C27000FBE4E /* SignInWithAppleViewController.swift in Sources */,
 				720550CB2695F6D5008AD602 /* Expense+CoreDataClass.swift in Sources */,
 				720550CC2695F6D5008AD602 /* Expense+CoreDataProperties.swift in Sources */,
 				7203E889265B06DF0079FF47 /* SceneDelegate.swift in Sources */,
@@ -404,7 +408,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		7203E87E265B06DF0079FF47 /* Build configuration list for PBXProject "PersonalAccounting" */ = {
+		7203E87E265B06DF0079FF47 /* Build configuration list for PBXProject "PersonalAccountingApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7203E898265B06E10079FF47 /* Debug */,

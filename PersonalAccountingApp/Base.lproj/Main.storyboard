@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="MfP-hl-Or9">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="SGG-h3-SJD">
     <device id="retina6_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
@@ -463,11 +463,44 @@
             </objects>
             <point key="canvasLocation" x="641" y="-1080"/>
         </scene>
+        <!--Sign In With Apple View Controller-->
+        <scene sceneID="ZUU-zQ-wqG">
+            <objects>
+                <viewController storyboardIdentifier="SignInWithAppleVC" id="SGG-h3-SJD" customClass="SignInWithAppleViewController" customModule="PersonalAccountingApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="4bb-s3-hfU">
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9q4-pX-zKo">
+                                <rect key="frame" x="20" y="822" width="388" height="50"/>
+                                <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="urW-nc-Qdr"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="VcB-ex-eo8"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="9q4-pX-zKo" firstAttribute="leading" secondItem="VcB-ex-eo8" secondAttribute="leading" constant="20" id="C9Z-pa-R4n"/>
+                            <constraint firstItem="VcB-ex-eo8" firstAttribute="trailing" secondItem="9q4-pX-zKo" secondAttribute="trailing" constant="20" id="bpL-wV-m8M"/>
+                            <constraint firstItem="VcB-ex-eo8" firstAttribute="bottom" secondItem="9q4-pX-zKo" secondAttribute="bottom" constant="20" id="cb5-eD-byC"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="buttonView" destination="9q4-pX-zKo" id="3sw-gG-H2r"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3Sk-S7-igB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-949.06542056074761" y="-402.37580993520521"/>
+        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="nat-JF-5sj">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="MfP-hl-Or9" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TabBarController" automaticallyAdjustsScrollViewInsets="NO" id="MfP-hl-Or9" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="dXx-VR-eA5"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="WKJ-hG-YQT">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -859,6 +892,9 @@
         </systemColor>
         <systemColor name="systemBlueColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGray5Color">
+            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray6Color">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
