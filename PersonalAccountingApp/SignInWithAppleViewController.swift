@@ -25,9 +25,18 @@ signInWIthAppleButton()
     func signInWIthAppleButton() {
         let authorizationButton = ASAuthorizationAppleIDButton()
         authorizationButton.addTarget(self, action: #selector(handleAppleIdRequest), for: .touchUpInside)
-        authorizationButton.cornerRadius = 1
-        
+        authorizationButton.cornerRadius = 3
+        self.buttonView.backgroundColor = .white
+        self.buttonView.layer.cornerRadius = 3
+        authorizationButton.constraints.forEach({
+            $0.isActive = false
+        })
         self.buttonView.addSubview(authorizationButton)
+       
+        authorizationButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([authorizationButton.centerXAnchor.constraint(equalTo: self.buttonView.centerXAnchor),authorizationButton.centerYAnchor.constraint(equalTo: self.buttonView.centerYAnchor), authorizationButton.leftAnchor.constraint(equalTo: self.buttonView.leftAnchor, constant: 1), authorizationButton.rightAnchor.constraint(equalTo: self.buttonView.rightAnchor, constant: -1),authorizationButton.heightAnchor.constraint(equalTo: self.buttonView.heightAnchor, constant: -2)])
+        
+      
     }
     @objc func handleAppleIdRequest() {
         let appleIDProvider = ASAuthorizationAppleIDProvider()
