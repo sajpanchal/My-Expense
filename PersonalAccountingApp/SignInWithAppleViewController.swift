@@ -45,6 +45,8 @@ signInWIthAppleButton()
         let authorizationController = ASAuthorizationController(authorizationRequests: [request])
         authorizationController.delegate = self
         authorizationController.performRequests()
+        
+      
     }
     /* this function is called after icloud account is signed in.*/
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {

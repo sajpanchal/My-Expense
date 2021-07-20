@@ -478,7 +478,7 @@
                                     <constraint firstAttribute="height" constant="50" id="urW-nc-Qdr"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Personal Accounting App" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6xz-l7-yx6">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Expense" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6xz-l7-yx6">
                                 <rect key="frame" x="20" y="429.66666666666669" width="374" height="37"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="31"/>
                                 <color key="textColor" red="0.15938157680000001" green="0.63012151139999995" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -496,6 +496,13 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MyExpense" translatesAutoresizingMaskIntoConstraints="NO" id="blJ-xW-VpO">
+                                <rect key="frame" x="132" y="249.66666666666663" width="150" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="5vf-aT-MPY"/>
+                                    <constraint firstAttribute="height" constant="150" id="U2s-K7-AbY"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="VcB-ex-eo8"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -503,12 +510,14 @@
                             <constraint firstItem="9q4-pX-zKo" firstAttribute="leading" secondItem="VcB-ex-eo8" secondAttribute="leading" constant="20" id="C9Z-pa-R4n"/>
                             <constraint firstItem="fvd-J0-A3C" firstAttribute="top" secondItem="6xz-l7-yx6" secondAttribute="bottom" constant="20" id="Jmj-vi-yJf"/>
                             <constraint firstItem="6xz-l7-yx6" firstAttribute="centerY" secondItem="4bb-s3-hfU" secondAttribute="centerY" id="Kgw-bc-5Gb"/>
+                            <constraint firstItem="blJ-xW-VpO" firstAttribute="centerX" secondItem="4bb-s3-hfU" secondAttribute="centerX" id="KkK-Av-GAU"/>
                             <constraint firstItem="VcB-ex-eo8" firstAttribute="trailing" secondItem="6xz-l7-yx6" secondAttribute="trailing" constant="20" id="NX9-Kd-OYC"/>
                             <constraint firstItem="jCD-WK-Bwc" firstAttribute="leading" secondItem="VcB-ex-eo8" secondAttribute="leading" constant="20" id="PXb-Nj-65B"/>
                             <constraint firstItem="VcB-ex-eo8" firstAttribute="trailing" secondItem="fvd-J0-A3C" secondAttribute="trailing" constant="20" id="Pvk-u5-9jm"/>
                             <constraint firstItem="jCD-WK-Bwc" firstAttribute="top" secondItem="9q4-pX-zKo" secondAttribute="bottom" constant="10" id="S3Q-2B-DrI"/>
                             <constraint firstItem="VcB-ex-eo8" firstAttribute="trailing" secondItem="jCD-WK-Bwc" secondAttribute="trailing" constant="20" id="WpX-NK-fU5"/>
                             <constraint firstItem="VcB-ex-eo8" firstAttribute="trailing" secondItem="9q4-pX-zKo" secondAttribute="trailing" constant="20" id="bpL-wV-m8M"/>
+                            <constraint firstItem="6xz-l7-yx6" firstAttribute="top" secondItem="blJ-xW-VpO" secondAttribute="bottom" constant="30" id="cgZ-r4-N6G"/>
                             <constraint firstItem="fvd-J0-A3C" firstAttribute="leading" secondItem="VcB-ex-eo8" secondAttribute="leading" constant="20" id="lHj-39-041"/>
                             <constraint firstItem="6xz-l7-yx6" firstAttribute="leading" secondItem="VcB-ex-eo8" secondAttribute="leading" constant="20" id="m9O-Fi-TxL"/>
                             <constraint firstItem="6xz-l7-yx6" firstAttribute="centerX" secondItem="4bb-s3-hfU" secondAttribute="centerX" id="uSz-oD-AV7"/>
@@ -908,6 +917,7 @@
         <segue reference="mjd-9m-kr4"/>
     </inferredMetricsTieBreakers>
     <resources>
+        <image name="MyExpense" width="471" height="471"/>
         <image name="calendar" catalog="system" width="128" height="106"/>
         <image name="dollarsign.circle.fill" catalog="system" width="128" height="121"/>
         <image name="house" catalog="system" width="128" height="106"/>
