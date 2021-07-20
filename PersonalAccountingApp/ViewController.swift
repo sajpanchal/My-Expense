@@ -10,10 +10,13 @@ import CoreData
 
 class ViewController: UIViewController, UITabBarControllerDelegate {
     let dateFormatter: DateFormatter = DateFormatter() // date formater object
+    static var showActivtyIndicator = true
     @IBOutlet weak var selectedDate: UIDatePicker!
 //    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     var items: [Expense] = Expense.fetchRecords()
+    
+    var activityView = UIActivityIndicatorView(style: .large)
     
     @IBAction func dateUpdated(_ sender: Any) {
         self.items = Expense.fetchRecords()
@@ -23,8 +26,38 @@ class ViewController: UIViewController, UITabBarControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-            
-           
+        CKContainer.default().fetchUserRecordID(completionHandler: {
+            (recordID, error) in
+            if let name = recordID?.recordName {
+                print("iCloud ID: ", name)
+            }
+            else if let error = error {
+                print(error.localizedDescription)
+            }
+        })
+        activityView.center = self.view.center
+        if let arrayOfTabBarItems = tabBarController?.tabBar.items {
+            for item in arrayOfTabBarItems {
+                item.isEnabled = false
+            }
+        }
+        self.view.addSubview(activityView)
+        if Self.showActivtyIndicator {
+            self.activityView.startAnimating()
+            self.view.isUserInteractionEnabled = false
+            print("Timer started")
+            Timer.scheduledTimer(withTimeInterval: 20.0, repeats: false) { _ in
+                print("Timer stopped")
+                self.activityView.stopAnimating()
+                self.view.isUserInteractionEnabled = true
+                if let arrayOfTabBarItems = self.tabBarController?.tabBar.items {
+                    for item in arrayOfTabBarItems {
+                        item.isEnabled = true
+                    }
+                }
+            }
+        }
+       
 
         tabBarController?.delegate = self
         
@@ -40,15 +73,7 @@ class ViewController: UIViewController, UITabBarControllerDelegate {
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
         self.items = Expense.fetchRecords()
         
-        CKContainer.default().fetchUserRecordID(completionHandler: {
-            (recordID, error) in
-            if let name = recordID?.recordName {
-                print("iCloud ID: ", name)
-            }
-            else if let error = error {
-                print(error.localizedDescription)
-            }
-        })
+        
        
         if viewController is AddExpensesVIewController{
           
