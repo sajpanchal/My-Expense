@@ -39,7 +39,7 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
           
             self.historyTableView.delegate = self
             self.historyTableView.dataSource = self
-            self.historyTableView.rowHeight = 90
+            self.historyTableView.rowHeight = 70
             self.monthStepper.value = Double(Calendar.current.component(.month, from: Date()))// Do any additional setup after loading the view.
             self.yearStepper.value = Double(self.year)
             self.setMonthLabel()

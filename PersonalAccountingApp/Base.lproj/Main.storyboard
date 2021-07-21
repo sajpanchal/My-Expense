@@ -271,22 +271,22 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kMz-7h-KMq">
-                                                    <rect key="frame" x="229" y="27" width="150" height="36"/>
+                                                    <rect key="frame" x="229" y="33" width="150" height="24"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="150" id="Dyt-rb-v3r"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ceK-sO-abR">
-                                                    <rect key="frame" x="15" y="3" width="84" height="84"/>
+                                                    <rect key="frame" x="15" y="15" width="60" height="60"/>
                                                     <color key="backgroundColor" systemColor="systemBlueColor"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="84" id="1JP-FS-kW9"/>
-                                                        <constraint firstAttribute="width" constant="84" id="8fb-Rx-HpW"/>
+                                                        <constraint firstAttribute="height" constant="60" id="1JP-FS-kW9"/>
+                                                        <constraint firstAttribute="width" constant="60" id="8fb-Rx-HpW"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="45"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="35"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -589,8 +589,8 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4G8-nP-OMm">
-                                                    <rect key="frame" x="25.000000000000007" y="32" width="87.666666666666686" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <rect key="frame" x="25.000000000000007" y="33.666666666666664" width="78.666666666666686" height="18"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
