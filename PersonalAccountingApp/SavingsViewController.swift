@@ -18,6 +18,12 @@ class SavingsViewController: UIViewController, UITableViewDataSource, UITableVie
     var yearSavings: Double?
     var yearEarnings: Double?
     var yearExpense: Double?
+    var numberFormatter: NumberFormatter {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .currency
+        numberFormatter.locale = Locale.current
+        return numberFormatter
+    }
     @IBOutlet weak var summaryYearLabel: UILabel!
     @IBOutlet weak var savingsTableView: UITableView!
     @IBOutlet weak var yearStepper: UIStepper!
@@ -84,6 +90,7 @@ class SavingsViewController: UIViewController, UITableViewDataSource, UITableVie
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         // deleteAll()
        // context.automaticallyMergesChangesFromParent = true
         DispatchQueue.main.async {
@@ -110,9 +117,13 @@ class SavingsViewController: UIViewController, UITableViewDataSource, UITableVie
         let cell = savingsTableView.dequeueReusableCell(withIdentifier: "savings", for: indexPath) as! SavingsTableViewCell
         cell.monthLabel.text = getMonth(number: indexPath.row + 1) + " " + yearLabel.text!
         let saving = filterSavings(date: cell.monthLabel.text!)
-        cell.expenditureLabel.text = "$" + String(format: "%.2f",  saving?.expenditure ?? "--")
-        cell.earningsLabel.text = "$" + String(format: "%.2f",  saving?.earning ?? "--")
-        cell.savingsLabel.text = "$" + String(format: "%.2f",  saving?.saving ?? "--")
+     //   cell.expenditureLabel.text = "$" + String(format: "%.2f",  saving?.expenditure ?? "--")
+   
+        //cell.earningsLabel.text = "$" + String(format: "%.2f",  saving?.earning ?? "--")
+        //cell.savingsLabel.text = "$" + String(format: "%.2f",  saving?.saving ?? "--")
+        cell.expenditureLabel.text = numberFormatter.string(from: NSNumber(value: saving?.expenditure ?? 0.0))
+        cell.earningsLabel.text = numberFormatter.string(from: NSNumber(value: saving?.earning ?? 0.0))
+        cell.savingsLabel.text = numberFormatter.string(from: NSNumber(value: saving?.saving ?? 0.0))
         cell.savingsLabel.textColor = (saving?.saving ?? 0.0) > 0.0 ? .green : .red
         return cell
     }
@@ -209,9 +220,12 @@ class SavingsViewController: UIViewController, UITableViewDataSource, UITableVie
             let currentYearSavings = YearlySavings.editRecord(year: year, savings: filteredSavings)
             
             DispatchQueue.main.async {
-                self.yearlySavingsLbl.text = "$" + String(format: "%.2f",currentYearSavings?.saving ?? "--")
-                self.yearlyExpenseLbl.text = "$" + String(format: "%.2f",currentYearSavings?.expenditure ?? "--")
-                self.yearlyEarningsLbl.text = "$" + String(format: "%.2f",currentYearSavings?.earnings ?? "--")
+               // self.yearlySavingsLbl.text = "$" + String(format: "%.2f",currentYearSavings?.saving ?? "--")
+               // self.yearlyExpenseLbl.text = "$" + String(format: "%.2f",currentYearSavings?.expenditure ?? "--")
+              //  self.yearlyEarningsLbl.text = "$" + String(format: "%.2f",currentYearSavings?.earnings ?? "--")
+                self.yearlySavingsLbl.text = self.numberFormatter.string(from: NSNumber(value: currentYearSavings?.saving ?? 0.0))
+                self.yearlyExpenseLbl.text = self.numberFormatter.string(from: NSNumber(value: currentYearSavings?.expenditure ?? 0.0))
+                self.yearlyEarningsLbl.text = self.numberFormatter.string(from: NSNumber(value: currentYearSavings?.earnings ?? 0.0))
                 self.yearlySavingsLbl.textColor = (currentYearSavings?.saving ?? 0.0) > 0.0 ? .green : .red
             }
         }
@@ -220,9 +234,12 @@ class SavingsViewController: UIViewController, UITableViewDataSource, UITableVie
             let currentYearSavings = YearlySavings.createRecord(year: year, savings: filteredSavings)
             
             DispatchQueue.main.async {
-                self.yearlySavingsLbl.text = "$" + String(format: "%.2f",currentYearSavings.saving)
+              /*  self.yearlySavingsLbl.text = "$" + String(format: "%.2f",currentYearSavings.saving)
                 self.yearlyExpenseLbl.text = "$" + String(format: "%.2f",currentYearSavings.expenditure)
-                self.yearlyEarningsLbl.text = "$" + String(format: "%.2f",currentYearSavings.earnings)
+                self.yearlyEarningsLbl.text = "$" + String(format: "%.2f",currentYearSavings.earnings)*/
+                self.yearlySavingsLbl.text = self.numberFormatter.string(from: NSNumber(value: currentYearSavings.saving))
+                self.yearlyExpenseLbl.text = self.numberFormatter.string(from: NSNumber(value: currentYearSavings.expenditure))
+                self.yearlyEarningsLbl.text = self.numberFormatter.string(from: NSNumber(value: currentYearSavings.earnings))
                 self.yearlySavingsLbl.textColor = (currentYearSavings.saving) > 0.0 ? .green : .red
             }
         }

@@ -10,7 +10,12 @@ import CoreData
 class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     let year = Calendar.current.component(.year, from: Date())
     var expenses: [Expense] = Expense.fetchRecords()
-    
+    var numberFormatter: NumberFormatter {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .currency
+        numberFormatter.locale = Locale.current
+        return numberFormatter
+    }
  //   let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     @IBOutlet weak var monthLabel: UILabel!
     @IBOutlet weak var yearLabel: UILabel!
@@ -45,7 +50,7 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
             self.setMonthLabel()
             self.CalculateMonthTotal()
             self.historyTableView.reloadData()
-            self.monthTotalLabel.text = "Month Total: $" + String(format: "%.2f", self.monthTotal)
+            self.monthTotalLabel.text = "Month Total: " + self.numberFormatter.string(from: NSNumber(value:self.monthTotal))! /*String(format: "%.2f", self.monthTotal)*/
         }
     }
     
@@ -102,7 +107,7 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
         DispatchQueue.main.async {
             self.historyTableView.reloadData()
             self.CalculateMonthTotal()
-            self.monthTotalLabel.text = "Month Total: $" + String(format: "%.2f", self.monthTotal)
+            self.monthTotalLabel.text = "Month Total: " + self.numberFormatter.string(from: NSNumber(value:self.monthTotal))! /*String(format: "%.2f", self.monthTotal)*/
         }
         
     }
@@ -142,7 +147,7 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
         DispatchQueue.main.async {
             self.historyTableView.reloadData()
             self.CalculateMonthTotal()
-            self.monthTotalLabel.text = "Month Total: $" + String(format: "%.2f", self.monthTotal)
+            self.monthTotalLabel.text = "Month Total: " + self.numberFormatter.string(from: NSNumber(value:self.monthTotal))! /*String(format: "%.2f", self.monthTotal)*/
         }
     }
     /* using tableview delegate method to return the number of rows of table based on the month selected.*/
@@ -191,7 +196,7 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
             for item in expenses {
                 if Calendar.current.component(.day, from: item.date!) == (indexPath.row + 1) && Calendar.current.component(.month, from: item.date!) == Int(monthStepper.value) && Calendar.current.component(.year, from: item.date!) == Int(yearStepper.value){
                     cell.dayLabel.text = String(format: "%02d",(indexPath.row + 1))
-                    cell.amountLabel.text = "$"+String(format:"%.2f",(item.totalAmount))
+                    cell.amountLabel.text = numberFormatter.string(from: NSNumber(value:item.totalAmount)) /*String(format:"%.2f",(item.totalAmount))*/
                 }
             }
         }
