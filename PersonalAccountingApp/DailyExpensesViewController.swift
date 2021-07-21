@@ -8,7 +8,12 @@
 import UIKit
 import CoreData
 class DailyExpensesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    
+    var numberFormatter: NumberFormatter {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .currency
+        numberFormatter.locale = Locale.current
+        return numberFormatter
+    }
     var dateString: String?
     var item: Expense?
  //   let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
@@ -31,7 +36,8 @@ class DailyExpensesViewController: UIViewController, UITableViewDelegate, UITabl
             self.items = Expense.fetchRecords()
             self.dateLabel.text = self.dateString ?? ""
            
-            self.totalAmountLabel.text = "Day's Total: $" + String(format: "%.2f",(self.item?.totalAmount ?? 0.0))
+            self.totalAmountLabel.text = "Day's Total: " + numberFormatter.string(from: NSNumber(value: self.item?.totalAmount ?? 0.0))!
+          
             self.dailyExpenseTableView.delegate = self
             self.dailyExpenseTableView.dataSource = self
             self.dailyExpenseTableView.rowHeight = 70
@@ -69,7 +75,8 @@ class DailyExpensesViewController: UIViewController, UITableViewDelegate, UITabl
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "dailyExpense", for: indexPath) as! DailyExpenseTableViewCell
         cell.descriptionLabel.text = item!.descriptions![indexPath.row]
-        cell.amountLabel.text = "$"+String(item!.amounts![indexPath.row])
+      //  cell.amountLabel.text = "$"+ String(item!.amounts![indexPath.row])
+        cell.amountLabel.text = self.numberFormatter.string(from: NSNumber(value: item!.amounts![indexPath.row]))!
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -152,7 +159,7 @@ class DailyExpensesViewController: UIViewController, UITableViewDelegate, UITabl
             return total
         }()
         // display the total.
-        self.totalAmountLabel.text = "Day's Total: $" + String(format: "%.2f",(item.totalAmount))
+        self.totalAmountLabel.text = "Day's Total: " + self.numberFormatter.string(from: NSNumber(value: item.totalAmount))!
     }
     func createAlert(title:String, message:String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
@@ -189,7 +196,7 @@ class DailyExpensesViewController: UIViewController, UITableViewDelegate, UITabl
                             self.items[i].descriptions?.remove(at: indexPath.row)
                             self.items[i].amounts?.remove(at: indexPath.row)
                             DispatchQueue.main.async {
-                                self.totalAmountLabel.text = "Day's Total: $" + String(format: "%.2f",(self.items[i].totalAmount ))
+                                self.totalAmountLabel.text = "Day's Total: " + numberFormatter.string(from: NSNumber(value: self.items[i].totalAmount))! /*String(format: "%.2f",(self.items[i].totalAmount ))*/
                             }
                        
                         }
