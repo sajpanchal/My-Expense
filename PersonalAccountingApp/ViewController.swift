@@ -16,13 +16,31 @@ class ViewController: UIViewController, UITabBarControllerDelegate {
     
     var items: [Expense] = Expense.fetchRecords()
     
-    var activityView = UIActivityIndicatorView(style: .large)
-    
+    var activityView = UIActivityIndicatorView(style: .medium)
+    var strLabel = UILabel(frame: CGRect(x: 50, y: 0, width: 250, height: 46))
+    var effectView = UIVisualEffectView(effect: UIBlurEffect())
     @IBAction func dateUpdated(_ sender: Any) {
         self.items = Expense.fetchRecords()
         dateFormatter.dateFormat = "MMM d, yyyy" //date formatter string
     }
-    
+    func activityIndicator(_ title: String) {
+        strLabel.removeFromSuperview()
+        activityView.removeFromSuperview()
+        effectView.removeFromSuperview()
+        strLabel = UILabel(frame: CGRect(x: 50, y: 0, width: 250, height: 46))
+        strLabel.text = title
+        strLabel.font = .systemFont(ofSize: 14, weight: .medium)
+        strLabel.textColor = UIColor(white: 0.9, alpha: 0.7)
+        effectView.frame = CGRect(x: view.frame.midX - strLabel.frame.width/2, y: view.frame.midY - strLabel.frame.height/2, width: 250, height: 46)
+        effectView.layer.cornerRadius = 15
+        effectView.layer.masksToBounds = true
+        activityView = UIActivityIndicatorView(style: .medium)
+        activityView.frame = CGRect(x: 0, y: 0, width: 46, height: 46)
+        activityView.startAnimating()
+        effectView.contentView.addSubview(activityView)
+        effectView.contentView.addSubview(strLabel)
+        view.addSubview(effectView)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -35,19 +53,21 @@ class ViewController: UIViewController, UITabBarControllerDelegate {
                 print(error.localizedDescription)
             }
         })
-        activityView.center = self.view.center
+       // activityView.center = self.view.center
         if let arrayOfTabBarItems = tabBarController?.tabBar.items {
             for item in arrayOfTabBarItems {
                 item.isEnabled = false
             }
         }
-        self.view.addSubview(activityView)
+       // self.view.addSubview(activityView)
         if Self.showActivtyIndicator {
-            self.activityView.startAnimating()
+          //  self.activityView.startAnimating()
+            activityIndicator("Syncing data with iCloud...")
             self.view.isUserInteractionEnabled = false
             print("Timer started")
             Timer.scheduledTimer(withTimeInterval: 20.0, repeats: false) { _ in
                 print("Timer stopped")
+                self.effectView.removeFromSuperview()
                 self.activityView.stopAnimating()
                 self.view.isUserInteractionEnabled = true
                 if let arrayOfTabBarItems = self.tabBarController?.tabBar.items {
