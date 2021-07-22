@@ -60,7 +60,9 @@
                     </view>
                     <navigationItem key="navigationItem" title="Home" id="Asg-rc-Blq"/>
                     <connections>
+                        <outlet property="addExpenseBtn" destination="dGs-8j-le4" id="Ng3-Oz-v0H"/>
                         <outlet property="selectedDate" destination="GFq-s9-zkW" id="uYT-A2-jlx"/>
+                        <outlet property="titleLabel" destination="DC2-xv-qPW" id="fwp-p8-Ps9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
