@@ -12,7 +12,9 @@ class ViewController: UIViewController, UITabBarControllerDelegate {
     let dateFormatter: DateFormatter = DateFormatter() // date formater object
     static var showActivtyIndicator = true
     @IBOutlet weak var selectedDate: UIDatePicker!
-//    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var addExpenseBtn: UIButton!
+    //    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     var items: [Expense] = Expense.fetchRecords()
     
@@ -27,10 +29,11 @@ class ViewController: UIViewController, UITabBarControllerDelegate {
         strLabel.removeFromSuperview()
         activityView.removeFromSuperview()
         effectView.removeFromSuperview()
+        effectView.alpha = 1.0
         strLabel = UILabel(frame: CGRect(x: 50, y: 0, width: 250, height: 46))
         strLabel.text = title
         strLabel.font = .systemFont(ofSize: 14, weight: .medium)
-        strLabel.textColor = UIColor(white: 0.9, alpha: 0.7)
+        strLabel.textColor = UIColor(white: 0.9, alpha: 1.0)
         effectView.frame = CGRect(x: view.frame.midX - strLabel.frame.width/2, y: view.frame.midY - strLabel.frame.height/2, width: 250, height: 46)
         effectView.layer.cornerRadius = 15
         effectView.layer.masksToBounds = true
@@ -62,12 +65,19 @@ class ViewController: UIViewController, UITabBarControllerDelegate {
        // self.view.addSubview(activityView)
         if Self.showActivtyIndicator {
           //  self.activityView.startAnimating()
+            selectedDate.alpha = 0.2
+            titleLabel.alpha = 0.2
+            addExpenseBtn.alpha = 0.2
             activityIndicator("Syncing data with iCloud...")
             self.view.isUserInteractionEnabled = false
             print("Timer started")
             Timer.scheduledTimer(withTimeInterval: 20.0, repeats: false) { _ in
                 print("Timer stopped")
                 self.effectView.removeFromSuperview()
+                //self.view.alpha = 1
+                self.selectedDate.alpha = 1.0
+                self.titleLabel.alpha = 1.0
+                self.addExpenseBtn.alpha = 1.0
                 self.activityView.stopAnimating()
                 self.view.isUserInteractionEnabled = true
                 if let arrayOfTabBarItems = self.tabBarController?.tabBar.items {
