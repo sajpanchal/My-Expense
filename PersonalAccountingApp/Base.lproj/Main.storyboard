@@ -155,7 +155,7 @@
                                             <constraint firstAttribute="height" constant="50" id="aGN-gm-612"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="next"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Amount" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bd7-Q2-5U1">
                                         <rect key="frame" x="20" y="292.66666666666669" width="374" height="50"/>
@@ -164,7 +164,7 @@
                                             <constraint firstAttribute="height" constant="50" id="Jfk-8M-LKc"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                     </textField>
                                 </subviews>
                                 <constraints>
