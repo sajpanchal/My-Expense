@@ -7,7 +7,7 @@
 
 import UIKit
 import CoreData
-class AddExpensesVIewController: UIViewController {
+class AddExpensesVIewController: UIViewController, UITextFieldDelegate {
     var dateString: String? = ""
     var date: Date?
     @IBOutlet weak var dateLabel: UILabel!
@@ -21,31 +21,29 @@ class AddExpensesVIewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-   
+       setupTextFields()
     }
     //this method will be called before viewDidload. it is called right before the view is about to be loaded.
     override func viewWillAppear(_ animated: Bool) {
+        
         DispatchQueue.main.async {
             self.dateLabel.text = self.dateString
         }
         
         self.items = Expense.fetchRecords()
     }
-   /* func fetchData() {
-        //this method will call fetchRequest() of our Person Entity and will return all Person objects back.
-        do {
-          
-            var request = NSFetchRequest<NSFetchRequestResult>()
-            request = Expense.fetchRequest()
-            request.returnsObjectsAsFaults = false
-            self.items = try AppDelegate.viewContext.fetch(request) as! [Expense]
-           
-        }
-        catch {
-            print("error")
-        }
-        
-    }*/
+    func setupTextFields() {
+     let toolbar = UIToolbar()
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let doneTab = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(doneTabTapped))
+        toolbar.setItems([flexSpace, doneTab], animated: true)
+        toolbar.sizeToFit()
+        self.desc.inputAccessoryView = toolbar
+        self.amount.inputAccessoryView = toolbar
+    }
+    @objc func doneTabTapped() {
+        view.endEditing(true)
+    }
     @IBAction func addAnotherButton(_ sender: Any) {
         addData()
         let alert = UIAlertController(title: "Success!", message: "Data has been added successfully!", preferredStyle: .alert)
