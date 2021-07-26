@@ -23,6 +23,7 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var yearStepper: UIStepper!
     @IBOutlet weak var historyTableView: UITableView!
     @IBOutlet weak var monthTotalLabel: UILabel!
+    @IBOutlet weak var headerView: UIView!
     var monthTotal: Double = 0.0
     var leapYear: Bool {
         let year = Int(yearStepper.value)
@@ -35,6 +36,7 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        headerView.layer.cornerRadius = 5
         monthTotalLabel.layer.cornerRadius = 5
         monthTotalLabel.layer.masksToBounds = true
      //   context.automaticallyMergesChangesFromParent = true

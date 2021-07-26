@@ -21,10 +21,21 @@ class DailyExpensesViewController: UIViewController, UITableViewDelegate, UITabl
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var dailyExpenseTableView: UITableView!
     @IBOutlet weak var totalAmountLabel: UILabel!
+    @IBOutlet weak var headerView: UIView!
+    @IBOutlet weak var addExpenseBtn: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
-        totalAmountLabel.layer.cornerRadius = 5
-        totalAmountLabel.layer.masksToBounds = true
+        if headerView != nil {
+            headerView.layer.cornerRadius = 5
+        }
+        if addExpenseBtn != nil {
+            addExpenseBtn.layer.cornerRadius = 3
+        }
+        if totalAmountLabel != nil {
+            totalAmountLabel.layer.cornerRadius = 5
+            totalAmountLabel.layer.masksToBounds = true
+        }
+      
        // context.automaticallyMergesChangesFromParent = true
         DispatchQueue.main.async {
            

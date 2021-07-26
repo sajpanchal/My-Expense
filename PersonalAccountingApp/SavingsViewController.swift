@@ -33,6 +33,7 @@ class SavingsViewController: UIViewController, UITableViewDataSource, UITableVie
     @IBOutlet weak var yearlyExpenseLbl: UILabel!
     @IBOutlet weak var yearlyEarningsLbl: UILabel!
     @IBOutlet weak var updateEarningsBtn: UIButton!
+    @IBOutlet weak var headerView: UIView!
     
     @IBAction func earningsButton(_ sender: Any) {
         editMode.toggle()
@@ -94,6 +95,7 @@ class SavingsViewController: UIViewController, UITableViewDataSource, UITableVie
         super.viewDidLoad()
         updateEarningsBtn.layer.cornerRadius = 3
         yearSummaryView.layer.cornerRadius = 5
+        headerView.layer.cornerRadius = 5
         // deleteAll()
        // context.automaticallyMergesChangesFromParent = true
         DispatchQueue.main.async {

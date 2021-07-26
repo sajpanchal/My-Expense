@@ -26,7 +26,7 @@ signInWIthAppleButton()
         let authorizationButton = ASAuthorizationAppleIDButton()
         authorizationButton.addTarget(self, action: #selector(handleAppleIdRequest), for: .touchUpInside)
         authorizationButton.cornerRadius = 3
-        self.buttonView.backgroundColor = .white
+        self.buttonView.backgroundColor = .black
         self.buttonView.layer.cornerRadius = 3
         authorizationButton.constraints.forEach({
             $0.isActive = false
