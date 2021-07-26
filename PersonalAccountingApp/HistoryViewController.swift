@@ -23,6 +23,7 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var yearStepper: UIStepper!
     @IBOutlet weak var historyTableView: UITableView!
     @IBOutlet weak var monthTotalLabel: UILabel!
+    @IBOutlet weak var headerView: UIView!
     var monthTotal: Double = 0.0
     var leapYear: Bool {
         let year = Int(yearStepper.value)
@@ -35,6 +36,9 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        headerView.layer.cornerRadius = 5
+        monthTotalLabel.layer.cornerRadius = 5
+        monthTotalLabel.layer.masksToBounds = true
      //   context.automaticallyMergesChangesFromParent = true
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -190,6 +194,7 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
        
         let cell = tableView.dequeueReusableCell(withIdentifier: "history", for: indexPath) as! HistoryTableViewCell
         cell.dayLabel.text = String(format: "%02d",(indexPath.row + 1))
+        cell.dayLabel.layer.cornerRadius = 3
         cell.amountLabel.text = ""
         if !expenses.isEmpty {
          

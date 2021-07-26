@@ -13,8 +13,11 @@ class AddExpensesVIewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var desc: UITextField!
     @IBOutlet weak var amount: UITextField!
+    @IBOutlet weak var doneBtn: UIButton!
+    @IBOutlet weak var addAnotherBtn: UIButton!
     
-
+    @IBOutlet weak var discardBtn: UIButton!
+    
     //persistant container have a property called managedObjectContext.
   //  let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var items: [Expense] = Expense.fetchRecords()
@@ -22,6 +25,9 @@ class AddExpensesVIewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
        setupTextFields()
+        doneBtn.layer.cornerRadius = 3
+        addAnotherBtn.layer.cornerRadius = 3
+        discardBtn.layer.cornerRadius = 3
     }
     //this method will be called before viewDidload. it is called right before the view is about to be loaded.
     override func viewWillAppear(_ animated: Bool) {
