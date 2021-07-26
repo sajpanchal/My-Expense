@@ -20,7 +20,7 @@ class ViewController: UIViewController, UITabBarControllerDelegate {
     
     var activityView = UIActivityIndicatorView(style: .medium)
     var strLabel = UILabel(frame: CGRect(x: 50, y: 0, width: 250, height: 46))
-    var effectView = UIVisualEffectView(effect: UIBlurEffect())
+    var effectView = UIVisualEffectView(effect: nil)
     @IBAction func dateUpdated(_ sender: Any) {
         self.items = Expense.fetchRecords()
         dateFormatter.dateFormat = "MMM d, yyyy" //date formatter string
@@ -33,11 +33,16 @@ class ViewController: UIViewController, UITabBarControllerDelegate {
         strLabel = UILabel(frame: CGRect(x: 50, y: 0, width: 250, height: 46))
         strLabel.text = title
         strLabel.font = .systemFont(ofSize: 14, weight: .medium)
-        strLabel.textColor = UIColor(white: 0.9, alpha: 1.0)
+        strLabel.textColor = .systemBackground
+        strLabel.backgroundColor = addExpenseBtn.backgroundColor
         effectView.frame = CGRect(x: view.frame.midX - strLabel.frame.width/2, y: view.frame.midY - strLabel.frame.height/2, width: 250, height: 46)
         effectView.layer.cornerRadius = 15
+        effectView.backgroundColor = addExpenseBtn.backgroundColor
         effectView.layer.masksToBounds = true
+        
         activityView = UIActivityIndicatorView(style: .medium)
+        activityView.tintColor = .systemBackground
+        activityView.color = .systemBackground
         activityView.frame = CGRect(x: 0, y: 0, width: 46, height: 46)
         activityView.startAnimating()
         effectView.contentView.addSubview(activityView)

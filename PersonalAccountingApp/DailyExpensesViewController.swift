@@ -23,6 +23,8 @@ class DailyExpensesViewController: UIViewController, UITableViewDelegate, UITabl
     @IBOutlet weak var totalAmountLabel: UILabel!
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var addExpenseBtn: UIButton!
+    @IBOutlet weak var footerView: UIView!
+    @IBOutlet weak var footerView2: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
         if headerView != nil {
@@ -31,9 +33,12 @@ class DailyExpensesViewController: UIViewController, UITableViewDelegate, UITabl
         if addExpenseBtn != nil {
             addExpenseBtn.layer.cornerRadius = 3
         }
-        if totalAmountLabel != nil {
-            totalAmountLabel.layer.cornerRadius = 5
-            totalAmountLabel.layer.masksToBounds = true
+        if footerView != nil {
+            footerView.layer.cornerRadius = 5
+           
+        }
+        else {
+            footerView2.layer.cornerRadius = 5
         }
       
        // context.automaticallyMergesChangesFromParent = true
@@ -49,7 +54,7 @@ class DailyExpensesViewController: UIViewController, UITableViewDelegate, UITabl
             self.items = Expense.fetchRecords()
             self.dateLabel.text = self.dateString ?? ""
            
-            self.totalAmountLabel.text = "Day's Total: " + numberFormatter.string(from: NSNumber(value: self.item?.totalAmount ?? 0.0))!
+            self.totalAmountLabel.text = numberFormatter.string(from: NSNumber(value: self.item?.totalAmount ?? 0.0))!
           
             self.dailyExpenseTableView.delegate = self
             self.dailyExpenseTableView.dataSource = self
@@ -172,7 +177,7 @@ class DailyExpensesViewController: UIViewController, UITableViewDelegate, UITabl
             return total
         }()
         // display the total.
-        self.totalAmountLabel.text = "Day's Total: " + self.numberFormatter.string(from: NSNumber(value: item.totalAmount))!
+        self.totalAmountLabel.text = self.numberFormatter.string(from: NSNumber(value: item.totalAmount))!
     }
     func createAlert(title:String, message:String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
@@ -209,7 +214,7 @@ class DailyExpensesViewController: UIViewController, UITableViewDelegate, UITabl
                             self.items[i].descriptions?.remove(at: indexPath.row)
                             self.items[i].amounts?.remove(at: indexPath.row)
                             DispatchQueue.main.async {
-                                self.totalAmountLabel.text = "Day's Total: " + numberFormatter.string(from: NSNumber(value: self.items[i].totalAmount))! /*String(format: "%.2f",(self.items[i].totalAmount ))*/
+                                self.totalAmountLabel.text = numberFormatter.string(from: NSNumber(value: self.items[i].totalAmount))! /*String(format: "%.2f",(self.items[i].totalAmount ))*/
                             }
                        
                         }

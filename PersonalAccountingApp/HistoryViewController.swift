@@ -24,6 +24,7 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var historyTableView: UITableView!
     @IBOutlet weak var monthTotalLabel: UILabel!
     @IBOutlet weak var headerView: UIView!
+    @IBOutlet weak var footerView: UIView!
     var monthTotal: Double = 0.0
     var leapYear: Bool {
         let year = Int(yearStepper.value)
@@ -37,8 +38,8 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         headerView.layer.cornerRadius = 5
-        monthTotalLabel.layer.cornerRadius = 5
-        monthTotalLabel.layer.masksToBounds = true
+        footerView.layer.cornerRadius = 5
+        
      //   context.automaticallyMergesChangesFromParent = true
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -54,7 +55,7 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
             self.setMonthLabel()
             self.CalculateMonthTotal()
             self.historyTableView.reloadData()
-            self.monthTotalLabel.text = "Month Total: " + self.numberFormatter.string(from: NSNumber(value:self.monthTotal))! /*String(format: "%.2f", self.monthTotal)*/
+            self.monthTotalLabel.text = self.numberFormatter.string(from: NSNumber(value:self.monthTotal))! /*String(format: "%.2f", self.monthTotal)*/
         }
     }
     
@@ -111,7 +112,7 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
         DispatchQueue.main.async {
             self.historyTableView.reloadData()
             self.CalculateMonthTotal()
-            self.monthTotalLabel.text = "Month Total: " + self.numberFormatter.string(from: NSNumber(value:self.monthTotal))! /*String(format: "%.2f", self.monthTotal)*/
+            self.monthTotalLabel.text = self.numberFormatter.string(from: NSNumber(value:self.monthTotal))! /*String(format: "%.2f", self.monthTotal)*/
         }
         
     }
@@ -151,7 +152,7 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
         DispatchQueue.main.async {
             self.historyTableView.reloadData()
             self.CalculateMonthTotal()
-            self.monthTotalLabel.text = "Month Total: " + self.numberFormatter.string(from: NSNumber(value:self.monthTotal))! /*String(format: "%.2f", self.monthTotal)*/
+            self.monthTotalLabel.text = self.numberFormatter.string(from: NSNumber(value:self.monthTotal))! /*String(format: "%.2f", self.monthTotal)*/
         }
     }
     /* using tableview delegate method to return the number of rows of table based on the month selected.*/
