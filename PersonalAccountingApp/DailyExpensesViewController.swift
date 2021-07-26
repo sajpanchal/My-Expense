@@ -23,6 +23,8 @@ class DailyExpensesViewController: UIViewController, UITableViewDelegate, UITabl
     @IBOutlet weak var totalAmountLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
+        totalAmountLabel.layer.cornerRadius = 5
+        totalAmountLabel.layer.masksToBounds = true
        // context.automaticallyMergesChangesFromParent = true
         DispatchQueue.main.async {
            

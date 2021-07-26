@@ -24,6 +24,7 @@ class SavingsViewController: UIViewController, UITableViewDataSource, UITableVie
         numberFormatter.locale = Locale.current
         return numberFormatter
     }
+    @IBOutlet weak var yearSummaryView: UIView!
     @IBOutlet weak var summaryYearLabel: UILabel!
     @IBOutlet weak var savingsTableView: UITableView!
     @IBOutlet weak var yearStepper: UIStepper!
@@ -31,6 +32,7 @@ class SavingsViewController: UIViewController, UITableViewDataSource, UITableVie
     @IBOutlet weak var yearlySavingsLbl: UILabel!
     @IBOutlet weak var yearlyExpenseLbl: UILabel!
     @IBOutlet weak var yearlyEarningsLbl: UILabel!
+    @IBOutlet weak var updateEarningsBtn: UIButton!
     
     @IBAction func earningsButton(_ sender: Any) {
         editMode.toggle()
@@ -90,7 +92,8 @@ class SavingsViewController: UIViewController, UITableViewDataSource, UITableVie
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        updateEarningsBtn.layer.cornerRadius = 3
+        yearSummaryView.layer.cornerRadius = 5
         // deleteAll()
        // context.automaticallyMergesChangesFromParent = true
         DispatchQueue.main.async {

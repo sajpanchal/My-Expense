@@ -35,6 +35,8 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        monthTotalLabel.layer.cornerRadius = 5
+        monthTotalLabel.layer.masksToBounds = true
      //   context.automaticallyMergesChangesFromParent = true
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -190,6 +192,7 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
        
         let cell = tableView.dequeueReusableCell(withIdentifier: "history", for: indexPath) as! HistoryTableViewCell
         cell.dayLabel.text = String(format: "%02d",(indexPath.row + 1))
+        cell.dayLabel.layer.cornerRadius = 3
         cell.amountLabel.text = ""
         if !expenses.isEmpty {
          
