@@ -273,8 +273,8 @@
                                         <color key="textColor" systemColor="systemRedColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Month Total =" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2pg-VY-XTD">
-                                        <rect key="frame" x="15" y="29" width="128.33333333333334" height="24"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Month's Expense =" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2pg-VY-XTD">
+                                        <rect key="frame" x="15" y="29" width="179.33333333333334" height="24"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                         <color key="textColor" red="0.77990031240000002" green="0.7472010255" blue="0.69658374789999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -356,6 +356,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="History" id="Lz6-no-yLk"/>
                     <connections>
+                        <outlet property="footerTitleLabel" destination="2pg-VY-XTD" id="Ptj-Ka-kDf"/>
                         <outlet property="footerView" destination="ArL-nj-dLf" id="9g7-vg-eiC"/>
                         <outlet property="headerView" destination="bQw-LZ-DnS" id="0yO-rM-IOs"/>
                         <outlet property="historyTableView" destination="SqI-Wh-pbZ" id="Ad2-yX-4Uu"/>
@@ -390,8 +391,8 @@
                                         <color key="textColor" systemColor="systemRedColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total =" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZKD-hb-8we">
-                                        <rect key="frame" x="21.000000000000004" y="16" width="58.333333333333343" height="50"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Day's Expense =" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZKD-hb-8we">
+                                        <rect key="frame" x="21" y="16" width="141.66666666666666" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="iDB-3j-0O3"/>
                                         </constraints>
@@ -648,8 +649,8 @@
                                         <color key="textColor" systemColor="systemRedColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Day Total =" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kvw-Eb-4ek">
-                                        <rect key="frame" x="15" y="30.333333333333371" width="95.333333333333329" height="21.666666666666671"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Day's Expense =" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kvw-Eb-4ek">
+                                        <rect key="frame" x="15" y="30.333333333333371" width="141.66666666666666" height="21.666666666666671"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                         <color key="textColor" red="0.77990031240000002" green="0.7472010255" blue="0.69658374789999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -745,6 +746,7 @@
                         <outlet property="dailyExpenseTableView" destination="vuc-u4-7xz" id="ryp-O4-0Vw"/>
                         <outlet property="dateLabel" destination="KNW-9p-Yim" id="CV8-HL-4l4"/>
                         <outlet property="footerView" destination="Qxt-6M-LwG" id="Hsh-qv-Skn"/>
+                        <outlet property="headerView2" destination="geJ-OJ-YX1" id="Cw5-Es-5NG"/>
                         <outlet property="totalAmountLabel" destination="aLu-Pm-K8Y" id="aca-eq-e0w"/>
                     </connections>
                 </viewController>

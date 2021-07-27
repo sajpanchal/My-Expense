@@ -22,6 +22,7 @@ class DailyExpensesViewController: UIViewController, UITableViewDelegate, UITabl
     @IBOutlet weak var dailyExpenseTableView: UITableView!
     @IBOutlet weak var totalAmountLabel: UILabel!
     @IBOutlet weak var headerView: UIView!
+    @IBOutlet weak var headerView2: UIView!
     @IBOutlet weak var addExpenseBtn: UIButton!
     @IBOutlet weak var footerView: UIView!
     @IBOutlet weak var footerView2: UIView!
@@ -29,6 +30,9 @@ class DailyExpensesViewController: UIViewController, UITableViewDelegate, UITabl
         super.viewDidLoad()
         if headerView != nil {
             headerView.layer.cornerRadius = 5
+        }
+        else {
+            headerView2.layer.cornerRadius = 5
         }
         if addExpenseBtn != nil {
             addExpenseBtn.layer.cornerRadius = 3
