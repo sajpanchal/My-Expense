@@ -16,6 +16,9 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
         numberFormatter.locale = Locale.current
         return numberFormatter
     }
+    var footerTitle: String {
+        return "\(self.monthLabel.text!) \(self.yearLabel.text!) Expense = "
+    }
  //   let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     @IBOutlet weak var monthLabel: UILabel!
     @IBOutlet weak var yearLabel: UILabel!
@@ -26,6 +29,7 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var footerView: UIView!
     var monthTotal: Double = 0.0
+    @IBOutlet weak var footerTitleLabel: UILabel!
     var leapYear: Bool {
         let year = Int(yearStepper.value)
         if (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0) {
@@ -37,6 +41,7 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+       
         headerView.layer.cornerRadius = 5
         footerView.layer.cornerRadius = 5
         
@@ -56,6 +61,7 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
             self.CalculateMonthTotal()
             self.historyTableView.reloadData()
             self.monthTotalLabel.text = self.numberFormatter.string(from: NSNumber(value:self.monthTotal))! /*String(format: "%.2f", self.monthTotal)*/
+            self.footerTitleLabel.text = self.footerTitle
         }
     }
     
@@ -113,6 +119,7 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
             self.historyTableView.reloadData()
             self.CalculateMonthTotal()
             self.monthTotalLabel.text = self.numberFormatter.string(from: NSNumber(value:self.monthTotal))! /*String(format: "%.2f", self.monthTotal)*/
+            self.footerTitleLabel.text = self.footerTitle
         }
         
     }
@@ -153,6 +160,7 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
             self.historyTableView.reloadData()
             self.CalculateMonthTotal()
             self.monthTotalLabel.text = self.numberFormatter.string(from: NSNumber(value:self.monthTotal))! /*String(format: "%.2f", self.monthTotal)*/
+            self.footerTitleLabel.text = self.footerTitle
         }
     }
     /* using tableview delegate method to return the number of rows of table based on the month selected.*/
