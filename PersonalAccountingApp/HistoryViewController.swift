@@ -17,7 +17,7 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
         return numberFormatter
     }
     var footerTitle: String {
-        return "\(self.monthLabel.text!) \(self.yearLabel.text!) Expense = "
+        return "\(self.monthLabel.text!) \(self.yearLabel.text!) Total Expense"
     }
  //   let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     @IBOutlet weak var monthLabel: UILabel!
