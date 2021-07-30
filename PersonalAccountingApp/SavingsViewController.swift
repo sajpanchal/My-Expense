@@ -121,6 +121,7 @@ class SavingsViewController: UIViewController, UITableViewDataSource, UITableVie
         
         let cell = savingsTableView.dequeueReusableCell(withIdentifier: "savings", for: indexPath) as! SavingsTableViewCell
         cell.monthLabel.text = getMonth(number: indexPath.row + 1) + " " + yearLabel.text!
+        
         let saving = filterSavings(date: cell.monthLabel.text!)
      //   cell.expenditureLabel.text = "$" + String(format: "%.2f",  saving?.expenditure ?? "--")
    
