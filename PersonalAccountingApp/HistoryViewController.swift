@@ -17,7 +17,7 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
         return numberFormatter
     }
     var footerTitle: String {
-        return "\(self.monthLabel.text!) \(self.yearLabel.text!) Total Expense"
+        return "\(self.monthLabel.text!) \(self.yearLabel.text!) Summary"
     }
  //   let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     @IBOutlet weak var monthLabel: UILabel!
@@ -65,22 +65,6 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
     }
     
-  /*  func fetchData() {
-        //this method will call fetchRequest() of our Person Entity and will return all Person objects back.
-        do {
-           
-            var request = NSFetchRequest<NSFetchRequestResult>()
-            request = Expense.fetchRequest()
-            request.returnsObjectsAsFaults = false
-            self.entries = try AppDelegate.viewContext.fetch(request) as? [Expense]
-            
-        }
-        catch {
-            print("error")
-        }
-        
-    }*/
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let dailyExpenses = segue.destination as! DailyExpensesViewController
         
@@ -104,8 +88,6 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
                 break
             }
         }
-        
-        
     }
     func createDateFormatter(format: String) -> DateFormatter {
         let dateFormatter = DateFormatter()

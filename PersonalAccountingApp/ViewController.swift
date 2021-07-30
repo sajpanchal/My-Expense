@@ -29,12 +29,15 @@ class ViewController: UIViewController, UITabBarControllerDelegate {
         strLabel.removeFromSuperview()
         activityView.removeFromSuperview()
         effectView.removeFromSuperview()
+        
         effectView.alpha = 1.0
+        
         strLabel = UILabel(frame: CGRect(x: 50, y: 0, width: 250, height: 46))
         strLabel.text = title
         strLabel.font = .systemFont(ofSize: 14, weight: .medium)
         strLabel.textColor = .systemBackground
         strLabel.backgroundColor = addExpenseBtn.backgroundColor
+        
         effectView.frame = CGRect(x: view.frame.midX - strLabel.frame.width/2, y: view.frame.midY - strLabel.frame.height/2, width: 250, height: 46)
         effectView.layer.cornerRadius = 15
         effectView.backgroundColor = addExpenseBtn.backgroundColor
@@ -45,8 +48,10 @@ class ViewController: UIViewController, UITabBarControllerDelegate {
         activityView.color = .systemBackground
         activityView.frame = CGRect(x: 0, y: 0, width: 46, height: 46)
         activityView.startAnimating()
+        
         effectView.contentView.addSubview(activityView)
         effectView.contentView.addSubview(strLabel)
+        
         view.addSubview(effectView)
     }
     override func viewDidLoad() {
@@ -108,8 +113,6 @@ class ViewController: UIViewController, UITabBarControllerDelegate {
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
         self.items = Expense.fetchRecords()
         
-        
-       
         if viewController is AddExpensesVIewController{
           
             let addExpenses = viewController as! AddExpensesVIewController
@@ -142,20 +145,7 @@ class ViewController: UIViewController, UITabBarControllerDelegate {
         }
     }
     
-   /* func fetchData() {
-        //this method will call fetchRequest() of our Person Entity and will return all Person objects back.
-        do {
-            let request: NSFetchRequest<Expense> = Expense.fetchRequest()
-            request.returnsObjectsAsFaults = false
-          //  self.items = try context.fetch(request) as! [Expense]
-            self.items = try AppDelegate.viewContext.fetch(request)
-            
-        }
-        catch {
-            print("error")
-        }
-        
-    }*/
+   
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // this will set the segue's destination prop as a AddExpensesVIewController
         let addExpenses = segue.destination as! AddExpensesVIewController
