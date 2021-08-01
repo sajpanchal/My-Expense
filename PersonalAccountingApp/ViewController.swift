@@ -18,41 +18,56 @@ class ViewController: UIViewController, UITabBarControllerDelegate {
     
     var items: [Expense] = Expense.fetchRecords()
     
-    var activityView = UIActivityIndicatorView(style: .medium)
+  //  var activityView = UIActivityIndicatorView(style: .medium)
     var strLabel = UILabel(frame: CGRect(x: 50, y: 0, width: 250, height: 46))
-    var effectView = UIVisualEffectView(effect: nil)
+    var progressView: UIProgressView = {
+        let progressView = UIProgressView(progressViewStyle: .bar)
+        progressView.trackTintColor = .gray
+        progressView.progressTintColor = .systemBlue
+        return progressView
+    }()
+   // var effectView = UIVisualEffectView(effect: nil)
     @IBAction func dateUpdated(_ sender: Any) {
         self.items = Expense.fetchRecords()
         dateFormatter.dateFormat = "MMM d, yyyy" //date formatter string
     }
     func activityIndicator(_ title: String) {
         strLabel.removeFromSuperview()
-        activityView.removeFromSuperview()
-        effectView.removeFromSuperview()
+     //   activityView.removeFromSuperview()
+       // effectView.removeFromSuperview()
+        progressView.removeFromSuperview()
         
-        effectView.alpha = 1.0
-        
-        strLabel = UILabel(frame: CGRect(x: 50, y: 0, width: 250, height: 46))
+            //effectView.alpha = 1.0
+        strLabel.alpha = 1.0
+        strLabel = UILabel(frame: CGRect(x: view.frame.midX - 125, y: view.frame.midY, width: 250, height: 26))
+       
         strLabel.text = title
         strLabel.font = .systemFont(ofSize: 14, weight: .medium)
-        strLabel.textColor = .systemBackground
-        strLabel.backgroundColor = addExpenseBtn.backgroundColor
+        strLabel.textColor = .systemBlue
+        strLabel.textAlignment = .center
+       // strLabel.backgroundColor = addExpenseBtn.backgroundColor
+        strLabel.backgroundColor = .systemBackground
+        //effectView.frame = CGRect(x: view.frame.midX - strLabel.frame.width/2, y: view.frame.midY - strLabel.frame.height/2, width: 250, height: 46)
+     //   progressView.frame = CGRect(x: view.frame.midX - strLabel.frame.width/2, y: effectView.frame.maxY + 5, width: 250, height: 46)
+        progressView.frame = CGRect(x: view.frame.midX - 125, y: strLabel.frame.maxY, width: 250, height: 46)
+        progressView.setProgress(0.0, animated: true)
+    //    effectView.layer.cornerRadius = 15
+     //   effectView.backgroundColor = addExpenseBtn.backgroundColor
+      //  effectView.backgroundColor = .systemBackground
+        //effectView.layer.masksToBounds = true
         
-        effectView.frame = CGRect(x: view.frame.midX - strLabel.frame.width/2, y: view.frame.midY - strLabel.frame.height/2, width: 250, height: 46)
-        effectView.layer.cornerRadius = 15
-        effectView.backgroundColor = addExpenseBtn.backgroundColor
-        effectView.layer.masksToBounds = true
+   //    activityView = UIActivityIndicatorView(style: .medium)
+    //    activityView.tintColor = .systemBackground
+     //   activityView.color = .systemBackground
+     //   activityView.frame = CGRect(x: 0, y: 0, width: 46, height: 46)
+     //   activityView.startAnimating()
         
-        activityView = UIActivityIndicatorView(style: .medium)
-        activityView.tintColor = .systemBackground
-        activityView.color = .systemBackground
-        activityView.frame = CGRect(x: 0, y: 0, width: 46, height: 46)
-        activityView.startAnimating()
+      //  effectView.contentView.addSubview(activityView)
+       // effectView.contentView.addSubview(strLabel)
         
-        effectView.contentView.addSubview(activityView)
-        effectView.contentView.addSubview(strLabel)
-        
-        view.addSubview(effectView)
+      //  view.addSubview(effectView)
+        view.addSubview(strLabel)
+        view.addSubview(progressView)
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,16 +94,25 @@ class ViewController: UIViewController, UITabBarControllerDelegate {
             titleLabel.alpha = 0.2
             addExpenseBtn.alpha = 0.2
             activityIndicator("Syncing data with iCloud...")
+            for x in 0..<20 {
+                DispatchQueue.main.asyncAfter(deadline: .now()+(Double(x)), execute: {
+                    self.progressView.setProgress(Float(x)/20, animated: true)
+                })
+            }
+           
             self.view.isUserInteractionEnabled = false
             print("Timer started")
             Timer.scheduledTimer(withTimeInterval: 20.0, repeats: false) { _ in
                 print("Timer stopped")
-                self.effectView.removeFromSuperview()
+               // self.effectView.removeFromSuperview()
+                self.progressView.removeFromSuperview()
+                self.strLabel.removeFromSuperview()
                 //self.view.alpha = 1
                 self.selectedDate.alpha = 1.0
                 self.titleLabel.alpha = 1.0
                 self.addExpenseBtn.alpha = 1.0
-                self.activityView.stopAnimating()
+              //  self.activityView.stopAnimating()
+              
                 self.view.isUserInteractionEnabled = true
                 if let arrayOfTabBarItems = self.tabBarController?.tabBar.items {
                     for item in arrayOfTabBarItems {
