@@ -74,7 +74,7 @@ class ViewController: UIViewController, UITabBarControllerDelegate {
             addExpenseBtn.alpha = 0.0
             activityIndicator("Syncing data with iCloud...")
             for x in 0..<20 {
-                DispatchQueue.main.asyncAfter(deadline: (.now() + Double(x)), execute: {
+                DispatchQueue.main.asyncAfter(deadline: .now() + (Double(x)), execute: {
                     self.progressView.setProgress(Float(x)/19, animated: true)
                     print(x)
                 })
