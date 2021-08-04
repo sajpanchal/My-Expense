@@ -34,8 +34,19 @@ class SavingsViewController: UIViewController, UITableViewDataSource, UITableVie
     @IBOutlet weak var yearlyEarningsLbl: UILabel!
     @IBOutlet weak var updateEarningsBtn: UIButton!
     @IBOutlet weak var headerView: UIView!
-    
+    var isBtnUpdating = false
     @IBAction func earningsButton(_ sender: Any) {
+        isBtnUpdating.toggle()
+        DispatchQueue.main.async {
+            if self.isBtnUpdating {
+                self.updateEarningsBtn.setTitle("Cancel", for: .normal)
+            }
+            else{
+                self.updateEarningsBtn.setTitle("Update Earnings", for: .normal)
+            }
+            
+        }
+        
         editMode.toggle()
         savingsTableView.setEditing(editMode, animated: true)
     }
@@ -74,6 +85,8 @@ class SavingsViewController: UIViewController, UITableViewDataSource, UITableVie
         self.yearlySavings = YearlySavings.fetchRecords()
 
         DispatchQueue.main.async {
+            
+            self.updateEarningsBtn.setTitle("Update Earnings", for: .normal)
             self.savingsTableView.reloadData()
             self.yearStepper.value = Double(Calendar.current.component(.year, from: Date()))
             self.summaryYearLabel.text = "Year " + String(Int(self.yearStepper.value)) + " " + "Summary"

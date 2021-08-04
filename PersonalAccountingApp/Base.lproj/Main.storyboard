@@ -897,7 +897,7 @@
                                             <constraint firstAttribute="height" constant="50" id="tMW-Bt-5Ev"/>
                                         </constraints>
                                         <color key="tintColor" red="0.0" green="0.32852089410000002" blue="0.57488495110000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <state key="normal" title="Update Earnings" image="square.and.pencil" catalog="system">
+                                        <state key="normal" image="square.and.pencil" catalog="system">
                                             <color key="titleColor" red="0.0" green="0.32852089410000002" blue="0.57488495110000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
