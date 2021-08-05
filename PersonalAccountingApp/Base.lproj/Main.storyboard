@@ -772,10 +772,10 @@
             </objects>
             <point key="canvasLocation" x="2066.3551401869158" y="-402.37580993520521"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--HistoryNC-->
         <scene sceneID="O7c-vb-ilU">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fJG-96-qEP" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fJG-96-qEP" customClass="HistoryNC" customModule="PersonalAccountingApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" systemItem="history" id="U5G-MF-xIv"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="gGZ-GM-4JZ">

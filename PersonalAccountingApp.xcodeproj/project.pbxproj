@@ -29,6 +29,7 @@
 		72BCBECC26949CC800D9CA19 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72BCBECB26949CC800D9CA19 /* CloudKit.framework */; };
 		72D61870265B2BE300F1C53D /* AddExpensesVIewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72D6186F265B2BE300F1C53D /* AddExpensesVIewController.swift */; };
 		72EB7B9126A09C27000FBE4E /* SignInWithAppleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72EB7B9026A09C27000FBE4E /* SignInWithAppleViewController.swift */; };
+		72FC416326BC5E460073B4FC /* HistoryNC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72FC416226BC5E460073B4FC /* HistoryNC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +58,7 @@
 		72BCBECB26949CC800D9CA19 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		72D6186F265B2BE300F1C53D /* AddExpensesVIewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpensesVIewController.swift; sourceTree = "<group>"; };
 		72EB7B9026A09C27000FBE4E /* SignInWithAppleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithAppleViewController.swift; sourceTree = "<group>"; };
+		72FC416226BC5E460073B4FC /* HistoryNC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryNC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,7 @@
 				72EB7B9026A09C27000FBE4E /* SignInWithAppleViewController.swift */,
 				7203E88A265B06DF0079FF47 /* ViewController.swift */,
 				7203E88C265B06DF0079FF47 /* Main.storyboard */,
+				72FC416226BC5E460073B4FC /* HistoryNC.swift */,
 				7201CD65268006D500D5E9D7 /* SavingsTableViewCell.swift */,
 				7201CD632680061900D5E9D7 /* SavingsViewController.swift */,
 				72086D7F2663190700870AA9 /* DailyExpensesViewController.swift */,
@@ -216,6 +219,7 @@
 				72D61870265B2BE300F1C53D /* AddExpensesVIewController.swift in Sources */,
 				72086D802663190700870AA9 /* DailyExpensesViewController.swift in Sources */,
 				720550D02695F6D5008AD602 /* YearlySavings+CoreDataProperties.swift in Sources */,
+				72FC416326BC5E460073B4FC /* HistoryNC.swift in Sources */,
 				72B13F85265EAA4400277014 /* HistoryViewController.swift in Sources */,
 				72EB7B9126A09C27000FBE4E /* SignInWithAppleViewController.swift in Sources */,
 				720550CB2695F6D5008AD602 /* Expense+CoreDataClass.swift in Sources */,

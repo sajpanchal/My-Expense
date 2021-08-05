@@ -59,6 +59,7 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
             self.monthStepper.value = Double(self.month)// Do any additional setup after loading the view.
             print("month number: \(self.month)")
             self.yearStepper.value = Double(self.year)
+            self.yearLabel.text = String(self.year)
             self.setMonthLabel()
             self.CalculateMonthTotal()
             self.historyTableView.reloadData()
