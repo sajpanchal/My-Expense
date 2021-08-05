@@ -122,6 +122,8 @@ class ViewController: UIViewController, UITabBarControllerDelegate {
             
             let history = viewController as! HistoryViewController
             history.expenses = self.items
+            history.month = Calendar.current.component(.month, from: Date())
+            history.year = Calendar.current.component(.year, from: Date())
         }
         else if viewController is DailyExpensesViewController{
           
