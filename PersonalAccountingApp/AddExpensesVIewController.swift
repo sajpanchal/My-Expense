@@ -25,9 +25,9 @@ class AddExpensesVIewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
        setupTextFields()
-        doneBtn.layer.cornerRadius = 3
-        addAnotherBtn.layer.cornerRadius = 3
-        discardBtn.layer.cornerRadius = 3
+        doneBtn.layer.cornerRadius = 5
+        addAnotherBtn.layer.cornerRadius = 5
+        discardBtn.layer.cornerRadius = 5
     }
     //this method will be called before viewDidload. it is called right before the view is about to be loaded.
     override func viewWillAppear(_ animated: Bool) {

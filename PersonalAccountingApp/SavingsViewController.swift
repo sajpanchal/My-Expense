@@ -24,6 +24,7 @@ class SavingsViewController: UIViewController, UITableViewDataSource, UITableVie
         numberFormatter.locale = Locale.current
         return numberFormatter
     }
+    
     @IBOutlet weak var yearSummaryView: UIView!
     @IBOutlet weak var summaryYearLabel: UILabel!
     @IBOutlet weak var savingsTableView: UITableView!
@@ -39,9 +40,13 @@ class SavingsViewController: UIViewController, UITableViewDataSource, UITableVie
         isBtnUpdating.toggle()
         DispatchQueue.main.async {
             if self.isBtnUpdating {
+                self.updateEarningsBtn.setImage(UIImage(systemName: "xmark.rectangle.fill"), for: .normal)
+                self.updateEarningsBtn.backgroundColor = .red
                 self.updateEarningsBtn.setTitle("Cancel", for: .normal)
             }
             else{
+                self.updateEarningsBtn.setImage(UIImage(systemName: "square.and.pencil"), for: .normal)
+                self.updateEarningsBtn.backgroundColor = self.yearLabel.textColor
                 self.updateEarningsBtn.setTitle("Update Earnings", for: .normal)
             }
             
@@ -106,7 +111,7 @@ class SavingsViewController: UIViewController, UITableViewDataSource, UITableVie
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        updateEarningsBtn.layer.cornerRadius = 3
+        updateEarningsBtn.layer.cornerRadius = 5
         yearSummaryView.layer.cornerRadius = 5
         headerView.layer.cornerRadius = 5
         // deleteAll()

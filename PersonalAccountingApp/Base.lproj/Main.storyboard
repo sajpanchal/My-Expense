@@ -612,6 +612,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="appLogo" destination="blJ-xW-VpO" id="7by-Z0-eiR"/>
                         <outlet property="buttonView" destination="9q4-pX-zKo" id="3sw-gG-H2r"/>
                     </connections>
                 </viewController>

@@ -51,7 +51,7 @@ class ViewController: UIViewController, UITabBarControllerDelegate {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        addExpenseBtn.layer.cornerRadius = 3
+        addExpenseBtn.layer.cornerRadius = 5
         CKContainer.default().fetchUserRecordID(completionHandler: {
             (recordID, error) in
             if let name = recordID?.recordName {

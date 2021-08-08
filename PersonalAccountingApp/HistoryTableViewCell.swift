@@ -13,7 +13,7 @@ class HistoryTableViewCell: UITableViewCell {
     @IBOutlet weak var amountLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
-        dayLabel.layer.cornerRadius = 3
+        dayLabel.layer.cornerRadius = 5
         dayLabel.layer.masksToBounds = true
         // Initialization code
     }
