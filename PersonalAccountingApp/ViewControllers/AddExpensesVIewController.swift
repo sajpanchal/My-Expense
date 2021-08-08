@@ -161,7 +161,15 @@ class AddExpensesVIewController: UIViewController, UITextFieldDelegate {
             default :
                 print("Error")
         }
+        
        }
+        do {
+            try AppDelegate.viewContext.save()
+            print("Saved changes.")
+        }
+        catch{
+            fatalError()
+        }
         self.items = Expense.fetchRecords()
     }
     
@@ -186,6 +194,7 @@ class AddExpensesVIewController: UIViewController, UITextFieldDelegate {
         newEntry.amounts?.forEach { // recalcute the total
             newEntry.totalAmount += $0
         }
+        
     }
     /*
     // MARK: - Navigation

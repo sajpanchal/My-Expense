@@ -152,11 +152,11 @@
 		724E8EB426BF65BF0076BF0D /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				724E8EB226BF65560076BF0D /* DailyExpenseVC */,
-				724E8EB326BF656D0076BF0D /* HistoryVC */,
-				724E8EB126BF65230076BF0D /* SavingsVC */,
 				72EB7B9026A09C27000FBE4E /* SignInWithAppleViewController.swift */,
 				7235477F26C03868004F6563 /* HomeVC */,
+				724E8EB326BF656D0076BF0D /* HistoryVC */,
+				724E8EB226BF65560076BF0D /* DailyExpenseVC */,
+				724E8EB126BF65230076BF0D /* SavingsVC */,
 				72D6186F265B2BE300F1C53D /* AddExpensesVIewController.swift */,
 			);
 			path = ViewControllers;
