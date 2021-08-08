@@ -8,7 +8,8 @@
 import UIKit
 import CoreData
 class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    let year = Calendar.current.component(.year, from: Date())
+    var year = Calendar.current.component(.year, from: Date())
+    var month = Calendar.current.component(.month, from: Date())
     var expenses: [Expense] = Expense.fetchRecords()
     var numberFormatter: NumberFormatter {
         let numberFormatter = NumberFormatter()
@@ -55,8 +56,10 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
             self.historyTableView.delegate = self
             self.historyTableView.dataSource = self
             self.historyTableView.rowHeight = 70
-            self.monthStepper.value = Double(Calendar.current.component(.month, from: Date()))// Do any additional setup after loading the view.
+            self.monthStepper.value = Double(self.month)// Do any additional setup after loading the view.
+            print("month number: \(self.month)")
             self.yearStepper.value = Double(self.year)
+            self.yearLabel.text = String(self.year)
             self.setMonthLabel()
             self.CalculateMonthTotal()
             self.historyTableView.reloadData()
@@ -96,6 +99,7 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     /* method to update month on stepper value change */
     @IBAction func monthStepperChanged(_ sender: Any) {
+        self.month = Int(self.monthStepper.value)
         setMonthLabel()
         DispatchQueue.main.async {
             self.historyTableView.reloadData()
@@ -137,6 +141,7 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     /* method to update the year on stepper value change.*/
     @IBAction func yearStepperChanged(_ sender: Any) {
+        self.year = Int(self.yearStepper.value)
         yearLabel.text = String(Int(yearStepper.value))
         DispatchQueue.main.async {
             self.historyTableView.reloadData()

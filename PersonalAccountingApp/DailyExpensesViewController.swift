@@ -35,7 +35,7 @@ class DailyExpensesViewController: UIViewController, UITableViewDelegate, UITabl
             headerView2.layer.cornerRadius = 5
         }
         if addExpenseBtn != nil {
-            addExpenseBtn.layer.cornerRadius = 3
+            addExpenseBtn.layer.cornerRadius = 5
         }
         if footerView != nil {
             footerView.layer.cornerRadius = 5

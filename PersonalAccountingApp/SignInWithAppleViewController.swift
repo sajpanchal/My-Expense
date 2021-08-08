@@ -15,9 +15,11 @@ class SignInWithAppleViewController: UIViewController, ASAuthorizationController
         
     }
 
+    @IBOutlet weak var appLogo: UIImageView!
     @IBOutlet weak var buttonView: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        appLogo.layer.cornerRadius = 5
 signInWIthAppleButton()
         // Do any additional setup after loading the view.
     }
@@ -25,9 +27,9 @@ signInWIthAppleButton()
     func signInWIthAppleButton() {
         let authorizationButton = ASAuthorizationAppleIDButton()
         authorizationButton.addTarget(self, action: #selector(handleAppleIdRequest), for: .touchUpInside)
-        authorizationButton.cornerRadius = 3
+        authorizationButton.cornerRadius = 5
         self.buttonView.backgroundColor = .black
-        self.buttonView.layer.cornerRadius = 3
+        self.buttonView.layer.cornerRadius = 5
         authorizationButton.constraints.forEach({
             $0.isActive = false
         })

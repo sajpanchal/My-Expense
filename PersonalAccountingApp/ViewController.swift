@@ -51,7 +51,7 @@ class ViewController: UIViewController, UITabBarControllerDelegate {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        addExpenseBtn.layer.cornerRadius = 3
+        addExpenseBtn.layer.cornerRadius = 5
         CKContainer.default().fetchUserRecordID(completionHandler: {
             (recordID, error) in
             if let name = recordID?.recordName {
@@ -112,33 +112,15 @@ class ViewController: UIViewController, UITabBarControllerDelegate {
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
         self.items = Expense.fetchRecords()
         
-        if viewController is AddExpensesVIewController{
-          
-            let addExpenses = viewController as! AddExpensesVIewController
-            addExpenses.dateString = dateFormatter.string(from: selectedDate.date)
-            addExpenses.date = selectedDate.date
-        }
-        else if viewController is HistoryViewController {
+         if viewController is HistoryNC {
             
-            let history = viewController as! HistoryViewController
+            let historyNC = viewController as! HistoryNC
+            let history = historyNC.topViewController as! HistoryViewController
             history.expenses = self.items
+            history.month = Calendar.current.component(.month, from: Date())
+            history.year = Calendar.current.component(.year, from: Date())
         }
-        else if viewController is DailyExpensesViewController{
-          
-            let dailyView = viewController as! DailyExpensesViewController
-            dailyView.item = nil
-            dailyView.dateString = dateFormatter.string(from: selectedDate.date)
-            for entry in items {
-                let entryDate = dailyView.dateString
-                if entryDate == dateFormatter.string(from: entry.date!) {
-                    dailyView.item = entry
-                    break
-                }
-                else {
-                    
-                }
-            }
-        }
+      
         else {
             
         }

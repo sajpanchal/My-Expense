@@ -612,6 +612,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="appLogo" destination="blJ-xW-VpO" id="7by-Z0-eiR"/>
                         <outlet property="buttonView" destination="9q4-pX-zKo" id="3sw-gG-H2r"/>
                     </connections>
                 </viewController>
@@ -772,10 +773,10 @@
             </objects>
             <point key="canvasLocation" x="2066.3551401869158" y="-402.37580993520521"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--HistoryNC-->
         <scene sceneID="O7c-vb-ilU">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fJG-96-qEP" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fJG-96-qEP" customClass="HistoryNC" customModule="PersonalAccountingApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" systemItem="history" id="U5G-MF-xIv"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="gGZ-GM-4JZ">
@@ -897,7 +898,7 @@
                                             <constraint firstAttribute="height" constant="50" id="tMW-Bt-5Ev"/>
                                         </constraints>
                                         <color key="tintColor" red="0.0" green="0.32852089410000002" blue="0.57488495110000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <state key="normal" title="Update Earnings" image="square.and.pencil" catalog="system">
+                                        <state key="normal" image="square.and.pencil" catalog="system">
                                             <color key="titleColor" red="0.0" green="0.32852089410000002" blue="0.57488495110000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
