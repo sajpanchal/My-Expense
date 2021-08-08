@@ -97,16 +97,22 @@ class ViewController: UIViewController, UITabBarControllerDelegate {
     }
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
         self.items = Expense.fetchRecords()
-        
-         if viewController is HistoryNC {
-            
+        if viewController is HomeNC {
+            let homeNC = viewController as! HomeNC
+            homeNC.popToRootViewController(animated: true)
+        }
+        else if viewController is HistoryNC {
             let historyNC = viewController as! HistoryNC
+            historyNC.popToRootViewController(animated: true)
             let history = historyNC.topViewController as! HistoryViewController
             history.expenses = self.items
             history.month = Calendar.current.component(.month, from: Date())
             history.year = Calendar.current.component(.year, from: Date())
         }
-      
+        else if viewController is SavingsNC {
+            let savingsNC = viewController as! SavingsNC
+            savingsNC.popToRootViewController(animated: true)
+        }
         else {
             //code
         }

@@ -534,7 +534,7 @@
         <!--Home-->
         <scene sceneID="6NH-hp-YKJ">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="n1E-mj-nqd" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="n1E-mj-nqd" customClass="HomeNC" customModule="PersonalAccountingApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Home" image="house" catalog="system" id="fFe-JL-Lru"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="vdd-bM-72E">
@@ -1037,7 +1037,7 @@
         <!--Savings-->
         <scene sceneID="Rcz-3a-XTh">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="nyz-wl-v82" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="nyz-wl-v82" customClass="SavingsNC" customModule="PersonalAccountingApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Savings" image="dollarsign.circle.fill" catalog="system" id="8YW-y9-wpH"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Wvg-ET-mgw">
