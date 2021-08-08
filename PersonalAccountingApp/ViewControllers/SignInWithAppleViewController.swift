@@ -10,17 +10,13 @@ import AuthenticationServices
 
 class SignInWithAppleViewController: UIViewController, ASAuthorizationControllerDelegate {
 
-    @IBAction func signInWithAppleBtn(_ sender: Any) {
-        print("button clicked")
-        
-    }
-
     @IBOutlet weak var appLogo: UIImageView!
     @IBOutlet weak var buttonView: UIView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         appLogo.layer.cornerRadius = 5
-signInWIthAppleButton()
+        signInWIthAppleButton()
         // Do any additional setup after loading the view.
     }
     
@@ -62,8 +58,8 @@ signInWIthAppleButton()
                 (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(tabBarController)
             }
             print("UserId:\(userIdentifier)")
-            print("FullName:\(fullName)")
-            print("email:\(email)")
+            print("FullName:",fullName ?? "N/A")
+            print("email:",email ?? "N/A")
         }
     }
     /*
