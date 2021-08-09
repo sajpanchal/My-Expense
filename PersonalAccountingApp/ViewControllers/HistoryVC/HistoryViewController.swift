@@ -108,6 +108,7 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
         let dailyExpenses = segue.destination as! DailyExpensesViewController
         
         let dd = String(format:"%02d",historyTableView.indexPathForSelectedRow!.row+1)
