@@ -40,20 +40,23 @@ class SavingsViewController: UIViewController, UITableViewDataSource, UITableVie
         isBtnUpdating.toggle()
         DispatchQueue.main.async {
             if self.isBtnUpdating {
-                self.updateEarningsBtn.setImage(UIImage(systemName: "xmark.rectangle.fill"), for: .normal)
-                self.updateEarningsBtn.backgroundColor = .red
-                self.updateEarningsBtn.setTitle("Cancel", for: .normal)
+                self.editUpdateEarningBtn(image: "xmark.rectangle.fill", backgroundColor: .red, title: "Cancel")
+               
             }
-            else{
-                self.updateEarningsBtn.setImage(UIImage(systemName: "square.and.pencil"), for: .normal)
-                self.updateEarningsBtn.backgroundColor = self.yearLabel.textColor
-                self.updateEarningsBtn.setTitle("Update Earnings", for: .normal)
+            else {
+                self.editUpdateEarningBtn(image: "square.and.pencil", backgroundColor: self.yearLabel.textColor, title: "Update Earnings")
+                
             }
             
         }
         
         editMode.toggle()
         savingsTableView.setEditing(editMode, animated: true)
+    }
+    func editUpdateEarningBtn(image: String, backgroundColor: UIColor, title: String) {
+        self.updateEarningsBtn.setImage(UIImage(systemName: image), for: .normal)
+        self.updateEarningsBtn.backgroundColor = backgroundColor
+        self.updateEarningsBtn.setTitle(title, for: .normal)
     }
     @IBAction func yearStepperChanged(_ sender: Any) {
         yearSavings = 0.0
@@ -278,6 +281,7 @@ class SavingsViewController: UIViewController, UITableViewDataSource, UITableVie
         alert.addTextField()
         }
         alert.addAction(UIAlertAction(title: "OK", style: .default) {_ in
+            self.editUpdateEarningBtn(image: "square.and.pencil", backgroundColor: self.yearLabel.textColor, title: "Update Earnings")
             let amount = alert.textFields![0]
             if let earning = Double(amount.text!) {
                 let date = self.getMonth(number: row+1) + " " + self.yearLabel.text!
@@ -322,10 +326,16 @@ class SavingsViewController: UIViewController, UITableViewDataSource, UITableVie
                 }
             }
             self.editMode = false
+            self.isBtnUpdating = false
             self.savingsTableView.setEditing(self.editMode, animated: true)
             })
        
-        alert.addAction(UIAlertAction(title:"Cancel", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title:"Cancel", style: .cancel) {_ in
+            self.editUpdateEarningBtn(image: "square.and.pencil", backgroundColor: self.yearLabel.textColor, title: "Update Earnings")
+            self.editMode = false
+            self.isBtnUpdating = false
+            self.savingsTableView.setEditing(self.editMode, animated: true)
+        })
         self.present(alert, animated: true, completion: nil)
     }
     

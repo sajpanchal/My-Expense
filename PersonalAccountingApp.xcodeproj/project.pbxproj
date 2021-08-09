@@ -23,6 +23,8 @@
 		720550D02695F6D5008AD602 /* YearlySavings+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 720550CA2695F6D5008AD602 /* YearlySavings+CoreDataProperties.swift */; };
 		72086D802663190700870AA9 /* DailyExpensesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72086D7F2663190700870AA9 /* DailyExpensesViewController.swift */; };
 		72086D832663255500870AA9 /* DailyExpenseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72086D822663255500870AA9 /* DailyExpenseTableViewCell.swift */; };
+		7235478126C0389A004F6563 /* HomeNC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7235478026C0389A004F6563 /* HomeNC.swift */; };
+		7235478326C03926004F6563 /* SavingsNC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7235478226C03926004F6563 /* SavingsNC.swift */; };
 		7248BC662661500C006D40E2 /* PersonalAccountingApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7203E88F265B06DF0079FF47 /* PersonalAccountingApp.xcdatamodeld */; };
 		72B13F82265EA72D00277014 /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72B13F81265EA72D00277014 /* HistoryTableViewCell.swift */; };
 		72B13F85265EAA4400277014 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72B13F84265EAA4400277014 /* HistoryViewController.swift */; };
@@ -52,6 +54,8 @@
 		720550CA2695F6D5008AD602 /* YearlySavings+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "YearlySavings+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		72086D7F2663190700870AA9 /* DailyExpensesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyExpensesViewController.swift; sourceTree = "<group>"; };
 		72086D822663255500870AA9 /* DailyExpenseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyExpenseTableViewCell.swift; sourceTree = "<group>"; };
+		7235478026C0389A004F6563 /* HomeNC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNC.swift; sourceTree = "<group>"; };
+		7235478226C03926004F6563 /* SavingsNC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavingsNC.swift; sourceTree = "<group>"; };
 		72B13F81265EA72D00277014 /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
 		72B13F84265EAA4400277014 /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		72BCBEC926949CA900D9CA19 /* PersonalAccountingApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PersonalAccountingApp.entitlements; sourceTree = "<group>"; };
@@ -95,25 +99,67 @@
 			children = (
 				72BCBEC926949CA900D9CA19 /* PersonalAccountingApp.entitlements */,
 				72BFE4FE265FF8E000C2D7C0 /* Model */,
-				72086D822663255500870AA9 /* DailyExpenseTableViewCell.swift */,
 				7203E886265B06DF0079FF47 /* AppDelegate.swift */,
 				7203E888265B06DF0079FF47 /* SceneDelegate.swift */,
-				72EB7B9026A09C27000FBE4E /* SignInWithAppleViewController.swift */,
-				7203E88A265B06DF0079FF47 /* ViewController.swift */,
+				724E8EB426BF65BF0076BF0D /* ViewControllers */,
 				7203E88C265B06DF0079FF47 /* Main.storyboard */,
-				72FC416226BC5E460073B4FC /* HistoryNC.swift */,
-				7201CD65268006D500D5E9D7 /* SavingsTableViewCell.swift */,
-				7201CD632680061900D5E9D7 /* SavingsViewController.swift */,
-				72086D7F2663190700870AA9 /* DailyExpensesViewController.swift */,
-				72B13F81265EA72D00277014 /* HistoryTableViewCell.swift */,
-				72D6186F265B2BE300F1C53D /* AddExpensesVIewController.swift */,
-				72B13F84265EAA4400277014 /* HistoryViewController.swift */,
 				7203E892265B06E10079FF47 /* Assets.xcassets */,
 				7203E894265B06E10079FF47 /* LaunchScreen.storyboard */,
 				7203E897265B06E10079FF47 /* Info.plist */,
 				7203E88F265B06DF0079FF47 /* PersonalAccountingApp.xcdatamodeld */,
 			);
 			path = PersonalAccountingApp;
+			sourceTree = "<group>";
+		};
+		7235477F26C03868004F6563 /* HomeVC */ = {
+			isa = PBXGroup;
+			children = (
+				7203E88A265B06DF0079FF47 /* ViewController.swift */,
+				7235478026C0389A004F6563 /* HomeNC.swift */,
+			);
+			path = HomeVC;
+			sourceTree = "<group>";
+		};
+		724E8EB126BF65230076BF0D /* SavingsVC */ = {
+			isa = PBXGroup;
+			children = (
+				7201CD65268006D500D5E9D7 /* SavingsTableViewCell.swift */,
+				7201CD632680061900D5E9D7 /* SavingsViewController.swift */,
+				7235478226C03926004F6563 /* SavingsNC.swift */,
+			);
+			path = SavingsVC;
+			sourceTree = "<group>";
+		};
+		724E8EB226BF65560076BF0D /* DailyExpenseVC */ = {
+			isa = PBXGroup;
+			children = (
+				72086D822663255500870AA9 /* DailyExpenseTableViewCell.swift */,
+				72086D7F2663190700870AA9 /* DailyExpensesViewController.swift */,
+			);
+			path = DailyExpenseVC;
+			sourceTree = "<group>";
+		};
+		724E8EB326BF656D0076BF0D /* HistoryVC */ = {
+			isa = PBXGroup;
+			children = (
+				72B13F81265EA72D00277014 /* HistoryTableViewCell.swift */,
+				72FC416226BC5E460073B4FC /* HistoryNC.swift */,
+				72B13F84265EAA4400277014 /* HistoryViewController.swift */,
+			);
+			path = HistoryVC;
+			sourceTree = "<group>";
+		};
+		724E8EB426BF65BF0076BF0D /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				72EB7B9026A09C27000FBE4E /* SignInWithAppleViewController.swift */,
+				7235477F26C03868004F6563 /* HomeVC */,
+				724E8EB326BF656D0076BF0D /* HistoryVC */,
+				724E8EB226BF65560076BF0D /* DailyExpenseVC */,
+				724E8EB126BF65230076BF0D /* SavingsVC */,
+				72D6186F265B2BE300F1C53D /* AddExpensesVIewController.swift */,
+			);
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 		72BCBECA26949CC800D9CA19 /* Frameworks */ = {
@@ -218,8 +264,10 @@
 				7201CD66268006D500D5E9D7 /* SavingsTableViewCell.swift in Sources */,
 				72D61870265B2BE300F1C53D /* AddExpensesVIewController.swift in Sources */,
 				72086D802663190700870AA9 /* DailyExpensesViewController.swift in Sources */,
+				7235478326C03926004F6563 /* SavingsNC.swift in Sources */,
 				720550D02695F6D5008AD602 /* YearlySavings+CoreDataProperties.swift in Sources */,
 				72FC416326BC5E460073B4FC /* HistoryNC.swift in Sources */,
+				7235478126C0389A004F6563 /* HomeNC.swift in Sources */,
 				72B13F85265EAA4400277014 /* HistoryViewController.swift in Sources */,
 				72EB7B9126A09C27000FBE4E /* SignInWithAppleViewController.swift in Sources */,
 				720550CB2695F6D5008AD602 /* Expense+CoreDataClass.swift in Sources */,
