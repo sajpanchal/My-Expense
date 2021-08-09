@@ -326,11 +326,15 @@ class SavingsViewController: UIViewController, UITableViewDataSource, UITableVie
                 }
             }
             self.editMode = false
+            self.isBtnUpdating = false
             self.savingsTableView.setEditing(self.editMode, animated: true)
             })
        
         alert.addAction(UIAlertAction(title:"Cancel", style: .cancel) {_ in
             self.editUpdateEarningBtn(image: "square.and.pencil", backgroundColor: self.yearLabel.textColor, title: "Update Earnings")
+            self.editMode = false
+            self.isBtnUpdating = false
+            self.savingsTableView.setEditing(self.editMode, animated: true)
         })
         self.present(alert, animated: true, completion: nil)
     }
