@@ -81,6 +81,13 @@ class DailyExpensesViewController: UIViewController, UITableViewDelegate, UITabl
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "dailyExpense", for: indexPath) as! DailyExpenseTableViewCell
+      //  let accessoryImage = UIImage(systemName: "pencil.circle.fill")
+       // let accessoryImageView = UIImageView(image: accessoryImage)
+
+        //accessoryImageView.frame = CGRect(x:0,y:-5,width:30,height:30)
+        cell.accessoryType = .disclosureIndicator
+       // cell.accessoryView?.layer.cornerRadius = 5
+        
         cell.descriptionLabel.text = item!.descriptions![indexPath.row]
         cell.amountLabel.text = self.numberFormatter.string(from: NSNumber(value: item!.amounts![indexPath.row]))!
         return cell

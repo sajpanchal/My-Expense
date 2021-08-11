@@ -108,6 +108,7 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
         let dailyExpenses = segue.destination as! DailyExpensesViewController
         
         let dd = String(format:"%02d",historyTableView.indexPathForSelectedRow!.row+1)
@@ -189,6 +190,7 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // this will link the custom cell (HistoryTableViewCell) on each indexPath of our tableview and creates a cell object.
         let cell = tableView.dequeueReusableCell(withIdentifier: "history", for: indexPath) as! HistoryTableViewCell
+        cell.accessoryType = .disclosureIndicator
         cell.dayLabel.text = String(format: "%02d",(indexPath.row + 1))
         cell.dayLabel.layer.cornerRadius = 5
         cell.amountLabel.text = ""
