@@ -339,7 +339,7 @@
                                         <connections>
                                             <outlet property="amountLabel" destination="kMz-7h-KMq" id="SkZ-hY-PJl"/>
                                             <outlet property="dayLabel" destination="ceK-sO-abR" id="xgI-ua-fld"/>
-                                            <segue destination="7J1-WL-Htx" kind="show" id="Qs2-9X-2Lb"/>
+                                            <segue destination="7J1-WL-Htx" kind="show" identifier="dailyView" id="Qs2-9X-2Lb"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

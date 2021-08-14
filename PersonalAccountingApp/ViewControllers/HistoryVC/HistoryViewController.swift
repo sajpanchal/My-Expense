@@ -109,28 +109,57 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        let dailyExpenses = segue.destination as! DailyExpensesViewController
-        
         let dd = String(format:"%02d",historyTableView.indexPathForSelectedRow!.row+1)
         let mm = String(format:"%02d", Int(monthStepper.value))
         let dateStr = "\(dd)/\(mm)/\(Int(yearStepper.value))"
 
-        let dateFormatter = createDateFormatter(format: "dd/MM/yy")
+        let dateFormatter = createDateFormatter(format: "dd/MM/yyyy")
         let dateFormatter2 = createDateFormatter(format: "MMM d, yyyy")
         // get raw date.
         let date = dateFormatter.date(from: dateStr)
-        dailyExpenses.dateString = dateFormatter2.string(from: date!) //pass the date string to daily expenses VC.
-        // loop the core data entries
-        for entry in expenses {
-            let entryDate = dateFormatter2.string(from: entry.date!) // convert a core data entity date to string.
-            // if the given date is matching with a current date
-            if entryDate == dailyExpenses.dateString {
-                dailyExpenses.item = entry // move that entry to daily expenses
-                break
+        if segue.identifier == "dailyView" {
+            let dailyExpenses = segue.destination as! DailyExpensesViewController
+            dailyExpenses.dateString = dateFormatter2.string(from: date!) //pass the date string to daily expenses VC.
+            // loop the core data entries
+            for entry in expenses {
+                let entryDate = dateFormatter2.string(from: entry.date!) // convert a core data entity date to string.
+                // if the given date is matching with a current date
+                if entryDate == dailyExpenses.dateString {
+                    dailyExpenses.item = entry // move that entry to daily expenses
+                    break
+                }
             }
         }
+      
     }
-    
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        
+        return !checkForEmptyRecords(index: historyTableView.indexPathForSelectedRow!.row+1)
+    }
+    func checkForEmptyRecords(index: Int) -> Bool {
+        let dd = String(format:"%02d", index)
+        let mm = String(format:"%02d", Int(monthStepper.value))
+        let dateStr = "\(dd)/\(mm)/\(Int(yearStepper.value))"
+        
+        let dateFormatter = createDateFormatter(format: "dd/MM/yyyy")
+        let dateFormatter2 = createDateFormatter(format: "MMM d, yyyy")
+        
+        var isRecordEmpty = true
+        for entry in expenses {
+            let entryDate = dateFormatter.string(from: entry.date!)
+            if entryDate == dateStr {
+                if entry.totalAmount == 0.0 {
+                    isRecordEmpty = true
+                    break
+                }
+                else {
+                    isRecordEmpty = false
+                    break
+                }
+            }
+        }
+        return isRecordEmpty
+    }
     func createDateFormatter(format: String) -> DateFormatter {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = format
@@ -185,12 +214,20 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
     func numberOfSections(in tableView: UITableView) -> Int {
         1
     }
- 
+    
     /* using tableview delegate method to create a cell object and returning it.*/
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // this will link the custom cell (HistoryTableViewCell) on each indexPath of our tableview and creates a cell object.
         let cell = tableView.dequeueReusableCell(withIdentifier: "history", for: indexPath) as! HistoryTableViewCell
-        cell.accessoryType = .disclosureIndicator
+        
+        
+        if !checkForEmptyRecords(index: indexPath.row + 1) {
+            cell.accessoryType = .disclosureIndicator
+        }
+        else {
+            cell.accessoryType = .none
+        }
+        
         cell.dayLabel.text = String(format: "%02d",(indexPath.row + 1))
         cell.dayLabel.layer.cornerRadius = 5
         cell.amountLabel.text = ""
@@ -199,7 +236,7 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
             for item in expenses {
                 if Calendar.current.component(.day, from: item.date!) == (indexPath.row + 1) && Calendar.current.component(.month, from: item.date!) == Int(monthStepper.value) && Calendar.current.component(.year, from: item.date!) == Int(yearStepper.value){
                     cell.dayLabel.text = String(format: "%02d",(indexPath.row + 1))
-                    cell.amountLabel.text = numberFormatter.string(from: NSNumber(value:item.totalAmount))
+                    cell.amountLabel.text = item.totalAmount == 0.00 ? "" : numberFormatter.string(from: NSNumber(value:item.totalAmount))
                 }
             }
         }
