@@ -159,11 +159,11 @@ class SavingsViewController: UIViewController, UITableViewDataSource, UITableVie
         return .insert
     }
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        createAlert(title: "Add Earnings", message: "Add This month's Earnings", textField: true , row:indexPath.row)
+        createAlert(title: "Add Earnings", message: "How much did you earn during the selected month?", textField: true , row:indexPath.row)
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        createAlert(title: "Add Earnings", message: "Add This month's Earnings", textField: true , row:indexPath.row)
+        createAlert(title: "Add Earnings", message: "How much did you earn during the selected month?", textField: true , row:indexPath.row)
 
     }
     
@@ -279,10 +279,13 @@ class SavingsViewController: UIViewController, UITableViewDataSource, UITableVie
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         if textField {
         alert.addTextField()
+            alert.textFields![0].placeholder = "Enter Month's Earnings"
+            alert.textFields![0].keyboardType = .decimalPad
         }
         alert.addAction(UIAlertAction(title: "OK", style: .default) {_ in
             self.editUpdateEarningBtn(image: "square.and.pencil", backgroundColor: self.yearLabel.textColor, title: "Update Earnings")
             let amount = alert.textFields![0]
+            
             if let earning = Double(amount.text!) {
                 let date = self.getMonth(number: row+1) + " " + self.yearLabel.text!
                 let result = self.savings.contains {

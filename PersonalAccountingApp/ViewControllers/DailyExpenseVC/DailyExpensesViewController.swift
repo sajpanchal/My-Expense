@@ -101,7 +101,10 @@ class DailyExpensesViewController: UIViewController, UITableViewDelegate, UITabl
         let desc = alert.textFields![0]
         let amount = alert.textFields![1]
         desc.text = self.item!.descriptions![indexPath.row]
+        desc.placeholder = "Edit Item Title."
         amount.text = String(self.item!.amounts![indexPath.row])
+        amount.placeholder = "Edit Item Price."
+        amount.keyboardType = .decimalPad
         
         let submitAction = UIAlertAction(title: "Submit", style: .default) { [self]_ in
             let result = items.contains {  exp in
