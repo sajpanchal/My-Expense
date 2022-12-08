@@ -47,17 +47,19 @@ extension Expense {
                 str1 = dateformatter.string(from: $0.date!)
                 str2 = dateformatter.string(from: $1.date!)
             }
-            
-            if (str1 == str2) {
-                print("Match Found: \(str1) and \(str2)")
-                if ($0.date! > $1.date!) {
-                    AppDelegate.viewContext.delete($1)
+            else {
+                if (str1 == str2) {
+                    print("Match Found: \(str1) and \(str2)")
+                    if ($0.date! > $1.date!) {
+                        AppDelegate.viewContext.delete($1)
+                    }
+                    else {
+                        AppDelegate.viewContext.delete($0)
+                    }
+                    try? AppDelegate.viewContext.save()
                 }
-                else {
-                    AppDelegate.viewContext.delete($0)
-                }
-                try? AppDelegate.viewContext.save()
             }
+           
             return str1 > str2
         })
     }
